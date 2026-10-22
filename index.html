@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>COMETA CAR MULTIMARCAS | A Loja da Confusão - @cometacar007</title>
   
   <!-- Tailwind CSS CDN -->
@@ -32,6 +32,10 @@
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+  <!-- SDK Firebase (Para sincronizar PC com Celular no mundo todo) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     .chrome-border {
       border: 1px solid rgba(209, 213, 219, 0.22);
@@ -45,53 +49,46 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: #070709; }
     ::-webkit-scrollbar-thumb { background: #1f293d; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #DC2626; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
-<body class="bg-[#070709] text-slate-200 font-sans antialiased min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
+<body class="bg-[#070709] text-slate-200 font-sans antialiased min-h-screen flex flex-col selection:bg-red-600 selection:text-white overflow-x-hidden">
 
   <!-- ========================================== -->
   <!-- BARRA DE TOPO COMERCIAL                    -->
   <!-- ========================================== -->
-  <div class="bg-[#0b0d13] border-b border-slate-800 text-xs py-2 px-4">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      
-      <div class="flex items-center gap-3">
-        <span class="flex items-center gap-1.5 text-zinc-300 font-medium">
-          <i class="fa-solid fa-location-dot text-red-500"></i> Av. das Esmeraldas, 363 - Mutinga, Osasco/SP
-        </span>
-        <span class="hidden md:inline text-zinc-700">|</span>
-        <span class="hidden md:inline text-zinc-400">
-          🟢 Compra • 🟠 Venda • 🔴 Troca • 🚨 Refinancie seu próprio veículo 🚗 🏍️
-        </span>
+  <div class="bg-[#0b0d13] border-b border-slate-800 text-[11px] sm:text-xs py-2 px-3 sm:px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 truncate text-zinc-300">
+        <i class="fa-solid fa-location-dot text-red-500 shrink-0"></i>
+        <span class="truncate">Av. das Esmeraldas, 363 - Mutinga, Osasco/SP</span>
       </div>
-
-      <div class="flex items-center gap-4">
-        <a href="https://wa.me/5511957400658" target="_blank" class="flex items-center gap-1.5 text-emerald-400 font-bold hover:text-emerald-300 transition-colors">
-          <i class="fa-brands fa-whatsapp text-sm"></i> (11) 95740-0658
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="https://wa.me/5511957400658" target="_blank" class="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-1">
+          <i class="fa-brands fa-whatsapp text-sm"></i> <span class="hidden sm:inline">(11) 95740-0658</span>
         </a>
-        <a href="https://instagram.com/cometacar007" target="_blank" class="flex items-center gap-1.5 text-red-400 hover:text-red-300 font-bold transition-colors">
-          <i class="fa-brands fa-instagram text-sm"></i> @cometacar007
+        <a href="https://instagram.com/cometacar007" target="_blank" class="text-red-400 hover:text-red-300 font-bold transition-colors flex items-center gap-1">
+          <i class="fa-brands fa-instagram text-sm"></i> <span>@cometacar007</span>
         </a>
       </div>
-
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- HEADER COM O LOGO OFICIAL VETORIZADO       -->
+  <!-- HEADER 100% RESPONSIVO (MOBILE & DESKTOP)  -->
   <!-- ========================================== -->
   <header class="sticky top-0 z-40 bg-[#070709]/95 backdrop-blur-md border-b border-zinc-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 h-20 sm:h-24 flex items-center justify-between gap-2">
       
-      <!-- LOGOTIPO OFICIAL COMETA CAR -->
-      <a href="javascript:void(0)" onclick="switchView('showroom')" class="flex items-center gap-3 group">
-        
-        <div class="w-16 h-16 shrink-0 transition-transform group-hover:scale-105">
+      <!-- LOGO OFICIAL -->
+      <a href="javascript:void(0)" onclick="switchView('showroom')" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+        <div class="w-11 h-11 sm:w-16 sm:h-16 shrink-0 transition-transform group-hover:scale-105">
           <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_4px_10px_rgba(220,38,38,0.4)]" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="shieldChrome" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
@@ -108,49 +105,40 @@
               </linearGradient>
             </defs>
 
-            <path d="M100 12 L178 34 C178 115 142 165 100 190 C58 165 22 115 22 34 Z" 
-                  stroke="url(#shieldChrome)" stroke-width="7" fill="#0C0D11"/>
-
-            <path d="M100 22 L168 41 C168 110 137 154 100 176 C63 154 32 110 32 41 Z" 
-                  stroke="url(#shieldChrome)" stroke-width="2" stroke-opacity="0.5" fill="#07080A"/>
-
-            <path d="M52 90 L82 72 L132 72 L160 84 L185 88 L188 95 L178 95 C176 90 168 87 160 87 C152 87 146 92 144 97 L95 97 C93 91 85 87 77 87 C69 87 63 91 61 97 L45 97 Z" 
-                  stroke="url(#shieldChrome)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M100 12 L178 34 C178 115 142 165 100 190 C58 165 22 115 22 34 Z" stroke="url(#shieldChrome)" stroke-width="7" fill="#0C0D11"/>
+            <path d="M100 22 L168 41 C168 110 137 154 100 176 C63 154 32 110 32 41 Z" stroke="url(#shieldChrome)" stroke-width="2" stroke-opacity="0.5" fill="#07080A"/>
+            <path d="M52 90 L82 72 L132 72 L160 84 L185 88 L188 95 L178 95 C176 90 168 87 160 87 C152 87 146 92 144 97 L95 97 C93 91 85 87 77 87 C69 87 63 91 61 97 L45 97 Z" stroke="url(#shieldChrome)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             <path d="M88 74 L128 74 L144 84 L80 84 Z" fill="#181B22" stroke="url(#shieldChrome)" stroke-width="1.5"/>
-
             <polygon points="12,96 112,88 120,95 38,102" fill="url(#cometaRed)"/>
             <polygon points="18,100 95,95 102,100 32,106" fill="#F87171"/>
-
             <g transform="translate(77, 138) scale(0.75)" stroke="url(#shieldChrome)" stroke-width="1.5" fill="none">
               <path d="M30 45 L30 26 M28 45 L32 45" stroke-width="3" stroke-linecap="round"/>
               <path d="M30 28 C15 28 8 20 8 16 C8 12 18 10 30 14 C42 10 52 12 52 16 C52 20 45 28 30 28 Z" fill="#1A1E26" stroke-width="2"/>
-              <path d="M14 18 L24 24 M46 18 L36 24 M30 16 L30 24 M20 14 L28 20 M40 14 L32 20"/>
             </g>
           </svg>
         </div>
 
         <div class="flex flex-col">
-          <div class="flex items-center gap-1.5 leading-none">
-            <span class="text-2xl sm:text-3xl font-black tracking-tight text-white">COMETA</span>
-            <span class="text-2xl sm:text-3xl font-black tracking-tight text-red-600">CAR</span>
+          <div class="flex items-center gap-1 leading-none">
+            <span class="text-xl sm:text-3xl font-black tracking-tight text-white">COMETA</span>
+            <span class="text-xl sm:text-3xl font-black tracking-tight text-red-600">CAR</span>
           </div>
-          <span class="text-[10px] tracking-[0.28em] font-extrabold text-zinc-400 uppercase -mt-0.5">MULTIMARCAS</span>
+          <span class="text-[8px] sm:text-[10px] tracking-[0.24em] font-extrabold text-zinc-400 uppercase -mt-0.5">MULTIMARCAS</span>
         </div>
-
       </a>
 
-      <!-- AÇÕES -->
-      <div class="flex items-center gap-3">
+      <!-- AÇÕES NO HEADER -->
+      <div class="flex items-center gap-2 sm:gap-3">
         <a href="https://wa.me/5511957400658?text=Olá!%20Vim%20pelo%20site%20da%20Cometa%20Car." target="_blank"
-           class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-4 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all hover:scale-105">
-          <i class="fa-brands fa-whatsapp text-base"></i>
-          <span class="hidden sm:inline">Chamar no WhatsApp</span>
+           class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all">
+          <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
+          <span class="hidden md:inline">Chamar no WhatsApp</span>
         </a>
 
         <button id="btn-toggle-admin" onclick="handleAdminToggle()" 
-          class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3.5 py-2.5 rounded-xl bg-[#131926] hover:bg-[#1a2133] border border-zinc-700 text-zinc-200 transition-all">
+          class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-2 sm:py-2.5 rounded-xl bg-[#131926] hover:bg-[#1a2133] border border-zinc-700 text-zinc-200 transition-all">
           <i class="fa-solid fa-lock text-red-500" id="admin-icon"></i>
-          <span id="admin-text">Área ADM</span>
+          <span id="admin-text" class="hidden sm:inline">Área ADM</span>
         </button>
       </div>
 
@@ -162,113 +150,100 @@
   <!-- ========================================== -->
   <main id="view-showroom" class="flex-1 pb-16">
 
-    <!-- STORIES / DESTAQUES DO INSTAGRAM -->
-    <section class="max-w-7xl mx-auto px-4 py-4 border-b border-zinc-800/80 overflow-x-auto">
-      <div class="flex items-center gap-6 min-w-max">
+    <!-- STORIES / DESTAQUES COM ROLAGEM TOUCH -->
+    <section class="max-w-7xl mx-auto px-4 py-3 sm:py-4 border-b border-zinc-800/80 overflow-x-auto no-scrollbar">
+      <div class="flex items-center gap-4 sm:gap-6 min-w-max">
         
-        <a href="#avaliacoes-google" class="flex flex-col items-center gap-1.5 group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-red-500 to-blue-500 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center">
-              <i class="fa-brands fa-google text-xl text-amber-400"></i>
+        <a href="#avaliacoes-google" class="flex flex-col items-center gap-1 group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] bg-gradient-to-tr from-amber-400 via-red-500 to-blue-500 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] flex items-center justify-center">
+              <i class="fa-brands fa-google text-lg sm:text-xl text-amber-400"></i>
             </div>
           </div>
-          <span class="text-[11px] font-bold text-zinc-300">Google 5.0 ★</span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-zinc-300">Google 5.0 ★</span>
         </a>
 
-        <div onclick="filterByTag('oferta')" class="flex flex-col items-center gap-1.5 cursor-pointer group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] gradient-fire group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-amber-400">
-              <i class="fa-solid fa-fire text-xl"></i>
+        <div onclick="filterByTag('oferta')" class="flex flex-col items-center gap-1 cursor-pointer group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] gradient-fire group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] flex items-center justify-center text-amber-400">
+              <i class="fa-solid fa-fire text-lg sm:text-xl"></i>
             </div>
           </div>
-          <span class="text-[11px] font-bold text-zinc-300">Ofertas da Loja</span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-zinc-300">Ofertas</span>
         </div>
 
-        <div onclick="filterByTag('video')" class="flex flex-col items-center gap-1.5 cursor-pointer group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-red-600 to-rose-400 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-red-400">
-              <i class="fa-solid fa-circle-play text-xl"></i>
+        <div onclick="filterByTag('video')" class="flex flex-col items-center gap-1 cursor-pointer group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] bg-gradient-to-tr from-red-600 to-rose-400 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] flex items-center justify-center text-red-400">
+              <i class="fa-solid fa-circle-play text-lg sm:text-xl"></i>
             </div>
           </div>
-          <span class="text-[11px] font-bold text-zinc-300">Com Vídeo</span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-zinc-300">Com Vídeo</span>
         </div>
 
-        <div onclick="openRefinanceLead()" class="flex flex-col items-center gap-1.5 cursor-pointer group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-emerald-500 to-teal-400 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-emerald-400">
-              <i class="fa-solid fa-hand-holding-dollar text-xl"></i>
+        <div onclick="openRefinanceLead()" class="flex flex-col items-center gap-1 cursor-pointer group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] bg-gradient-to-tr from-emerald-500 to-teal-400 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-hand-holding-dollar text-lg sm:text-xl"></i>
             </div>
           </div>
-          <span class="text-[11px] font-bold text-zinc-300">Refinancie</span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-zinc-300">Refinancie</span>
         </div>
 
-        <div onclick="openTradeLead()" class="flex flex-col items-center gap-1.5 cursor-pointer group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-blue-600 to-red-600 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-zinc-200">
-              <i class="fa-solid fa-motorcycle text-xl"></i>
+        <div onclick="openTradeLead()" class="flex flex-col items-center gap-1 cursor-pointer group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 to-red-600 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] flex items-center justify-center text-zinc-200">
+              <i class="fa-solid fa-motorcycle text-lg sm:text-xl"></i>
             </div>
           </div>
-          <span class="text-[11px] font-bold text-zinc-300">Carro / Moto</span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-zinc-300">Carro / Moto</span>
         </div>
-
-        <a href="https://instagram.com/cometacar007" target="_blank" class="flex flex-col items-center gap-1.5 group">
-          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-zinc-600 via-red-600 to-zinc-400 group-hover:scale-105 transition-transform">
-            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center">
-              <i class="fa-solid fa-users text-xl text-red-500"></i>
-            </div>
-          </div>
-          <span class="text-[11px] font-bold text-zinc-300">Clientes</span>
-        </a>
 
       </div>
     </section>
 
     <!-- HERO BANNER -->
-    <section class="relative bg-gradient-to-b from-[#11141c] via-[#090b10] to-[#070709] py-10 sm:py-14 px-4 border-b border-zinc-800/80">
+    <section class="relative bg-gradient-to-b from-[#11141c] via-[#090b10] to-[#070709] py-8 sm:py-14 px-4 border-b border-zinc-800/80">
       <div class="max-w-7xl mx-auto">
-        <div class="chrome-border rounded-3xl p-6 sm:p-12 bg-gradient-to-br from-[#161d2b] via-[#0d1017] to-[#070709] relative overflow-hidden shadow-2xl">
-          
-          <div class="relative z-10 max-w-4xl space-y-4">
-            
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-950/80 border border-rose-600/50 text-rose-300 text-xs font-black uppercase tracking-wider shadow-md shadow-rose-950/40">
+        <div class="chrome-border rounded-2xl sm:rounded-3xl p-5 sm:p-12 bg-gradient-to-br from-[#161d2b] via-[#0d1017] to-[#070709] relative overflow-hidden shadow-2xl">
+          <div class="relative z-10 max-w-4xl space-y-3 sm:space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/80 border border-rose-600/50 text-rose-300 text-[10px] sm:text-xs font-black uppercase tracking-wider">
               <i class="fa-solid fa-certificate text-red-500"></i> COMETA CAR • REALIZANDO SONHOS E CONSTRUINDO HISTÓRIAS
             </div>
 
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight uppercase leading-[1.1]">
+            <h1 class="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight uppercase leading-[1.15]">
               <span class="text-white block">A LOJA DA CONFUSÃO</span>
               <span class="fire-text block">EM PREÇO BAIXO & PROCEDÊNCIA</span>
             </h1>
 
-            <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+            <p class="text-zinc-300 text-xs sm:text-base leading-relaxed max-w-2xl">
               Trabalhamos com todas as financeiras, entrada facilitada em até 21x no cartão, pegamos seu carro ou moto na troca e temos os melhores seminovos periciados de Osasco e região.
             </p>
 
-            <div class="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-bold text-zinc-200">
-              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-emerald-400 flex items-center gap-2">
-                <i class="fa-solid fa-shield-check"></i> Cautelar 100% Aprovada
+            <div class="pt-2 flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-bold text-zinc-200">
+              <span class="bg-[#070709] px-3 py-1.5 rounded-lg border border-zinc-800 text-emerald-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-shield-check"></i> Cautelar 100%
               </span>
-              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-zinc-200 flex items-center gap-2">
+              <span class="bg-[#070709] px-3 py-1.5 rounded-lg border border-zinc-800 text-zinc-200 flex items-center gap-1.5">
                 <i class="fa-solid fa-arrow-right-arrow-left text-red-500"></i> Troca com Troco
               </span>
-              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-amber-400 flex items-center gap-2">
-                <i class="fa-solid fa-credit-card"></i> Entrada no Cartão até 21x
+              <span class="bg-[#070709] px-3 py-1.5 rounded-lg border border-zinc-800 text-amber-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-credit-card"></i> Entrada até 21x
               </span>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- BARRA DE FILTROS COM CAMPO DIGITÁVEL DE PREÇO -->
-    <section class="max-w-7xl mx-auto px-4 mt-6">
+    <!-- BARRA DE FILTROS COM ATALHOS -->
+    <section class="max-w-7xl mx-auto px-3 sm:px-4 mt-6">
       <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 shadow-xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
           
           <div class="relative lg:col-span-4">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
-            <input type="text" id="filter-search" oninput="applyFilters()" placeholder="Buscar por modelo ou marca (T-Cross, Celta, Corolla)..." 
+            <input type="text" id="filter-search" oninput="applyFilters()" placeholder="Buscar modelo (ex: HB20, Celta, Corolla)..." 
                    class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-red-600" />
           </div>
 
@@ -296,115 +271,67 @@
 
         </div>
 
+        <!-- Atalhos rápidos -->
         <div class="mt-3 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="text-zinc-500 font-semibold mr-1">Atalhos de valor:</span>
-            <button onclick="setPriceFilter(30000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 30 mil</button>
-            <button onclick="setPriceFilter(50000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 50 mil</button>
-            <button onclick="setPriceFilter(90000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 90 mil</button>
-            <button onclick="setPriceFilter(150000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 150 mil</button>
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto pb-1 sm:pb-0">
+            <button onclick="setPriceFilter(30000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 shrink-0">Até 30 mil</button>
+            <button onclick="setPriceFilter(50000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 shrink-0">Até 50 mil</button>
+            <button onclick="setPriceFilter(90000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 shrink-0">Até 90 mil</button>
+            <button onclick="setPriceFilter(150000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 shrink-0">Até 150 mil</button>
           </div>
 
-          <div class="flex items-center gap-4 text-zinc-400">
-            <span id="showroom-counter">Consultando estoque da Cometa Car...</span>
+          <div class="flex items-center justify-between w-full sm:w-auto gap-4 text-zinc-400">
+            <span id="showroom-counter">Consultando estoque...</span>
             <button onclick="clearFilters()" class="text-red-400 hover:text-red-300 font-bold flex items-center gap-1">
-              <i class="fa-solid fa-rotate-left"></i> Limpar Filtros
+              <i class="fa-solid fa-rotate-left"></i> Limpar
             </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GRID DE VEÍCULOS NO ESTOQUE -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <div id="showroom-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <!-- GRID DE VEÍCULOS -->
+    <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+      <div id="showroom-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
 
       <div id="showroom-empty" class="hidden text-center py-16 bg-[#131926] rounded-3xl border border-zinc-800 mt-6">
         <i class="fa-solid fa-car-rear text-5xl text-zinc-700 mb-3 block"></i>
-        <h3 class="text-lg font-black text-white">Nenhum veículo encontrado com esse valor no estoque</h3>
-        <p class="text-sm text-zinc-400 mt-1">Chame a equipe da Cometa Car no WhatsApp que buscamos o carro no valor que você pode pagar!</p>
-        <button onclick="clearFilters()" class="mt-4 px-5 py-2.5 bg-red-600 hover:bg-red-500 text-xs font-black uppercase tracking-wider rounded-xl text-white">
+        <h3 class="text-lg font-black text-white">Nenhum veículo encontrado com esse filtro</h3>
+        <p class="text-sm text-zinc-400 mt-1">Chame a equipe da Cometa Car no WhatsApp que achamos o carro pra você!</p>
+        <button onclick="clearFilters()" class="mt-4 px-5 py-2.5 bg-red-600 hover:bg-red-500 text-xs font-black uppercase rounded-xl text-white">
           Ver Todo o Estoque
         </button>
       </div>
     </section>
 
     <!-- AVALIAÇÕES GOOGLE -->
-    <section id="avaliacoes-google" class="max-w-7xl mx-auto px-4 py-10">
+    <section id="avaliacoes-google" class="max-w-7xl mx-auto px-3 sm:px-4 py-8">
       <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-10 relative overflow-hidden">
-        
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-zinc-800 pb-8">
-          <div class="space-y-1.5">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-zinc-800 pb-6">
+          <div class="space-y-1">
             <div class="flex items-center gap-2">
               <i class="fa-brands fa-google text-2xl text-amber-400"></i>
               <span class="text-xs font-black uppercase tracking-widest text-zinc-400">Google Meu Negócio • Perfil Oficial</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
-              O que nossos clientes dizem no Google
-            </h3>
-            <p class="text-xs sm:text-sm text-zinc-400">
-              Cometa Car Multimarcas em Osasco/SP. Avaliação máxima comprovada por quem comprou e aprovou.
-            </p>
+            <h3 class="text-xl sm:text-3xl font-black text-white uppercase">O que dizem os clientes no Google</h3>
+            <p class="text-xs sm:text-sm text-zinc-400">Cometa Car Multimarcas em Osasco/SP. Avaliação máxima comprovada.</p>
           </div>
 
-          <div class="flex items-center gap-4 bg-[#070709] border border-zinc-700 px-6 py-4 rounded-2xl shrink-0">
+          <div class="flex items-center gap-4 bg-[#070709] border border-zinc-700 px-5 py-3.5 rounded-2xl shrink-0">
             <div class="text-center">
-              <span class="text-4xl font-black text-white">5.0</span>
-              <div class="flex text-amber-400 text-sm mt-0.5">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+              <span class="text-3xl font-black text-white">5.0</span>
+              <div class="flex text-amber-400 text-xs mt-0.5">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
               </div>
             </div>
             <div class="border-l border-zinc-800 pl-4 text-xs">
-              <span class="font-bold text-emerald-400 block"><i class="fa-solid fa-circle-check mr-1"></i>100% Positivas</span>
-              <span class="text-zinc-500">Baseado em clientes reais</span>
+              <span class="font-bold text-emerald-400 block">100% Positivas</span>
+              <span class="text-zinc-500">Clientes Reais</span>
             </div>
           </div>
         </div>
 
-        <div id="google-reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8"></div>
-
-        <div class="mt-8 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-4 text-xs">
-          <span class="text-zinc-400">Você já é nosso cliente? Ajude outros motoristas avaliando a Cometa Car!</span>
-          <div class="flex items-center gap-3">
-            <a href="https://www.google.com/maps/search/?api=1&query=Cometa+Car+Multimarcas+Av+das+Esmeraldas+363+Osasco" target="_blank"
-               class="px-4 py-2.5 rounded-xl bg-[#070709] border border-zinc-700 hover:border-zinc-500 text-zinc-200 font-bold uppercase tracking-wider flex items-center gap-2">
-              <i class="fa-brands fa-google text-red-500"></i> Ver Perfil no Google Maps
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Cometa+Car+Multimarcas+Av+das+Esmeraldas+363+Osasco" target="_blank"
-               class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-red-950/50">
-              <i class="fa-solid fa-star text-amber-300"></i> Avaliar no Google
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- LOCALIZAÇÃO -->
-    <section class="max-w-7xl mx-auto px-4 pt-2">
-      <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2">
-          <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Venha Tomar um Café Conosco</span>
-          <h3 class="text-2xl font-black text-white uppercase">Cometa Car Multimarcas em Osasco</h3>
-          <p class="text-sm text-zinc-300">
-            Av. das Esmeraldas, 363 - Mutinga, Osasco - SP, 06286-010<br />
-            (Ponto de referência: Próximo à Av. Alberto J. Byington / Vila Menck).
-          </p>
-        </div>
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="https://maps.google.com/?q=Av.+das+Esmeraldas,+363+-+Mutinga,+Osasco+-+SP" target="_blank"
-             class="px-5 py-3 rounded-xl bg-[#070709] border border-zinc-700 hover:border-zinc-500 text-zinc-200 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-            <i class="fa-solid fa-location-arrow text-red-500"></i> Traçar Rota GPS
-          </a>
-          <a href="https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20visitar%20a%20loja%20hoje." target="_blank"
-             class="px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2">
-            <i class="fa-brands fa-whatsapp text-base"></i> Falar com Vendedor
-          </a>
-        </div>
+        <div id="google-reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mt-6"></div>
       </div>
     </section>
 
@@ -413,89 +340,77 @@
   <!-- ========================================== -->
   <!-- VIEW 2: PAINEL ADMINISTRATIVO (ERP)        -->
   <!-- ========================================== -->
-  <main id="view-admin" class="flex-1 hidden bg-[#070709] py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
+  <main id="view-admin" class="flex-1 hidden bg-[#070709] py-6 sm:py-8">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 space-y-6 sm:space-y-8">
       
       <!-- Topo ADM -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-6">
         <div>
           <span class="text-xs font-black text-red-500 tracking-widest uppercase">Sistema ERP de Gestão</span>
-          <h2 class="text-3xl font-black text-white uppercase">Controle de Estoque Cometa Car</h2>
+          <h2 class="text-2xl sm:text-3xl font-black text-white uppercase">Controle de Estoque Cometa Car</h2>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button onclick="openCloudConfigModal()" 
+                  class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase shadow">
+            <i class="fa-solid fa-cloud"></i>
+            <span>Nuvem (Firebase)</span>
+          </button>
           <button onclick="openVehicleModal()" 
-                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl gradient-fire hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-950/50">
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl gradient-fire hover:opacity-95 text-white font-bold text-xs uppercase shadow-lg shadow-red-950/50">
             <i class="fa-solid fa-plus"></i>
-            <span>Cadastrar no Estoque</span>
+            <span>Cadastrar Veículo</span>
           </button>
           <button onclick="logoutAdmin()" 
-                  class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#131926] border border-zinc-800 text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-wider">
+                  class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#131926] border border-zinc-800 text-zinc-400 hover:text-white text-xs font-bold uppercase">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Sair</span>
           </button>
         </div>
       </div>
 
-      <!-- Dashboard KPIs -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
-          <div class="flex items-center justify-between text-zinc-400">
-            <span class="text-xs font-bold uppercase">Total no Estoque</span>
-            <i class="fa-solid fa-boxes-stacked text-red-500"></i>
-          </div>
-          <p id="kpi-total-cars" class="text-3xl font-black text-white mt-2">0</p>
-          <span class="text-[11px] text-zinc-500">Veículos ativos no estoque</span>
+      <!-- Alerta de Sincronização Nuvem / Local -->
+      <div id="cloud-status-banner" class="p-4 rounded-2xl bg-amber-950/40 border border-amber-600/40 text-amber-200 text-xs flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400 text-base shrink-0"></i>
+          <span><b>Aviso de Sincronização:</b> Para que os carros cadastrados no PC apareçam no celular de qualquer pessoa, conecte seu Firebase gratuito.</span>
         </div>
-
-        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
-          <div class="flex items-center justify-between text-zinc-400">
-            <span class="text-xs font-bold uppercase">Valor do Estoque</span>
-            <i class="fa-solid fa-brazilian-real-sign text-emerald-400"></i>
-          </div>
-          <p id="kpi-total-value" class="text-2xl sm:text-3xl font-black text-white mt-2">R$ 0</p>
-          <span class="text-[11px] text-emerald-400">Capital disponível em estoque</span>
-        </div>
-
-        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
-          <div class="flex items-center justify-between text-zinc-400">
-            <span class="text-xs font-bold uppercase">Ofertas / Confusão</span>
-            <i class="fa-solid fa-fire text-amber-400"></i>
-          </div>
-          <p id="kpi-deals-count" class="text-3xl font-black text-amber-400 mt-2">0</p>
-          <span class="text-[11px] text-zinc-500">Com preço promocional</span>
-        </div>
-
-        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
-          <div class="flex items-center justify-between text-zinc-400">
-            <span class="text-xs font-bold uppercase">Vendidos / Entregues</span>
-            <i class="fa-solid fa-handshake text-purple-400"></i>
-          </div>
-          <p id="kpi-sold-count" class="text-3xl font-black text-purple-400 mt-2">0</p>
-          <span class="text-[11px] text-zinc-500">Sonhos realizados</span>
-        </div>
-
+        <button onclick="openCloudConfigModal()" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black font-black uppercase rounded-lg text-[11px] shrink-0">
+          Conectar Agora
+        </button>
       </div>
 
-      <!-- Tabela com Alternância de Status em 1 Clique -->
-      <div class="bg-[#131926] border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-        <div class="px-6 py-4 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h3 class="text-sm font-black text-white uppercase tracking-wider">Gestão de Estoque</h3>
-            <p class="text-xs text-zinc-400">Clique na etiqueta de status para alternar: <b>Disponível ➔ Oferta ➔ Vendido</b>.</p>
-          </div>
+      <!-- KPIs -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 sm:p-5">
+          <span class="text-[11px] font-bold uppercase text-zinc-400">Total no Estoque</span>
+          <p id="kpi-total-cars" class="text-2xl sm:text-3xl font-black text-white mt-1">0</p>
         </div>
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 sm:p-5">
+          <span class="text-[11px] font-bold uppercase text-zinc-400">Valor do Estoque</span>
+          <p id="kpi-total-value" class="text-xl sm:text-3xl font-black text-white mt-1">R$ 0</p>
+        </div>
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 sm:p-5">
+          <span class="text-[11px] font-bold uppercase text-zinc-400">Em Oferta</span>
+          <p id="kpi-deals-count" class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">0</p>
+        </div>
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 sm:p-5">
+          <span class="text-[11px] font-bold uppercase text-zinc-400">Vendidos</span>
+          <p id="kpi-sold-count" class="text-2xl sm:text-3xl font-black text-purple-400 mt-1">0</p>
+        </div>
+      </div>
 
+      <!-- Tabela Estoque -->
+      <div class="bg-[#131926] border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm text-zinc-300">
-            <thead class="bg-[#070709] text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800">
+          <table class="w-full text-left text-xs sm:text-sm text-zinc-300">
+            <thead class="bg-[#070709] text-[10px] sm:text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800">
               <tr>
-                <th class="px-6 py-3.5">Veículo</th>
-                <th class="px-4 py-3.5">Ano / Câmbio</th>
-                <th class="px-4 py-3.5">Mídia</th>
-                <th class="px-4 py-3.5">Valor</th>
-                <th class="px-4 py-3.5 text-center">Status no Estoque (1 Clique)</th>
-                <th class="px-6 py-3.5 text-right">Ações</th>
+                <th class="px-4 py-3.5">Veículo</th>
+                <th class="px-3 py-3.5">Ano</th>
+                <th class="px-3 py-3.5">Mídia</th>
+                <th class="px-3 py-3.5">Valor</th>
+                <th class="px-3 py-3.5 text-center">Status</th>
+                <th class="px-4 py-3.5 text-right">Ações</th>
               </tr>
             </thead>
             <tbody id="admin-table-body" class="divide-y divide-zinc-800/60 font-medium"></tbody>
@@ -507,36 +422,35 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- MODAL: LOGIN ADMINISTRATIVO (SENHA PRIVADA)-->
+  <!-- MODAL: LOGIN (SENHA: Cometa@2026)          -->
   <!-- ========================================== -->
   <div id="modal-login" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-[#131926] border border-zinc-800 w-full max-w-sm rounded-3xl p-6 sm:p-7 shadow-2xl relative">
-      <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white transition-colors">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
+      <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <div class="text-center mb-6">
-        <div class="w-14 h-14 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center mx-auto mb-3 shadow-inner">
-          <i class="fa-solid fa-lock text-2xl"></i>
+        <div class="w-12 h-12 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center mx-auto mb-3">
+          <i class="fa-solid fa-lock text-xl"></i>
         </div>
-        <h3 class="text-xl font-black text-white uppercase tracking-tight">Acesso Gerência</h3>
-        <p class="text-xs text-zinc-400 mt-1">Gerenciamento do estoque Cometa Car.</p>
+        <h3 class="text-lg font-black text-white uppercase">Acesso Gerência</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">Estoque Cometa Car.</p>
       </div>
 
-      <form onsubmit="handleLoginSubmit(event)" class="space-y-5">
+      <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1.5">Senha de Gerência</label>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Senha de Gerência</label>
           <div class="relative">
             <input type="password" id="admin-password" placeholder="Digite a senha..." required
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-4 pr-10 py-3 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-red-600 transition-colors" />
-            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-3.5 text-zinc-500 hover:text-zinc-300 transition-colors">
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-4 pr-10 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-3 text-zinc-500">
               <i class="fa-solid fa-eye" id="toggle-password-icon"></i>
             </button>
           </div>
         </div>
 
-        <button type="submit" 
-                class="w-full py-3 rounded-xl gradient-fire font-black text-xs uppercase tracking-wider text-white shadow-lg shadow-red-950/60 hover:opacity-95 transition-all">
+        <button type="submit" class="w-full py-2.5 rounded-xl gradient-fire font-black text-xs uppercase tracking-wider text-white shadow-lg">
           Entrar no ERP
         </button>
       </form>
@@ -544,135 +458,168 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL: DETALHES DO VEÍCULO (FOTOS + VÍDEO) -->
+  <!-- MODAL: CONFIGURAÇÃO DE NUVEM FIREBASE      -->
+  <!-- ========================================== -->
+  <div id="modal-cloud" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-lg rounded-3xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCloudConfigModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-4">
+        <div class="flex items-center gap-2 text-blue-400 text-sm font-black uppercase">
+          <i class="fa-solid fa-cloud"></i> Sincronização PC ↔ Celular
+        </div>
+        <h3 class="text-xl font-black text-white uppercase mt-1">Conectar Banco em Nuvem</h3>
+        <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+          Para que as fotos e carros cadastrados no seu computador apareçam <b>no seu celular e no de todos os clientes</b>, crie um projeto gratuito no <b>Firebase Console</b> e cole as credenciais abaixo:
+        </p>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Configuração JSON do Firebase (firebaseConfig)</label>
+          <textarea id="cloud-firebase-config" rows="7" placeholder='{\n  "apiKey": "AIzaSy...",\n  "authDomain": "...",\n  "projectId": "cometacar-xxx",\n  "storageBucket": "..."\n}'
+                    class="w-full bg-[#070709] border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-blue-500"></textarea>
+        </div>
+
+        <div class="p-3 bg-zinc-950 rounded-xl border border-zinc-800 text-zinc-400 space-y-1">
+          <p class="font-bold text-white">Como criar em 3 minutos (Gratuito):</p>
+          <p>1. Acesse <b>console.firebase.google.com</b> com seu Gmail.</p>
+          <p>2. Clique em <i>Criar Projeto</i> (ex: Cometa Car).</p>
+          <p>3. Ative o <b>Cloud Firestore</b> em modo de teste.</p>
+          <p>4. Em Configurações do Projeto, copie as chaves e cole aqui.</p>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="closeCloudConfigModal()" class="px-4 py-2 rounded-xl bg-zinc-800 text-zinc-300 font-bold">Cancelar</button>
+          <button type="button" onclick="saveFirebaseConfig()" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black uppercase">Salvar e Conectar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: DETALHES DO VEÍCULO                 -->
   <!-- ========================================== -->
   <div id="modal-details" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-[#131926] border border-zinc-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative my-auto">
-      
       <button onclick="closeDetailsModal()" class="absolute right-4 top-4 z-20 w-9 h-9 rounded-full bg-black/80 text-zinc-300 hover:text-white flex items-center justify-center border border-zinc-700">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[85vh] overflow-y-auto">
-        
-        <div class="lg:col-span-7 bg-[#070709] p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-800">
+        <div class="lg:col-span-7 bg-[#070709] p-4 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-800">
           <div>
             <div id="media-viewport" class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-black border border-zinc-800 flex items-center justify-center">
-              <img id="detail-main-img" src="" alt="" class="w-full h-full object-cover" />
+              <img id="detail-main-img" src="" class="w-full h-full object-cover" />
               <video id="detail-main-video" controls class="w-full h-full object-cover hidden"></video>
               <iframe id="detail-main-iframe" class="w-full h-full hidden" allowfullscreen></iframe>
               <div id="detail-status-badge" class="absolute top-3 left-3 z-10"></div>
             </div>
-            
-            <div id="detail-thumbnails" class="flex items-center gap-2.5 mt-3 overflow-x-auto pb-2"></div>
+            <div id="detail-thumbnails" class="flex items-center gap-2 mt-3 overflow-x-auto pb-2 no-scrollbar"></div>
           </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-xs text-zinc-400 space-y-1.5">
-            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-check text-emerald-400"></i> Laudo Cautelar Aprovado & Procedência Cometa Car</div>
-            <div class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-red-500"></i> Aceitamos seu Carro ou Moto na Troca</div>
-            <div class="flex items-center gap-2"><i class="fa-solid fa-credit-card text-amber-400"></i> Entrada Facilitada em até 21x no Cartão</div>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 text-xs text-zinc-400 space-y-1">
+            <div><i class="fa-solid fa-shield-check text-emerald-400 mr-1.5"></i> Laudo Cautelar Aprovado</div>
+            <div><i class="fa-solid fa-arrows-rotate text-red-500 mr-1.5"></i> Aceita Carro ou Moto na Troca</div>
           </div>
         </div>
 
-        <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+        <div class="lg:col-span-5 p-5 sm:p-8 flex flex-col justify-between">
           <div>
             <span id="detail-brand" class="text-xs font-black text-red-500 uppercase tracking-widest"></span>
-            <h2 id="detail-model" class="text-2xl font-black text-white mt-1"></h2>
+            <h2 id="detail-model" class="text-xl sm:text-2xl font-black text-white mt-0.5"></h2>
 
-            <div class="mt-4 p-4 rounded-2xl bg-[#070709] border border-zinc-800">
+            <div class="mt-3 p-4 rounded-2xl bg-[#070709] border border-zinc-800">
               <span id="detail-price-original" class="text-xs text-zinc-500 line-through block font-medium"></span>
               <div class="flex items-baseline gap-2">
-                <span id="detail-price-promo" class="text-3xl font-black text-white"></span>
+                <span id="detail-price-promo" class="text-2xl sm:text-3xl font-black text-white"></span>
                 <span id="detail-price-label" class="text-xs text-emerald-400 font-bold uppercase">À Vista</span>
               </div>
-              <p class="text-[11px] text-zinc-400 mt-1"><i class="fa-solid fa-handshake mr-1 text-red-500"></i>Financiamento com todas as financeiras do mercado.</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-2.5 mt-4 text-xs">
-              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
-                <span class="text-zinc-500 block">Ano</span>
-                <span id="detail-year" class="font-black text-zinc-200 text-sm"></span>
+            <div class="grid grid-cols-2 gap-2 mt-3 text-xs">
+              <div class="p-2.5 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block text-[10px]">Ano</span>
+                <span id="detail-year" class="font-bold text-zinc-200"></span>
               </div>
-              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
-                <span class="text-zinc-500 block">KM</span>
-                <span id="detail-km" class="font-black text-zinc-200 text-sm"></span>
+              <div class="p-2.5 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block text-[10px]">KM</span>
+                <span id="detail-km" class="font-bold text-zinc-200"></span>
               </div>
-              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
-                <span class="text-zinc-500 block">Câmbio</span>
-                <span id="detail-gearbox" class="font-black text-zinc-200 text-sm"></span>
+              <div class="p-2.5 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block text-[10px]">Câmbio</span>
+                <span id="detail-gearbox" class="font-bold text-zinc-200"></span>
               </div>
-              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
-                <span class="text-zinc-500 block">Combustível</span>
-                <span id="detail-fuel" class="font-black text-zinc-200 text-sm"></span>
+              <div class="p-2.5 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block text-[10px]">Combustível</span>
+                <span id="detail-fuel" class="font-bold text-zinc-200"></span>
               </div>
             </div>
 
-            <div class="mt-5">
-              <h4 class="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-2">Opcionais do Veículo</h4>
+            <div class="mt-4">
+              <h4 class="text-xs font-bold uppercase text-zinc-400 mb-2">Opcionais</h4>
               <div id="detail-features" class="flex flex-wrap gap-1.5"></div>
             </div>
           </div>
 
           <div class="mt-6">
             <a id="detail-whatsapp-btn" href="#" target="_blank"
-               class="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all">
-              <i class="fa-brands fa-whatsapp text-lg"></i>
-              <span>Negociar no WhatsApp da Loja</span>
+               class="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase shadow-lg transition-all">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Negociar no WhatsApp
             </a>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL: CADASTRO COM FOTOS REAIS E VÍDEOS   -->
+  <!-- MODAL: CADASTRO COM COMPRESSÃO ULTRA-LEVE  -->
   <!-- ========================================== -->
   <div id="modal-vehicle-form" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
-    <div class="bg-[#131926] border border-zinc-800 w-full max-w-3xl rounded-3xl p-6 sm:p-8 shadow-2xl relative my-auto">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-3xl rounded-3xl p-5 sm:p-8 shadow-2xl relative my-auto">
       <button onclick="closeVehicleModal()" class="absolute right-5 top-5 text-zinc-400 hover:text-white">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
-      <div class="mb-5">
-        <h3 id="form-modal-title" class="text-xl font-black text-white uppercase">Novo Cadastro de Estoque</h3>
-        <p class="text-xs text-zinc-400 mt-1">Carregue fotos tiradas do seu celular/câmera e adicione vídeos do carro.</p>
+      <div class="mb-4">
+        <h3 id="form-modal-title" class="text-lg sm:text-xl font-black text-white uppercase">Novo Cadastro de Estoque</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">As fotos são otimizadas automaticamente para carregar em qualquer celular.</p>
       </div>
 
-      <form id="vehicle-form" onsubmit="handleVehicleFormSubmit(event)" class="space-y-4">
+      <form id="vehicle-form" onsubmit="handleVehicleFormSubmit(event)" class="space-y-3.5">
         <input type="hidden" id="form-id" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Marca</label>
-            <input type="text" id="form-brand" required placeholder="Ex: Volkswagen, Chevrolet, Toyota" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <input type="text" id="form-brand" required placeholder="Ex: Hyundai, Volkswagen" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Modelo / Versão</label>
-            <input type="text" id="form-model" required placeholder="Ex: T-Cross Highline 250 TSI" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <input type="text" id="form-model" required placeholder="Ex: HB20 1.6M Manual" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Ano</label>
-            <input type="number" id="form-year" required min="1970" max="2030" placeholder="2024" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <input type="number" id="form-year" required min="1970" max="2030" placeholder="2013" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Quilometragem</label>
-            <input type="number" id="form-km" required min="0" placeholder="39000" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <input type="number" id="form-km" required min="0" placeholder="126000" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Câmbio</label>
             <select id="form-gearbox" required class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
-              <option value="Automático">Automático</option>
               <option value="Manual">Manual</option>
+              <option value="Automático">Automático</option>
             </select>
           </div>
           <div>
@@ -686,92 +633,69 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Cor</label>
-            <input type="text" id="form-color" required placeholder="Ex: Prata Metálico, Preto" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <input type="text" id="form-color" required placeholder="Vermelha, Preto, Prata" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
           <div>
-            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Preço Tabela (R$)</label>
-            <input type="number" id="form-price-original" required min="1000" placeholder="139900" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Preço Original (R$)</label>
+            <input type="number" id="form-price-original" required min="1000" placeholder="50500" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase text-amber-400 mb-1">Preço Promoção (R$)</label>
-            <input type="number" id="form-price-promo" min="0" placeholder="134900 (Opcional)" 
-                   class="w-full bg-[#070709] border border-amber-500/40 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-amber-400" />
+            <input type="number" id="form-price-promo" min="0" placeholder="48900 (Destaque)" 
+                   class="w-full bg-[#070709] border border-amber-500/40 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-amber-400" />
           </div>
         </div>
 
-        <!-- UPLOAD DE FOTOS -->
-        <div class="p-4 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-3">
+        <!-- UPLOAD FOTOS COM COMPRESSÃO ULTRA-LEVE -->
+        <div class="p-3.5 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-2.5">
           <div class="flex items-center justify-between">
             <div>
-              <label class="block text-xs font-black uppercase text-white">Fotos do Carro (Tiradas por Você)</label>
-              <span class="text-[11px] text-zinc-400">Selecione fotos do seu computador ou celular. As imagens são otimizadas automaticamente.</span>
+              <label class="block text-xs font-black uppercase text-white">Fotos do Veículo</label>
+              <span class="text-[11px] text-zinc-400">Pode escolher quantas fotos quiser direto do celular ou computador.</span>
             </div>
-            <label class="cursor-pointer px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 shadow-md">
+            <label class="cursor-pointer px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase transition-all flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-camera"></i> Escolher Fotos
               <input type="file" id="form-photo-files" multiple accept="image/*" onchange="handlePhotoUpload(event)" class="hidden" />
             </label>
           </div>
 
-          <div id="photos-preview-grid" class="flex flex-wrap gap-2 pt-1 min-h-[50px] items-center">
+          <div id="photos-preview-grid" class="flex flex-wrap gap-2 min-h-[48px] items-center">
             <span id="no-photos-hint" class="text-xs text-zinc-600 italic">Nenhuma foto selecionada ainda.</span>
-          </div>
-
-          <div class="pt-2 border-t border-zinc-800/60">
-            <label class="block text-[11px] font-bold uppercase text-zinc-400 mb-1">Ou cole links de fotos (separados por vírgula):</label>
-            <input type="text" id="form-photos-url" placeholder="https://site.com/foto1.jpg, https://site.com/foto2.jpg" 
-                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-1.5 text-xs text-zinc-300 focus:outline-none focus:border-red-600" />
           </div>
         </div>
 
-        <!-- VÍDEO DO CARRO -->
-        <div class="p-4 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-3">
-          <div>
-            <label class="block text-xs font-black uppercase text-white flex items-center gap-1.5">
-              <i class="fa-solid fa-video text-red-500"></i> Vídeo do Veículo (Tour / Instagram Reels / YouTube / Arquivo)
-            </label>
-            <span class="text-[11px] text-zinc-400">Cole o link de um vídeo do YouTube/Reels ou selecione um vídeo MP4 do seu aparelho.</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-            <div class="sm:col-span-8">
-              <input type="text" id="form-video-url" placeholder="Ex: https://youtube.com/shorts/... ou https://site.com/video.mp4" 
-                     class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-xs text-zinc-300 focus:outline-none focus:border-red-600" />
-            </div>
-            <div class="sm:col-span-4">
-              <label class="w-full cursor-pointer px-3 py-2 bg-[#131926] hover:bg-[#1f283d] border border-zinc-700 text-zinc-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-                <i class="fa-solid fa-file-video text-red-500"></i> Arquivo de Vídeo
-                <input type="file" id="form-video-file" accept="video/*" onchange="handleVideoUpload(event)" class="hidden" />
-              </label>
-            </div>
-          </div>
-          <div id="video-preview-status" class="text-[11px] text-emerald-400 font-semibold hidden flex items-center gap-1">
-            <i class="fa-solid fa-circle-check"></i> <span>Vídeo anexado com sucesso!</span>
-          </div>
+        <!-- VÍDEO -->
+        <div class="p-3.5 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-2">
+          <label class="block text-xs font-black uppercase text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-video text-red-500"></i> Link do Vídeo (YouTube, Reels ou MP4)
+          </label>
+          <input type="text" id="form-video-url" placeholder="https://youtube.com/shorts/... ou https://instagram.com/reels/..." 
+                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-xs text-zinc-300 focus:outline-none focus:border-red-600" />
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Opcionais (Separados por vírgula)</label>
-          <input type="text" id="form-features" placeholder="Cautelar Aprovada, Teto Solar, Ar Digital, Multimídia, Couro, Rodas" 
-                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          <input type="text" id="form-features" placeholder="Cautelar Aprovada, Ar Condicionado, Direção, Vidros, Som" 
+                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Status no Estoque</label>
-          <select id="form-status" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+          <select id="form-status" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
             <option value="disponivel">Disponível no Estoque</option>
             <option value="oferta">Em Oferta da Semana</option>
             <option value="vendido">Vendido / Entregue</option>
           </select>
         </div>
 
-        <div class="pt-4 flex items-center justify-end gap-3 border-t border-zinc-800">
-          <button type="button" onclick="closeVehicleModal()" class="px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 text-xs font-bold uppercase">Cancelar</button>
-          <button type="submit" class="px-6 py-2.5 rounded-xl gradient-fire text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-red-950/50">
+        <div class="pt-3 flex items-center justify-end gap-2.5 border-t border-zinc-800">
+          <button type="button" onclick="closeVehicleModal()" class="px-4 py-2 rounded-xl bg-zinc-800 text-zinc-300 text-xs font-bold uppercase">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl gradient-fire text-white text-xs font-black uppercase shadow-lg">
             Gravar no Estoque
           </button>
         </div>
@@ -779,60 +703,23 @@
     </div>
   </div>
 
-  <!-- TOAST CONTAINER -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-  <!-- FOOTER OFICIAL -->
-  <footer class="bg-[#0b0c10] border-t border-zinc-800/80 py-8 text-xs text-zinc-500 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-black text-zinc-300 uppercase tracking-wider">Cometa Car Multimarcas</span>
-        <span>•</span>
-        <span>Osasco - SP</span>
-        <span>•</span>
-        <a href="https://instagram.com/cometacar007" target="_blank" class="text-red-500 font-bold hover:underline">@cometacar007</a>
-      </div>
-      <p>Cometa Car — Realizando sonhos e construindo histórias.</p>
-    </div>
+  <!-- FOOTER -->
+  <footer class="bg-[#0b0c10] border-t border-zinc-800/80 py-6 text-xs text-zinc-500 mt-auto px-4 text-center">
+    <p>© 2026 Cometa Car Multimarcas • Osasco - SP. Realizando sonhos e construindo histórias.</p>
   </footer>
 
   <!-- ========================================== -->
   <!-- JAVASCRIPT VANILLA & REGRAS DE NEGÓCIO     -->
   <!-- ========================================== -->
   <script>
-    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V5';
-    const REVIEWS_STORAGE_KEY = 'COMETA_CAR_GOOGLE_REVIEWS';
-
-    const SEED_REVIEWS = [
-      {
-        id: "rev-1",
-        author: "Marcos Vinicius Ribeiro",
-        rating: 5,
-        time: "Há 2 semanas",
-        comment: "Atendimento diferenciado do Willian e de toda a equipe da Cometa Car! Pegaram meu carro antigo na troca com uma avaliação muito justa e saí de T-Cross no mesmo dia. Cautelar 100% aprovada na minha mão.",
-        avatarBg: "bg-blue-600"
-      },
-      {
-        id: "rev-2",
-        author: "Juliana Mendes Silva",
-        rating: 5,
-        time: "Há 1 mês",
-        comment: "A loja da confusão no bom sentido! Preço muito abaixo da média de Osasco e aprovação de financiamento rápida demais. Sem burocracia nenhuma. Podem confiar de olhos fechados!",
-        avatarBg: "bg-rose-600"
-      },
-      {
-        id: "rev-3",
-        author: "Rodrigo Almeida",
-        rating: 5,
-        time: "Há 3 meses",
-        comment: "Fiz o refinanciamento do meu carro com eles e foi super tranquilo. Pessoal transparente, honesto e café de primeira na loja. Recomendo pra todo mundo da região de Mutinga e Vila Menck.",
-        avatarBg: "bg-emerald-600"
-      }
-    ];
+    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V6';
+    const FIREBASE_CONFIG_KEY = 'COMETA_CAR_FIREBASE_CONFIG';
 
     const SEED_DATA = [
       {
-        id: "cometa-01",
+        id: "cometa-hb20-01",
         brand: "HYUNDAI",
         model: "HB20 1.6M 1.6M",
         year: 2013,
@@ -842,26 +729,42 @@
         fuel: "Flex",
         priceOriginal: 50500,
         pricePromo: 48900,
-        status: "disponivel",
+        status: "oferta",
         photos: [
           "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=80"
         ],
         videoUrl: "",
-        features: ["Motor 1.6 Potente e Econômico", "Laudo Cautelar 100% Aprovado", "Revisado", "Aceita Troca", "Financiamento Facilitado"]
+        features: ["Motor 1.6 Flex", "Laudo Cautelar 100% Aprovado", "Revisado", "Aceita Troca", "Financiamento Facilitado"]
+      }
+    ];
+
+    const SEED_REVIEWS = [
+      {
+        author: "Marcos Vinicius Ribeiro",
+        time: "Há 2 semanas",
+        comment: "Atendimento diferenciado do Willian e de toda a equipe da Cometa Car! Pegaram meu carro antigo na troca e saí de nave nova no mesmo dia. Cautelar 100% aprovada."
+      },
+      {
+        author: "Juliana Mendes Silva",
+        time: "Há 1 mês",
+        comment: "A loja da confusão no bom sentido! Preço justo de verdade em Osasco e aprovação rápida. Recomendo de olhos fechados!"
+      },
+      {
+        author: "Rodrigo Almeida",
+        time: "Há 3 meses",
+        comment: "Refinanciei meu veículo com eles, foi super rápido e transparente. Melhor loja da região de Mutinga."
       }
     ];
 
     let vehicles = [];
-    let googleReviews = [];
     let currentView = 'showroom';
     let isAdminAuthenticated = false;
-
     let uploadedPhotosBuffer = [];
-    let uploadedVideoBuffer = "";
+    let dbFirestore = null;
 
     window.addEventListener('DOMContentLoaded', () => {
+      initFirebase();
       loadStorage();
-      loadReviews();
       populateBrandFilter();
       renderShowroom();
       renderGoogleReviews();
@@ -869,6 +772,79 @@
       renderAdminTable();
     });
 
+    // ==========================================
+    // SINCRONIZAÇÃO EM NUVEM COM FIREBASE
+    // ==========================================
+    function initFirebase() {
+      const configStr = localStorage.getItem(FIREBASE_CONFIG_KEY);
+      const banner = document.getElementById('cloud-status-banner');
+      if (configStr) {
+        try {
+          const config = JSON.parse(configStr);
+          if (!firebase.apps.length) {
+            firebase.initializeApp(config);
+          }
+          dbFirestore = firebase.firestore();
+          if (banner) banner.classList.add('hidden');
+          listenToFirestore();
+        } catch(e) {
+          console.error("Erro Firebase:", e);
+        }
+      }
+    }
+
+    function listenToFirestore() {
+      if (!dbFirestore) return;
+      dbFirestore.collection('estoque').onSnapshot((snapshot) => {
+        const cloudCars = [];
+        snapshot.forEach(doc => {
+          cloudCars.push({ id: doc.id, ...doc.data() });
+        });
+        if (cloudCars.length > 0) {
+          vehicles = cloudCars;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
+          populateBrandFilter();
+          renderShowroom();
+          renderAdminDashboard();
+          renderAdminTable();
+        }
+      });
+    }
+
+    function openCloudConfigModal() {
+      const saved = localStorage.getItem(FIREBASE_CONFIG_KEY) || '';
+      document.getElementById('cloud-firebase-config').value = saved;
+      document.getElementById('modal-cloud').classList.remove('hidden');
+      document.getElementById('modal-cloud').classList.add('flex');
+    }
+
+    function closeCloudConfigModal() {
+      document.getElementById('modal-cloud').classList.add('hidden');
+      document.getElementById('modal-cloud').classList.remove('flex');
+    }
+
+    function saveFirebaseConfig() {
+      const val = document.getElementById('cloud-firebase-config').value.trim();
+      if (!val) {
+        localStorage.removeItem(FIREBASE_CONFIG_KEY);
+        showToast('Configuração de nuvem removida.', 'info');
+        closeCloudConfigModal();
+        return;
+      }
+      try {
+        JSON.parse(val);
+        localStorage.setItem(FIREBASE_CONFIG_KEY, val);
+        showToast('Nuvem conectada com sucesso! Sincronizando...', 'success');
+        closeCloudConfigModal();
+        initFirebase();
+      } catch(e) {
+        showToast('JSON do Firebase inválido. Verifique o formato.', 'error');
+      }
+    }
+
+    // ==========================================
+    // ARMAZENAMENTO LOCAL & FALLBACK
+    // ==========================================
     function loadStorage() {
       const data = localStorage.getItem(STORAGE_KEY);
       if (data) {
@@ -879,17 +855,7 @@
           saveStorage();
         }
       } else {
-        // Tenta migrar dados de versões anteriores caso existam
-        const oldData = localStorage.getItem('COMETA_CAR_OFFICIAL_STOCK_V4') || localStorage.getItem('COMETA_CAR_OFFICIAL_STOCK_V3');
-        if (oldData) {
-          try {
-            vehicles = JSON.parse(oldData);
-          } catch(e) {
-            vehicles = SEED_DATA;
-          }
-        } else {
-          vehicles = SEED_DATA;
-        }
+        vehicles = SEED_DATA;
         saveStorage();
       }
     }
@@ -898,72 +864,18 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
       } catch (e) {
-        showToast('Memória cheia! Tente fotos menores.', 'error');
-      }
-    }
-
-    function loadReviews() {
-      const revs = localStorage.getItem(REVIEWS_STORAGE_KEY);
-      if (revs) {
-        try {
-          googleReviews = JSON.parse(revs);
-        } catch (e) {
-          googleReviews = SEED_REVIEWS;
-        }
-      } else {
-        googleReviews = SEED_REVIEWS;
-        localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(googleReviews));
+        console.warn("Storage local cheio:", e);
       }
     }
 
     const formatBRL = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
     const formatKM = (km) => new Intl.NumberFormat('pt-BR').format(km) + ' km';
 
-    function renderGoogleReviews() {
-      const grid = document.getElementById('google-reviews-grid');
-      grid.innerHTML = '';
-
-      googleReviews.forEach(rev => {
-        const card = document.createElement('div');
-        card.className = 'bg-[#070709] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between hover:border-zinc-700 transition-colors shadow-lg';
-        
-        card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between gap-3 mb-3">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full ${rev.avatarBg || 'bg-red-600'} text-white font-bold flex items-center justify-center text-sm shadow">
-                  ${rev.author.charAt(0)}
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-white line-clamp-1">${rev.author}</h4>
-                  <span class="text-[10px] text-zinc-500">${rev.time}</span>
-                </div>
-              </div>
-              <i class="fa-brands fa-google text-zinc-600 text-sm"></i>
-            </div>
-
-            <div class="flex text-amber-400 text-xs mb-2">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-
-            <p class="text-xs text-zinc-300 leading-relaxed italic">
-              "${rev.comment}"
-            </p>
-          </div>
-
-          <div class="mt-4 pt-3 border-t border-zinc-800/80 flex items-center gap-1.5 text-[10px] text-emerald-400 font-semibold">
-            <i class="fa-solid fa-badge-check"></i> Avaliação Verificada no Google
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function compressImage(file, maxWidth = 1080, quality = 0.75) {
+    // ==========================================
+    // COMPRESSÃO ULTRA-LEVE (MAX 800px / JPEG 65%)
+    // Converte fotos gigantes de 5MB para ~35KB
+    // ==========================================
+    function compressImage(file, maxWidth = 800, quality = 0.65) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -1007,25 +919,6 @@
       e.target.value = '';
     }
 
-    function handleVideoUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const videoBlobUrl = URL.createObjectURL(file);
-      uploadedVideoBuffer = videoBlobUrl;
-
-      if (file.size < 8 * 1024 * 1024) {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          uploadedVideoBuffer = evt.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-
-      document.getElementById('video-preview-status').classList.remove('hidden');
-      showToast('Vídeo do veículo anexado!', 'success');
-    }
-
     function renderPhotoPreviews() {
       const grid = document.getElementById('photos-preview-grid');
       const hint = document.getElementById('no-photos-hint');
@@ -1038,11 +931,11 @@
 
       uploadedPhotosBuffer.forEach((src, idx) => {
         const item = document.createElement('div');
-        item.className = 'relative w-16 h-16 rounded-xl overflow-hidden border border-zinc-700 bg-black group';
+        item.className = 'relative w-14 h-14 rounded-xl overflow-hidden border border-zinc-700 bg-black group shrink-0';
         item.innerHTML = `
           <img src="${src}" class="w-full h-full object-cover" />
           <button type="button" onclick="removePhoto(${idx})" 
-                  class="absolute top-1 right-1 w-5 h-5 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center text-[10px] shadow">
+                  class="absolute top-1 right-1 w-5 h-5 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center text-[10px]">
             <i class="fa-solid fa-xmark"></i>
           </button>
           ${idx === 0 ? '<span class="absolute bottom-0 inset-x-0 bg-red-600/90 text-[8px] font-black uppercase text-center text-white">Capa</span>' : ''}
@@ -1056,24 +949,405 @@
       renderPhotoPreviews();
     }
 
+    // ==========================================
+    // RENDERIZAÇÃO DO SHOWROOM
+    // ==========================================
+    function renderShowroom(data = vehicles) {
+      const grid = document.getElementById('showroom-grid');
+      const emptyState = document.getElementById('showroom-empty');
+      const counter = document.getElementById('showroom-counter');
+
+      grid.innerHTML = '';
+      counter.textContent = `${data.length} no estoque`;
+
+      if (data.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      data.forEach(car => {
+        const origPrice = Number(car.priceOriginal);
+        const promoPrice = Number(car.pricePromo || 0);
+        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
+        const isSold = car.status === 'vendido';
+        const displayPrice = hasPromo ? promoPrice : origPrice;
+        const discountAmount = origPrice - promoPrice;
+        const mainPhoto = car.photos && car.photos[0] ? car.photos[0] : 'https://via.placeholder.com/600x400?text=Cometa+Car';
+
+        const waMsg = encodeURIComponent(`Olá Cometa Car! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e quero negociar.`);
+        const waUrl = `https://wa.me/5511957400658?text=${waMsg}`;
+
+        let badgeHtml = '';
+        if (isSold) {
+          badgeHtml = `<span class="bg-zinc-800 text-zinc-300 border border-zinc-600 font-black text-[10px] sm:text-[11px] px-3 py-1 rounded-full uppercase">VENDIDO</span>`;
+        } else if (hasPromo || car.status === 'oferta') {
+          badgeHtml = `<span class="bg-red-600 text-white font-black text-[10px] sm:text-[11px] px-3 py-1 rounded-full uppercase flex items-center gap-1 shadow"><i class="fa-solid fa-fire text-amber-300"></i> EM OFERTA</span>`;
+        } else {
+          badgeHtml = `<span class="bg-zinc-950/90 text-emerald-400 border border-emerald-500/40 font-bold text-[10px] sm:text-[11px] px-3 py-1 rounded-full uppercase">DISPONÍVEL</span>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = `group bg-[#131926] border border-zinc-800 rounded-3xl overflow-hidden hover:border-red-600/50 hover:shadow-2xl transition-all flex flex-col ${isSold ? 'opacity-80' : ''}`;
+        
+        card.innerHTML = `
+          <div class="relative w-full aspect-[16/10] bg-black overflow-hidden">
+            <img src="${mainPhoto}" alt="${car.model}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1 items-start">
+              ${badgeHtml}
+            </div>
+            <div class="absolute top-3 right-3 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-zinc-300 border border-zinc-700">
+              <i class="fa-solid fa-shield-check text-emerald-400 mr-1"></i> Periciado
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="font-black text-red-500 uppercase">${car.brand}</span>
+                <span class="font-semibold text-zinc-400">${car.color}</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-black text-white group-hover:text-red-400 transition-colors line-clamp-1 mt-0.5" title="${car.model}">
+                ${car.model}
+              </h3>
+
+              <div class="grid grid-cols-2 gap-2 mt-3 text-xs text-zinc-300">
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-regular fa-calendar text-red-500"></i> <span>${car.year}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-gauge-high text-red-500"></i> <span>${formatKM(car.km)}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-gas-pump text-red-500"></i> <span>${car.fuel}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-sliders text-red-500"></i> <span>${car.gearbox}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- PREÇO COM DESTAQUE -->
+            <div class="mt-4 pt-4 border-t border-zinc-800">
+              <div class="mb-3">
+                ${hasPromo ? `
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <span class="text-xs text-zinc-400 line-through font-semibold">De ${formatBRL(origPrice)}</span>
+                    <span class="bg-red-600/20 text-red-400 border border-red-500/30 text-[10px] font-black px-2 py-0.5 rounded-md">
+                      -${formatBRL(discountAmount)} OFF
+                    </span>
+                  </div>
+                  <div class="text-2xl sm:text-3xl font-black text-amber-400 tracking-tight flex items-baseline gap-1.5">
+                    <span class="text-xs font-bold uppercase text-red-500">Por</span>
+                    <span>${formatBRL(promoPrice)}</span>
+                  </div>
+                ` : `
+                  <div class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                    ${formatBRL(origPrice)}
+                  </div>
+                `}
+                <span class="text-[11px] text-zinc-400 font-bold block mt-1">
+                  <i class="fa-solid fa-handshake text-emerald-400 mr-1"></i> Aceita troca • Financiamento
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="openDetailsModal('${car.id}')" 
+                        class="w-full py-2.5 px-2 sm:px-3 rounded-xl bg-[#070709] hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
+                  <i class="fa-solid fa-eye"></i> Detalhes
+                </button>
+                <a href="${waUrl}" target="_blank" 
+                   class="w-full py-2.5 px-2 sm:px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                  <i class="fa-brands fa-whatsapp text-sm"></i> Chamar
+                </a>
+              </div>
+            </div>
+
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // DETALHES MODAL
+    // ==========================================
+    function openDetailsModal(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      const origPrice = Number(car.priceOriginal);
+      const promoPrice = Number(car.pricePromo || 0);
+      const hasPromo = promoPrice > 0 && promoPrice < origPrice;
+
+      document.getElementById('detail-brand').textContent = car.brand;
+      document.getElementById('detail-model').textContent = car.model;
+      document.getElementById('detail-year').textContent = car.year;
+      document.getElementById('detail-km').textContent = formatKM(car.km);
+      document.getElementById('detail-gearbox').textContent = car.gearbox;
+      document.getElementById('detail-fuel').textContent = car.fuel;
+
+      const mainImg = document.getElementById('detail-main-img');
+      const thumbContainer = document.getElementById('detail-thumbnails');
+      mainImg.src = car.photos && car.photos[0] ? car.photos[0] : 'https://via.placeholder.com/800x600?text=Cometa+Car';
+
+      thumbContainer.innerHTML = '';
+      if (car.photos && car.photos.length) {
+        car.photos.forEach((photo, idx) => {
+          const thumb = document.createElement('img');
+          thumb.src = photo;
+          thumb.className = `w-14 h-14 rounded-xl object-cover cursor-pointer border-2 shrink-0 ${idx === 0 ? 'border-red-600' : 'border-transparent opacity-60'}`;
+          thumb.onclick = () => {
+            mainImg.src = photo;
+            thumbContainer.querySelectorAll('img').forEach(el => el.classList.remove('border-red-600', 'opacity-100'));
+            thumb.classList.add('border-red-600', 'opacity-100');
+          };
+          thumbContainer.appendChild(thumb);
+        });
+      }
+
+      const originalPriceEl = document.getElementById('detail-price-original');
+      const promoPriceEl = document.getElementById('detail-price-promo');
+      const labelPriceEl = document.getElementById('detail-price-label');
+
+      if (hasPromo) {
+        originalPriceEl.textContent = `De ${formatBRL(origPrice)}`;
+        originalPriceEl.classList.remove('hidden');
+        promoPriceEl.textContent = formatBRL(promoPrice);
+        labelPriceEl.textContent = 'Preço Promocional';
+      } else {
+        originalPriceEl.classList.add('hidden');
+        promoPriceEl.textContent = formatBRL(origPrice);
+        labelPriceEl.textContent = 'Preço de Estoque';
+      }
+
+      const featsEl = document.getElementById('detail-features');
+      featsEl.innerHTML = '';
+      if (car.features && car.features.length) {
+        car.features.forEach(f => {
+          const pill = document.createElement('span');
+          pill.className = 'px-3 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-xs text-zinc-300 flex items-center gap-1 font-medium';
+          pill.innerHTML = `<i class="fa-solid fa-circle-check text-red-500 text-[10px]"></i> ${f.trim()}`;
+          featsEl.appendChild(pill);
+        });
+      }
+
+      const waBtn = document.getElementById('detail-whatsapp-btn');
+      const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(hasPromo ? promoPrice : origPrice)} no site da Cometa Car e quero fechar negócio!`);
+      waBtn.href = `https://wa.me/5511957400658?text=${waMsg}`;
+
+      document.getElementById('modal-details').classList.remove('hidden');
+      document.getElementById('modal-details').classList.add('flex');
+    }
+
+    function closeDetailsModal() {
+      document.getElementById('modal-details').classList.add('hidden');
+      document.getElementById('modal-details').classList.remove('flex');
+    }
+
+    // ==========================================
+    // PAINEL ERP ADMINISTRATIVO
+    // ==========================================
+    function renderAdminDashboard() {
+      document.getElementById('kpi-total-cars').textContent = vehicles.length;
+      document.getElementById('kpi-deals-count').textContent = vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0)).length;
+      document.getElementById('kpi-sold-count').textContent = vehicles.filter(v => v.status === 'vendido').length;
+      
+      const totalVal = vehicles.filter(v => v.status !== 'vendido').reduce((acc, cur) => {
+        const promo = Number(cur.pricePromo || 0);
+        const orig = Number(cur.priceOriginal);
+        return acc + (promo > 0 && promo < orig ? promo : orig);
+      }, 0);
+      document.getElementById('kpi-total-value').textContent = formatBRL(totalVal);
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById('admin-table-body');
+      tbody.innerHTML = '';
+
+      vehicles.forEach(car => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-zinc-800/40 transition-colors';
+        const origPrice = Number(car.priceOriginal);
+        const promoPrice = Number(car.pricePromo || 0);
+        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
+        const thumb = car.photos && car.photos[0] ? car.photos[0] : 'https://via.placeholder.com/100x100?text=Car';
+
+        tr.innerHTML = `
+          <td class="px-4 py-3 flex items-center gap-2.5">
+            <img src="${thumb}" class="w-10 h-10 rounded-lg object-cover bg-black border border-zinc-800 shrink-0" />
+            <div class="truncate max-w-[140px] sm:max-w-xs">
+              <span class="text-[10px] font-black text-red-500 uppercase">${car.brand}</span>
+              <div class="text-xs sm:text-sm font-bold text-white truncate">${car.model}</div>
+            </div>
+          </td>
+          <td class="px-3 py-3 whitespace-nowrap text-zinc-300">${car.year}</td>
+          <td class="px-3 py-3 whitespace-nowrap text-zinc-400">${car.photos ? car.photos.length : 0} fotos</td>
+          <td class="px-3 py-3 whitespace-nowrap">
+            <div class="font-bold ${hasPromo ? 'text-zinc-500 line-through text-[11px]' : 'text-white'}">${formatBRL(origPrice)}</div>
+            ${hasPromo ? `<div class="text-amber-400 font-bold text-xs">${formatBRL(promoPrice)}</div>` : ''}
+          </td>
+          <td class="px-3 py-3 text-center whitespace-nowrap">
+            <button onclick="cycleStatus('${car.id}')" class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${car.status === 'oferta' || hasPromo ? 'bg-red-600 text-white' : (car.status === 'vendido' ? 'bg-zinc-800 text-zinc-400' : 'bg-emerald-950 text-emerald-400')}">
+              ${car.status === 'oferta' || hasPromo ? 'Em Oferta' : (car.status === 'vendido' ? 'Vendido' : 'Disponível')}
+            </button>
+          </td>
+          <td class="px-4 py-3 text-right whitespace-nowrap">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="editVehicle('${car.id}')" class="w-7 h-7 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button onclick="deleteVehicle('${car.id}')" class="w-7 h-7 rounded-lg bg-red-950/40 text-red-400 hover:bg-red-600 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function cycleStatus(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+      car.status = car.status === 'disponivel' ? 'oferta' : (car.status === 'oferta' ? 'vendido' : 'disponivel');
+      
+      saveStorage();
+      if (dbFirestore) {
+        await dbFirestore.collection('estoque').doc(id).set(car);
+      }
+      renderAdminDashboard();
+      renderAdminTable();
+      renderShowroom();
+    }
+
+    async function deleteVehicle(id) {
+      if (confirm('Remover este veículo do estoque?')) {
+        vehicles = vehicles.filter(v => v.id !== id);
+        saveStorage();
+        if (dbFirestore) {
+          await dbFirestore.collection('estoque').doc(id).delete();
+        }
+        renderAdminDashboard();
+        renderAdminTable();
+        renderShowroom();
+        showToast('Veículo removido com sucesso.', 'info');
+      }
+    }
+
+    // ==========================================
+    // FORMULÁRIO (SALVA LOCAL + NUVEM)
+    // ==========================================
+    function openVehicleModal() {
+      document.getElementById('vehicle-form').reset();
+      document.getElementById('form-id').value = '';
+      uploadedPhotosBuffer = [];
+      renderPhotoPreviews();
+      document.getElementById('form-modal-title').textContent = 'Novo Cadastro de Estoque';
+      document.getElementById('modal-vehicle-form').classList.remove('hidden');
+      document.getElementById('modal-vehicle-form').classList.add('flex');
+    }
+
+    function closeVehicleModal() {
+      document.getElementById('modal-vehicle-form').classList.add('hidden');
+      document.getElementById('modal-vehicle-form').classList.remove('flex');
+    }
+
+    function editVehicle(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      document.getElementById('form-id').value = car.id;
+      document.getElementById('form-brand').value = car.brand;
+      document.getElementById('form-model').value = car.model;
+      document.getElementById('form-year').value = car.year;
+      document.getElementById('form-km').value = car.km;
+      document.getElementById('form-color').value = car.color;
+      document.getElementById('form-gearbox').value = car.gearbox;
+      document.getElementById('form-fuel').value = car.fuel;
+      document.getElementById('form-price-original').value = car.priceOriginal;
+      document.getElementById('form-price-promo').value = car.pricePromo || '';
+      document.getElementById('form-features').value = car.features ? car.features.join(', ') : '';
+      document.getElementById('form-status').value = car.status;
+
+      uploadedPhotosBuffer = car.photos ? [...car.photos] : [];
+      renderPhotoPreviews();
+
+      document.getElementById('form-modal-title').textContent = 'Editar Veículo';
+      document.getElementById('modal-vehicle-form').classList.remove('hidden');
+      document.getElementById('modal-vehicle-form').classList.add('flex');
+    }
+
+    async function handleVehicleFormSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-id').value || 'car-' + Date.now();
+      const origPrice = parseFloat(document.getElementById('form-price-original').value);
+      const promoInputVal = document.getElementById('form-price-promo').value;
+      const promoPrice = promoInputVal ? parseFloat(promoInputVal) : null;
+      let statusVal = document.getElementById('form-status').value;
+
+      if (promoPrice && promoPrice < origPrice && statusVal === 'disponivel') {
+        statusVal = 'oferta';
+      }
+
+      const vehicleData = {
+        id: id,
+        brand: document.getElementById('form-brand').value.trim(),
+        model: document.getElementById('form-model').value.trim(),
+        year: parseInt(document.getElementById('form-year').value),
+        km: parseInt(document.getElementById('form-km').value),
+        color: document.getElementById('form-color').value.trim(),
+        gearbox: document.getElementById('form-gearbox').value,
+        fuel: document.getElementById('form-fuel').value,
+        priceOriginal: origPrice,
+        pricePromo: promoPrice,
+        status: statusVal,
+        photos: uploadedPhotosBuffer.length > 0 ? uploadedPhotosBuffer : ['https://via.placeholder.com/800x600?text=Cometa+Car'],
+        videoUrl: document.getElementById('form-video-url').value.trim(),
+        features: document.getElementById('form-features').value.split(',').map(s => s.trim()).filter(Boolean)
+      };
+
+      const existingIdx = vehicles.findIndex(v => v.id === id);
+      if (existingIdx !== -1) {
+        vehicles[existingIdx] = vehicleData;
+      } else {
+        vehicles.unshift(vehicleData);
+      }
+
+      saveStorage();
+
+      // Sincroniza com Firebase se conectado
+      if (dbFirestore) {
+        try {
+          await dbFirestore.collection('estoque').doc(id).set(vehicleData);
+          showToast('Sincronizado na Nuvem com sucesso!', 'success');
+        } catch(err) {
+          console.error("Erro Firebase upload:", err);
+        }
+      }
+
+      populateBrandFilter();
+      renderAdminDashboard();
+      renderAdminTable();
+      renderShowroom();
+      closeVehicleModal();
+      showToast('Veículo salvo no estoque!', 'success');
+    }
+
+    // NAVEGAÇÃO & AUTH
     function switchView(view) {
       currentView = view;
-      const showroomEl = document.getElementById('view-showroom');
-      const adminEl = document.getElementById('view-admin');
-      const adminText = document.getElementById('admin-text');
-      const adminIcon = document.getElementById('admin-icon');
-
       if (view === 'showroom') {
-        showroomEl.classList.remove('hidden');
-        adminEl.classList.add('hidden');
-        adminText.textContent = 'Área ADM';
-        adminIcon.className = 'fa-solid fa-lock text-red-500';
+        document.getElementById('view-showroom').classList.remove('hidden');
+        document.getElementById('view-admin').classList.add('hidden');
+        document.getElementById('admin-text').textContent = 'Área ADM';
+        document.getElementById('admin-icon').className = 'fa-solid fa-lock text-red-500';
         renderShowroom();
       } else {
-        showroomEl.classList.add('hidden');
-        adminEl.classList.remove('hidden');
-        adminText.textContent = 'Ver Loja';
-        adminIcon.className = 'fa-solid fa-store text-emerald-400';
+        document.getElementById('view-showroom').classList.add('hidden');
+        document.getElementById('view-admin').classList.remove('hidden');
+        document.getElementById('admin-text').textContent = 'Ver Loja';
+        document.getElementById('admin-icon').className = 'fa-solid fa-store text-emerald-400';
         renderAdminDashboard();
         renderAdminTable();
       }
@@ -1095,41 +1369,29 @@
     function openLoginModal() {
       document.getElementById('modal-login').classList.remove('hidden');
       document.getElementById('modal-login').classList.add('flex');
-      const input = document.getElementById('admin-password');
-      input.value = '';
-      input.type = 'password';
-      document.getElementById('toggle-password-icon').className = 'fa-solid fa-eye';
-      input.focus();
+      document.getElementById('admin-password').value = '';
+      document.getElementById('admin-password').focus();
     }
 
     function closeLoginModal() {
       document.getElementById('modal-login').classList.add('hidden');
       document.getElementById('modal-login').classList.remove('flex');
-      document.getElementById('admin-password').value = '';
     }
 
     function togglePasswordVisibility() {
       const input = document.getElementById('admin-password');
-      const icon = document.getElementById('toggle-password-icon');
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'fa-solid fa-eye-slash text-red-500';
-      } else {
-        input.type = 'password';
-        icon.className = 'fa-solid fa-eye text-zinc-500';
-      }
+      input.type = input.type === 'password' ? 'text' : 'password';
     }
 
     function handleLoginSubmit(e) {
       e.preventDefault();
-      const pass = document.getElementById('admin-password').value;
-      if (pass === 'Cometa@2026') {
+      if (document.getElementById('admin-password').value === 'Cometa@2026') {
         isAdminAuthenticated = true;
         closeLoginModal();
-        showToast('Acesso autorizado! Bem-vindo ao ERP Cometa Car.', 'success');
+        showToast('Acesso autorizado!', 'success');
         switchView('admin');
       } else {
-        showToast('Senha incorreta. Acesso restrito à gerência.', 'error');
+        showToast('Senha incorreta.', 'error');
       }
     }
 
@@ -1166,635 +1428,62 @@
 
     function filterByTag(tag) {
       if (tag === 'oferta') {
-        renderShowroom(vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal))));
+        renderShowroom(vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0)));
       } else if (tag === 'video') {
         renderShowroom(vehicles.filter(v => v.videoUrl && v.videoUrl.trim() !== ''));
       }
     }
 
     function applyFilters() {
-      const query = document.getElementById('filter-search').value.toLowerCase().trim();
+      const q = document.getElementById('filter-search').value.toLowerCase().trim();
       const brand = document.getElementById('filter-brand').value;
       const gearbox = document.getElementById('filter-gearbox').value;
-      const typedPrice = parseFloat(document.getElementById('filter-price-input').value) || Infinity;
+      const maxPrice = parseFloat(document.getElementById('filter-price-input').value) || Infinity;
 
       const filtered = vehicles.filter(v => {
-        const matchesText = v.brand.toLowerCase().includes(query) || 
-                            v.model.toLowerCase().includes(query) || 
-                            v.year.toString().includes(query);
+        const matchesText = v.brand.toLowerCase().includes(q) || v.model.toLowerCase().includes(q) || v.year.toString().includes(q);
         const matchesBrand = brand === '' || v.brand === brand;
         const matchesGearbox = gearbox === '' || v.gearbox === gearbox;
-        
-        // Determina o preço real efetivo de venda
-        const hasPromo = Boolean(v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal));
-        const effectivePrice = hasPromo ? Number(v.pricePromo) : Number(v.priceOriginal);
-        const matchesPrice = effectivePrice <= typedPrice;
-
-        return matchesText && matchesBrand && matchesGearbox && matchesPrice;
+        const price = (v.pricePromo && Number(v.pricePromo) > 0) ? Number(v.pricePromo) : Number(v.priceOriginal);
+        return matchesText && matchesBrand && matchesGearbox && price <= maxPrice;
       });
 
       renderShowroom(filtered);
     }
 
-    // ==============================================
-    // RENDERIZAÇÃO DOS CARDS NO SHOWROOM (CORRIGIDO)
-    // ==============================================
-    function renderShowroom(data = vehicles) {
-      const grid = document.getElementById('showroom-grid');
-      const emptyState = document.getElementById('showroom-empty');
-      const counter = document.getElementById('showroom-counter');
-
+    function renderGoogleReviews() {
+      const grid = document.getElementById('google-reviews-grid');
       grid.innerHTML = '';
-      counter.textContent = `${data.length} veículos encontrados no estoque`;
-
-      if (data.length === 0) {
-        emptyState.classList.remove('hidden');
-        return;
-      }
-      emptyState.classList.add('hidden');
-
-      data.forEach(car => {
-        // DETECÇÃO AUTOMÁTICA DE PROMOÇÃO
-        const origPrice = Number(car.priceOriginal);
-        const promoPrice = Number(car.pricePromo || 0);
-        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
-        const isSold = car.status === 'vendido';
-        const isExplicitOffer = car.status === 'oferta';
-        const hasVideo = car.videoUrl && car.videoUrl.trim() !== '';
-
-        const displayPrice = hasPromo ? promoPrice : origPrice;
-        const discountAmount = origPrice - promoPrice;
-        const mainPhoto = car.photos[0] || 'https://via.placeholder.com/600x400?text=Cometa+Car';
-
-        const waMsg = encodeURIComponent(`Olá Cometa Car Multimarcas! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e gostaria de saber as condições.`);
-        const waUrl = `https://wa.me/5511957400658?text=${waMsg}`;
-
-        // BADGE SUPERIOR
-        let badgeHtml = '';
-        if (isSold) {
-          badgeHtml = `<span class="bg-zinc-800 text-zinc-300 border border-zinc-600 font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
-                         VENDIDO
-                       </span>`;
-        } else if (hasPromo || isExplicitOffer) {
-          badgeHtml = `<span class="bg-red-600 text-white font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 border border-red-400">
-                         <i class="fa-solid fa-fire text-amber-300"></i> EM OFERTA
-                       </span>`;
-        } else {
-          badgeHtml = `<span class="bg-zinc-950/90 text-emerald-400 border border-emerald-500/40 font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
-                         DISPONÍVEL
-                       </span>`;
-        }
-
+      SEED_REVIEWS.forEach(rev => {
         const card = document.createElement('div');
-        card.className = `group bg-[#131926] border border-zinc-800 rounded-3xl overflow-hidden hover:border-red-600/50 hover:shadow-2xl hover:shadow-red-950/30 transition-all flex flex-col ${isSold ? 'opacity-80' : ''}`;
-        
+        card.className = 'bg-[#070709] border border-zinc-800 rounded-2xl p-4 shadow-lg';
         card.innerHTML = `
-          <div class="relative w-full aspect-[16/10] bg-black overflow-hidden">
-            <img src="${mainPhoto}" alt="${car.model}" loading="lazy" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${isSold ? 'grayscale contrast-125' : ''}" />
-            
-            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5 items-start">
-              ${badgeHtml}
-              ${hasVideo ? `
-                <span class="bg-red-700/90 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md border border-red-500">
-                  <i class="fa-solid fa-circle-play text-amber-300"></i> VÍDEO DISPONÍVEL
-                </span>
-              ` : ''}
-            </div>
-
-            <div class="absolute top-3 right-3 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-zinc-300 border border-zinc-700">
-              <i class="fa-solid fa-shield-check text-emerald-400 mr-1"></i> Periciado
-            </div>
-
-            ${isSold ? `
-              <div class="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center">
-                <span class="text-white font-black uppercase text-xl tracking-widest border-2 border-white/50 px-5 py-2 rounded-2xl rotate-[-6deg]">
-                  Mais Um Sonho Entregue! ❤️
-                </span>
-              </div>
-            ` : ''}
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-white text-xs">${rev.author}</span>
+            <div class="flex text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           </div>
-
-          <div class="p-5 flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-black text-red-500 uppercase tracking-wider">${car.brand}</span>
-                <span class="text-[11px] font-semibold text-zinc-400">${car.color}</span>
-              </div>
-              <h3 class="text-base font-black text-white group-hover:text-red-400 transition-colors line-clamp-1 mt-0.5" title="${car.model}">
-                ${car.model}
-              </h3>
-
-              <div class="grid grid-cols-2 gap-2 mt-4 text-xs text-zinc-300">
-                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
-                  <i class="fa-regular fa-calendar text-red-500"></i>
-                  <span>${car.year}</span>
-                </div>
-                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
-                  <i class="fa-solid fa-gauge-high text-red-500"></i>
-                  <span>${formatKM(car.km)}</span>
-                </div>
-                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
-                  <i class="fa-solid fa-gas-pump text-red-500"></i>
-                  <span>${car.fuel}</span>
-                </div>
-                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
-                  <i class="fa-solid fa-sliders text-red-500"></i>
-                  <span>${car.gearbox}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- BLOCO DE PREÇOS COM DESTAQUE TOTAL DA PROMOÇÃO -->
-            <div class="mt-5 pt-4 border-t border-zinc-800">
-              <div class="mb-3">
-                ${hasPromo ? `
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="text-xs text-zinc-400 line-through font-semibold">De ${formatBRL(origPrice)}</span>
-                    <span class="bg-red-600/20 text-red-400 border border-red-500/30 text-[10px] font-black px-2 py-0.5 rounded-md">
-                      -${formatBRL(discountAmount)} OFF
-                    </span>
-                  </div>
-                  <div class="text-2xl sm:text-3xl font-black text-amber-400 tracking-tight flex items-baseline gap-1.5">
-                    <span class="text-xs font-bold uppercase text-red-500">Por</span>
-                    <span>${formatBRL(promoPrice)}</span>
-                  </div>
-                ` : `
-                  <span class="text-xs text-transparent block select-none">.</span>
-                  <div class="text-2xl font-black text-white tracking-tight">
-                    ${formatBRL(origPrice)}
-                  </div>
-                `}
-                <span class="text-[11px] text-zinc-400 font-bold block mt-1">
-                  <i class="fa-solid fa-handshake text-emerald-400 mr-1"></i> Aceita troca • Financiamento
-                </span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="openDetailsModal('${car.id}')" 
-                        class="w-full py-2.5 px-3 rounded-xl bg-[#070709] hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-black uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5">
-                  <i class="fa-solid ${hasVideo ? 'fa-play text-red-500' : 'fa-eye'}"></i> Ver Detalhes
-                </button>
-
-                ${isSold ? `
-                  <button disabled class="w-full py-2.5 px-3 rounded-xl bg-zinc-800 text-zinc-600 text-xs font-bold uppercase tracking-wider cursor-not-allowed">
-                    Vendido
-                  </button>
-                ` : `
-                  <a href="${waUrl}" target="_blank" 
-                     class="w-full py-2.5 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/40">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Chamar
-                  </a>
-                `}
-              </div>
-            </div>
-
-          </div>
+          <p class="text-xs text-zinc-300 italic">"${rev.comment}"</p>
         `;
         grid.appendChild(card);
       });
     }
 
-    // ==============================================
-    // MODAL DE DETALHES COM PREÇO PROMOCIONAL
-    // ==============================================
-    function openDetailsModal(id) {
-      const car = vehicles.find(v => v.id === id);
-      if (!car) return;
-
-      const origPrice = Number(car.priceOriginal);
-      const promoPrice = Number(car.pricePromo || 0);
-      const hasPromo = promoPrice > 0 && promoPrice < origPrice;
-
-      document.getElementById('detail-brand').textContent = car.brand;
-      document.getElementById('detail-model').textContent = car.model;
-      document.getElementById('detail-year').textContent = car.year;
-      document.getElementById('detail-km').textContent = formatKM(car.km);
-      document.getElementById('detail-gearbox').textContent = car.gearbox;
-      document.getElementById('detail-fuel').textContent = car.fuel;
-
-      const mainImg = document.getElementById('detail-main-img');
-      const mainVideo = document.getElementById('detail-main-video');
-      const mainIframe = document.getElementById('detail-main-iframe');
-      const thumbContainer = document.getElementById('detail-thumbnails');
-
-      mainVideo.pause();
-      mainVideo.classList.add('hidden');
-      mainIframe.classList.add('hidden');
-      mainIframe.src = '';
-      mainImg.classList.remove('hidden');
-      mainImg.src = car.photos[0] || 'https://via.placeholder.com/800x600?text=Cometa+Car';
-
-      thumbContainer.innerHTML = '';
-
-      if (car.videoUrl && car.videoUrl.trim() !== '') {
-        const videoThumb = document.createElement('div');
-        videoThumb.className = 'w-14 h-14 rounded-xl bg-red-950 border-2 border-red-500 cursor-pointer flex flex-col items-center justify-center text-red-400 shrink-0 hover:scale-105 transition-transform';
-        videoThumb.innerHTML = '<i class="fa-solid fa-circle-play text-xl text-white"></i><span class="text-[9px] font-black uppercase mt-0.5 text-zinc-200">Vídeo</span>';
-        
-        videoThumb.onclick = () => {
-          mainImg.classList.add('hidden');
-          thumbContainer.querySelectorAll('img, div').forEach(el => el.classList.remove('border-red-600', 'border-white'));
-          videoThumb.classList.add('border-white');
-
-          if (car.videoUrl.includes('youtube.com') || car.videoUrl.includes('youtu.be')) {
-            mainVideo.classList.add('hidden');
-            mainVideo.pause();
-            mainIframe.classList.remove('hidden');
-            let ytId = '';
-            if (car.videoUrl.includes('shorts/')) {
-              ytId = car.videoUrl.split('shorts/')[1].split('?')[0];
-            } else if (car.videoUrl.includes('v=')) {
-              ytId = car.videoUrl.split('v=')[1].split('&')[0];
-            } else if (car.videoUrl.includes('youtu.be/')) {
-              ytId = car.videoUrl.split('youtu.be/')[1].split('?')[0];
-            }
-            mainIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
-          } else {
-            mainIframe.classList.add('hidden');
-            mainVideo.classList.remove('hidden');
-            mainVideo.src = car.videoUrl;
-            mainVideo.play();
-          }
-        };
-        thumbContainer.appendChild(videoThumb);
-      }
-
-      car.photos.forEach((photo, idx) => {
-        const thumb = document.createElement('img');
-        thumb.src = photo;
-        thumb.className = `w-14 h-14 rounded-xl object-cover cursor-pointer border-2 transition-all shrink-0 ${idx === 0 ? 'border-red-600' : 'border-transparent opacity-60 hover:opacity-100'}`;
-        thumb.onclick = () => {
-          mainVideo.pause();
-          mainVideo.classList.add('hidden');
-          mainIframe.classList.add('hidden');
-          mainIframe.src = '';
-          mainImg.classList.remove('hidden');
-          mainImg.src = photo;
-
-          thumbContainer.querySelectorAll('img, div').forEach(el => el.classList.remove('border-red-600', 'opacity-100', 'border-white'));
-          thumbContainer.querySelectorAll('img').forEach(el => el.classList.add('border-transparent', 'opacity-60'));
-          thumb.classList.add('border-red-600', 'opacity-100');
-          thumb.classList.remove('border-transparent', 'opacity-60');
-        };
-        thumbContainer.appendChild(thumb);
-      });
-
-      const originalPriceEl = document.getElementById('detail-price-original');
-      const promoPriceEl = document.getElementById('detail-price-promo');
-      const labelPriceEl = document.getElementById('detail-price-label');
-
-      if (hasPromo) {
-        originalPriceEl.textContent = `De ${formatBRL(origPrice)}`;
-        originalPriceEl.classList.remove('hidden');
-        promoPriceEl.textContent = formatBRL(promoPrice);
-        labelPriceEl.textContent = 'Preço Promocional';
-      } else {
-        originalPriceEl.classList.add('hidden');
-        promoPriceEl.textContent = formatBRL(origPrice);
-        labelPriceEl.textContent = 'Preço de Estoque';
-      }
-
-      const badgeWrap = document.getElementById('detail-status-badge');
-      if (car.status === 'vendido') {
-        badgeWrap.innerHTML = '<span class="bg-zinc-800 text-zinc-300 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider">VENDIDO</span>';
-      } else if (hasPromo || car.status === 'oferta') {
-        badgeWrap.innerHTML = '<span class="bg-red-600 text-white font-black text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-red-400">EM OFERTA</span>';
-      } else {
-        badgeWrap.innerHTML = '<span class="bg-zinc-950 text-emerald-400 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-emerald-500/30">DISPONÍVEL</span>';
-      }
-
-      const featsEl = document.getElementById('detail-features');
-      featsEl.innerHTML = '';
-      if (car.features && car.features.length) {
-        car.features.forEach(f => {
-          const pill = document.createElement('span');
-          pill.className = 'px-3 py-1.5 rounded-lg bg-[#070709] border border-zinc-800 text-xs text-zinc-300 flex items-center gap-1.5 font-medium';
-          pill.innerHTML = `<i class="fa-solid fa-circle-check text-red-500 text-xs"></i> ${f.trim()}`;
-          featsEl.appendChild(pill);
-        });
-      }
-
-      const waBtn = document.getElementById('detail-whatsapp-btn');
-      if (car.status === 'vendido') {
-        waBtn.classList.add('pointer-events-none', 'opacity-50', 'bg-zinc-700');
-        waBtn.innerHTML = '<i class="fa-solid fa-ban mr-2"></i> Veículo Vendido';
-      } else {
-        waBtn.classList.remove('pointer-events-none', 'opacity-50', 'bg-zinc-700');
-        waBtn.classList.add('bg-[#25D366]');
-        const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) anunciado por ${formatBRL(hasPromo ? promoPrice : origPrice)} no site da Cometa Car e quero fechar negócio!`);
-        waBtn.href = `https://wa.me/5511957400658?text=${waMsg}`;
-        waBtn.innerHTML = '<i class="fa-brands fa-whatsapp text-lg"></i> Negociar no WhatsApp da Loja';
-      }
-
-      document.getElementById('modal-details').classList.remove('hidden');
-      document.getElementById('modal-details').classList.add('flex');
-    }
-
-    function closeDetailsModal() {
-      const mainVideo = document.getElementById('detail-main-video');
-      const mainIframe = document.getElementById('detail-main-iframe');
-      mainVideo.pause();
-      mainIframe.src = '';
-      document.getElementById('modal-details').classList.add('hidden');
-      document.getElementById('modal-details').classList.remove('flex');
-    }
-
     function openRefinanceLead() {
-      const waMsg = encodeURIComponent("Olá Cometa Car! Gostaria de refinanciar meu próprio veículo.");
-      window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
+      window.open("https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20refinanciar%20meu%20veículo.", '_blank');
     }
 
     function openTradeLead() {
-      const waMsg = encodeURIComponent("Olá Cometa Car! Quero dar meu carro/moto como entrada na troca.");
-      window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
-    }
-
-    // ==============================================
-    // PAINEL ERP: MÉTRICAS & TABELA
-    // ==============================================
-    function renderAdminDashboard() {
-      const totalCars = vehicles.length;
-      
-      // Contabiliza como oferta se tiver preço promocional OU se o status for "oferta"
-      const dealsCount = vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal))).length;
-      const soldCount = vehicles.filter(v => v.status === 'vendido').length;
-      
-      const totalValue = vehicles
-        .filter(v => v.status !== 'vendido')
-        .reduce((acc, cur) => {
-          const promo = Number(cur.pricePromo || 0);
-          const orig = Number(cur.priceOriginal);
-          return acc + (promo > 0 && promo < orig ? promo : orig);
-        }, 0);
-
-      document.getElementById('kpi-total-cars').textContent = totalCars;
-      document.getElementById('kpi-deals-count').textContent = dealsCount;
-      document.getElementById('kpi-sold-count').textContent = soldCount;
-      document.getElementById('kpi-total-value').textContent = formatBRL(totalValue);
-    }
-
-    function renderAdminTable() {
-      const tbody = document.getElementById('admin-table-body');
-      tbody.innerHTML = '';
-
-      vehicles.forEach(car => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-zinc-800/40 transition-colors';
-
-        const origPrice = Number(car.priceOriginal);
-        const promoPrice = Number(car.pricePromo || 0);
-        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
-
-        let statusBadge = '';
-        if (car.status === 'disponivel') {
-          statusBadge = `
-            <button onclick="cycleStatus('${car.id}')" title="Clique para colocar em Oferta"
-                    class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-zinc-950 text-emerald-400 border border-emerald-500/40 hover:scale-105 active:scale-95 transition-all">
-              <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400"></i> Disponível
-            </button>
-          `;
-        } else if (car.status === 'oferta') {
-          statusBadge = `
-            <button onclick="cycleStatus('${car.id}')" title="Clique para mudar para Vendido"
-                    class="px-3 py-1 rounded-full text-xs font-black uppercase bg-red-600 text-white hover:scale-105 active:scale-95 transition-all">
-              <i class="fa-solid fa-fire text-xs mr-0.5"></i> Em Oferta
-            </button>
-          `;
-        } else {
-          statusBadge = `
-            <button onclick="cycleStatus('${car.id}')" title="Clique para voltar para Disponível"
-                    class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-zinc-800 text-zinc-300 border border-zinc-600 hover:scale-105 active:scale-95 transition-all">
-              <i class="fa-solid fa-handshake text-xs mr-1"></i> Vendido
-            </button>
-          `;
-        }
-
-        const thumb = car.photos[0] || 'https://via.placeholder.com/100x100?text=Cometa';
-
-        tr.innerHTML = `
-          <td class="px-6 py-4 flex items-center gap-3">
-            <img src="${thumb}" class="w-12 h-12 rounded-xl object-cover bg-black border border-zinc-800 shrink-0" />
-            <div>
-              <span class="text-xs font-black text-red-500 uppercase">${car.brand}</span>
-              <div class="text-sm font-bold text-white">${car.model}</div>
-              <span class="text-[11px] text-zinc-500">${car.color}</span>
-            </div>
-          </td>
-          <td class="px-4 py-4 whitespace-nowrap">
-            <div class="text-zinc-200 font-bold">${car.year}</div>
-            <div class="text-xs text-zinc-500">${car.gearbox}</div>
-          </td>
-          <td class="px-4 py-4 whitespace-nowrap">
-            <div class="flex items-center gap-2">
-              <span class="text-xs text-zinc-300"><i class="fa-solid fa-images text-zinc-500"></i> ${car.photos.length}</span>
-              ${car.videoUrl ? '<span class="text-[10px] bg-red-600/30 text-red-400 border border-red-500/40 px-2 py-0.5 rounded-md font-bold"><i class="fa-solid fa-video mr-1"></i>Vídeo</span>' : ''}
-            </div>
-          </td>
-          <td class="px-4 py-4 whitespace-nowrap">
-            <div class="font-black ${hasPromo ? 'text-zinc-400 line-through text-xs' : 'text-white'}">${formatBRL(origPrice)}</div>
-            ${hasPromo ? `<div class="text-sm text-amber-400 font-black">Promo: ${formatBRL(promoPrice)}</div>` : ''}
-          </td>
-          <td class="px-4 py-4 text-center whitespace-nowrap">
-            ${statusBadge}
-          </td>
-          <td class="px-6 py-4 text-right whitespace-nowrap">
-            <div class="flex items-center justify-end gap-2">
-              <button onclick="editVehicle('${car.id}')" title="Editar Veículo" 
-                      class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors">
-                <i class="fa-solid fa-pen text-xs"></i>
-              </button>
-              <button onclick="deleteVehicle('${car.id}')" title="Remover do Estoque" 
-                      class="w-8 h-8 rounded-lg bg-red-950/40 hover:bg-red-600 text-red-400 hover:text-white border border-red-900/50 flex items-center justify-center transition-colors">
-                <i class="fa-solid fa-trash-can text-xs"></i>
-              </button>
-            </div>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function cycleStatus(id) {
-      const car = vehicles.find(v => v.id === id);
-      if (!car) return;
-
-      if (car.status === 'disponivel') {
-        car.status = 'oferta';
-        if (!car.pricePromo) car.pricePromo = Math.round(car.priceOriginal * 0.95);
-        showToast(`${car.model} agora está em OFERTA! 🔥`, 'warning');
-      } else if (car.status === 'oferta') {
-        car.status = 'vendido';
-        showToast(`${car.model} marcado como VENDIDO! 🤝`, 'info');
-      } else {
-        car.status = 'disponivel';
-        showToast(`${car.model} retornou para DISPONÍVEL no estoque.`, 'success');
-      }
-
-      saveStorage();
-      renderAdminDashboard();
-      renderAdminTable();
-      renderShowroom();
-    }
-
-    function deleteVehicle(id) {
-      const car = vehicles.find(v => v.id === id);
-      if (!car) return;
-
-      if (confirm(`Remover "${car.brand} ${car.model}" do estoque?`)) {
-        vehicles = vehicles.filter(v => v.id !== id);
-        saveStorage();
-        populateBrandFilter();
-        renderAdminDashboard();
-        renderAdminTable();
-        renderShowroom();
-        showToast('Veículo removido do estoque.', 'error');
-      }
-    }
-
-    function openVehicleModal() {
-      document.getElementById('vehicle-form').reset();
-      document.getElementById('form-id').value = '';
-      uploadedPhotosBuffer = [];
-      uploadedVideoBuffer = "";
-      renderPhotoPreviews();
-      document.getElementById('video-preview-status').classList.add('hidden');
-      document.getElementById('form-modal-title').textContent = 'Novo Cadastro de Estoque';
-      document.getElementById('modal-vehicle-form').classList.remove('hidden');
-      document.getElementById('modal-vehicle-form').classList.add('flex');
-    }
-
-    function closeVehicleModal() {
-      document.getElementById('modal-vehicle-form').classList.add('hidden');
-      document.getElementById('modal-vehicle-form').classList.remove('flex');
-    }
-
-    function editVehicle(id) {
-      const car = vehicles.find(v => v.id === id);
-      if (!car) return;
-
-      document.getElementById('form-id').value = car.id;
-      document.getElementById('form-brand').value = car.brand;
-      document.getElementById('form-model').value = car.model;
-      document.getElementById('form-year').value = car.year;
-      document.getElementById('form-km').value = car.km;
-      document.getElementById('form-color').value = car.color;
-      document.getElementById('form-gearbox').value = car.gearbox;
-      document.getElementById('form-fuel').value = car.fuel;
-      document.getElementById('form-price-original').value = car.priceOriginal;
-      document.getElementById('form-price-promo').value = car.pricePromo || '';
-      document.getElementById('form-features').value = car.features ? car.features.join(', ') : '';
-      document.getElementById('form-status').value = car.status;
-
-      uploadedPhotosBuffer = [...car.photos];
-      renderPhotoPreviews();
-
-      document.getElementById('form-video-url').value = car.videoUrl || '';
-      uploadedVideoBuffer = car.videoUrl || '';
-      if (car.videoUrl) {
-        document.getElementById('video-preview-status').classList.remove('hidden');
-      } else {
-        document.getElementById('video-preview-status').classList.add('hidden');
-      }
-
-      document.getElementById('form-modal-title').textContent = 'Editar Veículo';
-      document.getElementById('modal-vehicle-form').classList.remove('hidden');
-      document.getElementById('modal-vehicle-form').classList.add('flex');
-    }
-
-    function handleVehicleFormSubmit(e) {
-      e.preventDefault();
-      const id = document.getElementById('form-id').value;
-
-      const manualUrlInput = document.getElementById('form-photos-url').value;
-      const manualUrls = manualUrlInput.split(',').map(s => s.trim()).filter(Boolean);
-
-      let finalPhotos = [...uploadedPhotosBuffer, ...manualUrls];
-      if (finalPhotos.length === 0) {
-        finalPhotos = ['https://via.placeholder.com/800x600?text=Cometa+Car'];
-      }
-
-      const videoInputUrl = document.getElementById('form-video-url').value.trim();
-      const finalVideo = videoInputUrl || uploadedVideoBuffer || '';
-      const featuresArray = document.getElementById('form-features').value.split(',').map(s => s.trim()).filter(Boolean);
-
-      const origPrice = parseFloat(document.getElementById('form-price-original').value);
-      const promoInputVal = document.getElementById('form-price-promo').value;
-      const promoPrice = promoInputVal ? parseFloat(promoInputVal) : null;
-      let statusVal = document.getElementById('form-status').value;
-
-      // Se cadastrou um preço promocional menor, garante que é tratado como oferta
-      if (promoPrice && promoPrice < origPrice && statusVal === 'disponivel') {
-        statusVal = 'oferta';
-      }
-
-      const vehicleData = {
-        id: id || 'car-' + Date.now(),
-        brand: document.getElementById('form-brand').value.trim(),
-        model: document.getElementById('form-model').value.trim(),
-        year: parseInt(document.getElementById('form-year').value),
-        km: parseInt(document.getElementById('form-km').value),
-        color: document.getElementById('form-color').value.trim(),
-        gearbox: document.getElementById('form-gearbox').value,
-        fuel: document.getElementById('form-fuel').value,
-        priceOriginal: origPrice,
-        pricePromo: promoPrice,
-        status: statusVal,
-        photos: finalPhotos,
-        videoUrl: finalVideo,
-        features: featuresArray
-      };
-
-      if (id) {
-        const index = vehicles.findIndex(v => v.id === id);
-        if (index !== -1) {
-          vehicles[index] = vehicleData;
-          showToast('Veículo atualizado no estoque!', 'success');
-        }
-      } else {
-        vehicles.unshift(vehicleData);
-        showToast('Veículo cadastrado no estoque!', 'success');
-      }
-
-      saveStorage();
-      populateBrandFilter();
-      renderAdminDashboard();
-      renderAdminTable();
-      renderShowroom();
-      closeVehicleModal();
+      window.open("https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20dar%20meu%20veículo%20na%20troca.", '_blank');
     }
 
     function showToast(message, type = 'info') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      
-      let border = 'border-zinc-700';
-      let icon = 'fa-circle-info text-blue-400';
-
-      if (type === 'success') {
-        border = 'border-emerald-500/60';
-        icon = 'fa-circle-check text-emerald-400';
-      } else if (type === 'error') {
-        border = 'border-red-600/60';
-        icon = 'fa-triangle-exclamation text-red-400';
-      } else if (type === 'warning') {
-        border = 'border-amber-500/60';
-        icon = 'fa-fire text-amber-400';
-      }
-
-      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#131926]/95 border ${border} text-white shadow-2xl text-xs font-bold backdrop-blur-md transform transition-all duration-300 translate-y-2 opacity-0`;
-      toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i><span>${message}</span>`;
-      
+      const border = type === 'success' ? 'border-emerald-500' : (type === 'error' ? 'border-red-600' : 'border-zinc-700');
+      toast.className = `px-4 py-2.5 rounded-2xl bg-[#131926]/95 border ${border} text-white shadow-2xl text-xs font-bold transition-all`;
+      toast.textContent = message;
       container.appendChild(toast);
-
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-x-4');
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
+      setTimeout(() => toast.remove(), 3500);
     }
   </script>
 </body>
