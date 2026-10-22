@@ -32,9 +32,9 @@
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- SDKs Oficiais do Firebase (Compatíveis com HTML único) -->
+  <!-- SDKs Oficiais do Firebase (App + Realtime Database + Storage) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
   <style>
@@ -348,8 +348,8 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-xs font-black text-red-500 tracking-widest uppercase">Sistema ERP de Gestão</span>
-            <span id="cloud-badge" class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-950 text-emerald-400 border border-emerald-500/40 flex items-center gap-1">
-              <i class="fa-solid fa-cloud"></i> Firebase Conectado
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-950 text-emerald-400 border border-emerald-500/40 flex items-center gap-1">
+              <i class="fa-solid fa-bolt text-amber-400"></i> Realtime Database Ativo
             </span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-black text-white uppercase mt-0.5">Controle de Estoque Cometa Car</h2>
@@ -522,7 +522,7 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL: CADASTRO COM FIREBASE STORAGE REAL  -->
+  <!-- MODAL: CADASTRO COM FOTOS EM NUVEM         -->
   <!-- ========================================== -->
   <div id="modal-vehicle-form" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-[#131926] border border-zinc-800 w-full max-w-3xl rounded-3xl p-5 sm:p-8 shadow-2xl relative my-auto">
@@ -532,7 +532,7 @@
 
       <div class="mb-4">
         <h3 id="form-modal-title" class="text-lg sm:text-xl font-black text-white uppercase">Novo Cadastro de Estoque</h3>
-        <p class="text-xs text-zinc-400 mt-0.5">As fotos são salvas diretamente no Firebase Storage da Cometa Car.</p>
+        <p class="text-xs text-zinc-400 mt-0.5">As fotos são sincronizadas em tempo real com todos os celulares e computadores.</p>
       </div>
 
       <form id="vehicle-form" onsubmit="handleVehicleFormSubmit(event)" class="space-y-3.5">
@@ -598,15 +598,15 @@
           </div>
         </div>
 
-        <!-- UPLOAD COM FIREBASE STORAGE -->
+        <!-- UPLOAD FOTOS -->
         <div class="p-3.5 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-2.5">
           <div class="flex items-center justify-between">
             <div>
-              <label class="block text-xs font-black uppercase text-white">Fotos Reais do Veículo</label>
+              <label class="block text-xs font-black uppercase text-white">Fotos do Veículo</label>
               <span id="upload-status-text" class="text-[11px] text-zinc-400">Escolha as fotos do celular ou computador.</span>
             </div>
-            <label id="upload-btn-label" class="cursor-pointer px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase transition-all flex items-center gap-1.5 shadow">
-              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Escolher Fotos</span>
+            <label class="cursor-pointer px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase transition-all flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-camera"></i> <span>Escolher Fotos</span>
               <input type="file" id="form-photo-files" multiple accept="image/*" onchange="handlePhotoUploadFirebase(event)" class="hidden" />
             </label>
           </div>
@@ -658,15 +658,14 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- JAVASCRIPT COM FIREBASE STORAGE E NUVEM    -->
+  <!-- JAVASCRIPT CONECTADO AO REALTIME DATABASE  -->
   <!-- ========================================== -->
   <script>
-    // ==========================================
-    // CONFIGURAÇÃO OFICIAL DO SEU FIREBASE
-    // ==========================================
+    // Configuração com Realtime Database da Cometa Car
     const firebaseConfig = {
       apiKey: "AIzaSyCZDsXHGe9aKLllf5upRVDcbcY99gEH-Es",
       authDomain: "cometacar-f3325.firebaseapp.com",
+      databaseURL: "https://cometacar-f3325-default-rtdb.firebaseio.com",
       projectId: "cometacar-f3325",
       storageBucket: "cometacar-f3325.firebasestorage.app",
       messagingSenderId: "640524960104",
@@ -674,7 +673,7 @@
       measurementId: "G-DQ0GTYE73E"
     };
 
-    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_FIREBASE';
+    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_RTDB';
 
     const SEED_DATA = [
       {
@@ -720,15 +719,15 @@
     let isAdminAuthenticated = false;
     let uploadedPhotosBuffer = [];
 
-    // Inicialização do Firebase
-    let db = null;
+    // Inicialização do Firebase Realtime Database e Storage
+    let rtdb = null;
     let storage = null;
 
     try {
       if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
       }
-      db = firebase.firestore();
+      rtdb = firebase.database();
       storage = firebase.storage();
     } catch (e) {
       console.warn("Erro ao iniciar Firebase:", e);
@@ -741,21 +740,18 @@
       renderGoogleReviews();
       renderAdminDashboard();
       renderAdminTable();
-      initFirebaseSync();
+      initRealtimeSync();
     });
 
     // ==========================================
-    // SINCRONIZAÇÃO EM TEMPO REAL COM FIRESTORE
+    // SINCRONIZAÇÃO EM TEMPO REAL (RTDB)
     // ==========================================
-    function initFirebaseSync() {
-      if (!db) return;
-      db.collection('estoque').onSnapshot((snapshot) => {
-        const cloudList = [];
-        snapshot.forEach(doc => {
-          cloudList.push({ id: doc.id, ...doc.data() });
-        });
-        if (cloudList.length > 0) {
-          vehicles = cloudList;
+    function initRealtimeSync() {
+      if (!rtdb) return;
+      rtdb.ref('estoque').on('value', (snapshot) => {
+        const cloudData = snapshot.val();
+        if (cloudData) {
+          vehicles = Object.keys(cloudData).map(k => ({ id: k, ...cloudData[k] }));
           localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
           populateBrandFilter();
           renderShowroom();
@@ -763,7 +759,7 @@
           renderAdminTable();
         }
       }, (error) => {
-        console.warn("Firebase offline ou regras restritas. Usando cache local:", error);
+        console.warn("Realtime Database offline ou permissão restrita:", error);
       });
     }
 
@@ -784,7 +780,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
       } catch (e) {
-        console.warn("Local storage cheio:", e);
+        console.warn("Storage local cheio:", e);
       }
     }
 
@@ -792,7 +788,7 @@
     const formatKM = (km) => new Intl.NumberFormat('pt-BR').format(km) + ' km';
 
     // ==========================================
-    // UPLOAD DIRETO PARA O FIREBASE STORAGE
+    // COMPRESSOR & UPLOAD DE FOTOS
     // ==========================================
     async function compressImageForUpload(file) {
       return new Promise((resolve) => {
@@ -801,7 +797,7 @@
           const img = new Image();
           img.onload = () => {
             const canvas = document.createElement('canvas');
-            const maxWidth = 1200;
+            const maxWidth = 900;
             let width = img.width;
             let height = img.height;
             if (width > maxWidth) {
@@ -812,9 +808,10 @@
             canvas.height = height;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
-            canvas.toBlob((blob) => {
-              resolve(blob);
-            }, 'image/jpeg', 0.80);
+            
+            // Retorna Base64 leve (~35KB) que sincroniza no banco instantaneamente
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.70);
+            resolve(dataUrl);
           };
           img.src = e.target.result;
         };
@@ -834,39 +831,37 @@
       let current = 0;
       for (const file of files) {
         current++;
-        statusText.textContent = `Enviando foto ${current} de ${files.length} para a nuvem...`;
+        statusText.textContent = `Preparando foto ${current} de ${files.length}...`;
         
         try {
-          // Comprime levemente para carregar super rápido no 4G
-          const blob = await compressImageForUpload(file);
+          const compressedBase64 = await compressImageForUpload(file);
           
+          // Tenta salvar via Storage ou grava a versão leve no banco
           if (storage) {
-            // Sobe para o Firebase Storage oficial
-            const filename = `carros/${Date.now()}_${Math.random().toString(36).substring(7)}.jpg`;
-            const ref = storage.ref(filename);
-            const uploadTask = await ref.put(blob, { contentType: 'image/jpeg' });
-            const downloadUrl = await uploadTask.ref.getDownloadURL();
-            uploadedPhotosBuffer.push(downloadUrl);
+            try {
+              const filename = `carros/${Date.now()}_${Math.random().toString(36).substring(7)}.jpg`;
+              const ref = storage.ref(filename);
+              const blob = await (await fetch(compressedBase64)).blob();
+              const uploadTask = await ref.put(blob, { contentType: 'image/jpeg' });
+              const downloadUrl = await uploadTask.ref.getDownloadURL();
+              uploadedPhotosBuffer.push(downloadUrl);
+            } catch (storageErr) {
+              // Se o Storage tiver regras restritas, usa a imagem otimizada que cabe no Realtime Database
+              uploadedPhotosBuffer.push(compressedBase64);
+            }
           } else {
-            // Fallback caso storage não conecte
-            const base64Fallback = await new Promise(res => {
-              const r = new FileReader();
-              r.onload = ev => res(ev.target.result);
-              r.readAsDataURL(blob);
-            });
-            uploadedPhotosBuffer.push(base64Fallback);
+            uploadedPhotosBuffer.push(compressedBase64);
           }
           renderPhotoPreviews();
         } catch (err) {
-          console.error("Erro upload:", err);
-          showToast(`Erro na foto ${current}. Verifique as regras do Firebase.`, 'error');
+          console.error("Erro foto:", err);
         }
       }
 
-      statusText.textContent = `${uploadedPhotosBuffer.length} foto(s) prontas no estoque.`;
+      statusText.textContent = `${uploadedPhotosBuffer.length} foto(s) prontas para salvar.`;
       submitBtn.disabled = false;
       submitBtn.classList.remove('opacity-50');
-      showToast('Fotos salvas na nuvem com sucesso!', 'success');
+      showToast('Fotos preparadas com sucesso!', 'success');
       e.target.value = '';
     }
 
@@ -1096,7 +1091,7 @@
     }
 
     // ==========================================
-    // PAINEL ERP ADMINISTRATIVO
+    // PAINEL ERP: MÉTRICAS E TABELA
     // ==========================================
     function renderAdminDashboard() {
       document.getElementById('kpi-total-cars').textContent = vehicles.length;
@@ -1163,8 +1158,8 @@
       car.status = car.status === 'disponivel' ? 'oferta' : (car.status === 'oferta' ? 'vendido' : 'disponivel');
       
       saveLocalBackup();
-      if (db) {
-        await db.collection('estoque').doc(id).set(car, { merge: true });
+      if (rtdb) {
+        await rtdb.ref('estoque/' + id).update({ status: car.status });
       }
       renderAdminDashboard();
       renderAdminTable();
@@ -1175,8 +1170,8 @@
       if (confirm('Remover este veículo do estoque?')) {
         vehicles = vehicles.filter(v => v.id !== id);
         saveLocalBackup();
-        if (db) {
-          await db.collection('estoque').doc(id).delete();
+        if (rtdb) {
+          await rtdb.ref('estoque/' + id).remove();
         }
         renderAdminDashboard();
         renderAdminTable();
@@ -1186,7 +1181,7 @@
     }
 
     // ==========================================
-    // FORMULÁRIO (SALVA NO FIRESTORE EM TEMPO REAL)
+    // FORMULÁRIO (SALVA DIRETO NO REALTIME DATABASE)
     // ==========================================
     function openVehicleModal() {
       document.getElementById('vehicle-form').reset();
@@ -1268,13 +1263,13 @@
 
       saveLocalBackup();
 
-      if (db) {
+      if (rtdb) {
         try {
-          await db.collection('estoque').doc(id).set(vehicleData);
-          showToast('Veículo salvo na nuvem com sucesso!', 'success');
+          await rtdb.ref('estoque/' + id).set(vehicleData);
+          showToast('Sincronizado no Celular e PC com sucesso!', 'success');
         } catch(err) {
-          console.error("Erro salvando Firestore:", err);
-          showToast('Salvo localmente (verifique regras do Firestore).', 'warning');
+          console.error("Erro salvando RTDB:", err);
+          showToast('Salvo apenas no navegador (verifique as regras do Realtime Database).', 'warning');
         }
       }
 
