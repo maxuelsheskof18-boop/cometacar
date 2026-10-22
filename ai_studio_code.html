@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COMETA CAR MULTIMARCAS | A Loja da Confusão - @cometacar007</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cometa: {
+              black: '#070709',
+              dark: '#0e1015',
+              card: '#131926',
+              border: '#1f293d',
+              red: '#DC2626',
+              orange: '#EA580C',
+              gold: '#FBBF24',
+              whatsapp: '#25D366'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    .chrome-border {
+      border: 1px solid rgba(209, 213, 219, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.85);
+    }
+    .gradient-fire {
+      background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #EA580C 100%);
+    }
+    .fire-text {
+      background: linear-gradient(135deg, #F87171 0%, #EF4444 40%, #FB923C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070709; }
+    ::-webkit-scrollbar-thumb { background: #1f293d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #DC2626; }
+  </style>
+</head>
+
+<body class="bg-[#070709] text-slate-200 font-sans antialiased min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- BARRA DE TOPO COMERCIAL                    -->
+  <!-- ========================================== -->
+  <div class="bg-[#0b0d13] border-b border-slate-800 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5 text-zinc-300 font-medium">
+          <i class="fa-solid fa-location-dot text-red-500"></i> Av. das Esmeraldas, 363 - Mutinga, Osasco/SP
+        </span>
+        <span class="hidden md:inline text-zinc-700">|</span>
+        <span class="hidden md:inline text-zinc-400">
+          🟢 Compra • 🟠 Venda • 🔴 Troca • 🚨 Refinancie seu próprio veículo 🚗 🏍️
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/5511957400658" target="_blank" class="flex items-center gap-1.5 text-emerald-400 font-bold hover:text-emerald-300 transition-colors">
+          <i class="fa-brands fa-whatsapp text-sm"></i> (11) 95740-0658
+        </a>
+        <a href="https://instagram.com/cometacar007" target="_blank" class="flex items-center gap-1.5 text-red-400 hover:text-red-300 font-bold transition-colors">
+          <i class="fa-brands fa-instagram text-sm"></i> @cometacar007
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- HEADER COM O LOGO OFICIAL VETORIZADO       -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-[#070709]/95 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between gap-4">
+      
+      <!-- LOGOTIPO OFICIAL COMETA CAR -->
+      <a href="javascript:void(0)" onclick="switchView('showroom')" class="flex items-center gap-3 group">
+        
+        <div class="w-16 h-16 shrink-0 transition-transform group-hover:scale-105">
+          <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_4px_10px_rgba(220,38,38,0.4)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="shieldChrome" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#E5E7EB"/>
+                <stop offset="30%" stop-color="#9CA3AF"/>
+                <stop offset="50%" stop-color="#4B5563"/>
+                <stop offset="70%" stop-color="#D1D5DB"/>
+                <stop offset="100%" stop-color="#1F2937"/>
+              </linearGradient>
+              <linearGradient id="cometaRed" x1="0" y1="50" x2="180" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#EF4444"/>
+                <stop offset="50%" stop-color="#DC2626"/>
+                <stop offset="100%" stop-color="#7F1D1D"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Moldura Externa Cromada -->
+            <path d="M100 12 L178 34 C178 115 142 165 100 190 C58 165 22 115 22 34 Z" 
+                  stroke="url(#shieldChrome)" stroke-width="7" fill="#0C0D11"/>
+
+            <!-- Borda Interna Fina -->
+            <path d="M100 22 L168 41 C168 110 137 154 100 176 C63 154 32 110 32 41 Z" 
+                  stroke="url(#shieldChrome)" stroke-width="2" stroke-opacity="0.5" fill="#07080A"/>
+
+            <!-- Silhueta Esportiva do Carro -->
+            <path d="M52 90 L82 72 L132 72 L160 84 L185 88 L188 95 L178 95 C176 90 168 87 160 87 C152 87 146 92 144 97 L95 97 C93 91 85 87 77 87 C69 87 63 91 61 97 L45 97 Z" 
+                  stroke="url(#shieldChrome)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M88 74 L128 74 L144 84 L80 84 Z" fill="#181B22" stroke="url(#shieldChrome)" stroke-width="1.5"/>
+
+            <!-- O Cometa Vermelho em Corte -->
+            <polygon points="12,96 112,88 120,95 38,102" fill="url(#cometaRed)"/>
+            <polygon points="18,100 95,95 102,100 32,106" fill="#F87171"/>
+
+            <!-- Árvore Oficial da Base do Escudo -->
+            <g transform="translate(77, 138) scale(0.75)" stroke="url(#shieldChrome)" stroke-width="1.5" fill="none">
+              <path d="M30 45 L30 26 M28 45 L32 45" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30 28 C15 28 8 20 8 16 C8 12 18 10 30 14 C42 10 52 12 52 16 C52 20 45 28 30 28 Z" fill="#1A1E26" stroke-width="2"/>
+              <path d="M14 18 L24 24 M46 18 L36 24 M30 16 L30 24 M20 14 L28 20 M40 14 L32 20"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="text-2xl sm:text-3xl font-black tracking-tight text-white">COMETA</span>
+            <span class="text-2xl sm:text-3xl font-black tracking-tight text-red-600">CAR</span>
+          </div>
+          <span class="text-[10px] tracking-[0.28em] font-extrabold text-zinc-400 uppercase -mt-0.5">MULTIMARCAS</span>
+        </div>
+
+      </a>
+
+      <!-- AÇÕES -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/5511957400658?text=Olá!%20Vim%20pelo%20site%20da%20Cometa%20Car." target="_blank"
+           class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-4 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all hover:scale-105">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span class="hidden sm:inline">Chamar no WhatsApp</span>
+        </a>
+
+        <button id="btn-toggle-admin" onclick="handleAdminToggle()" 
+          class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3.5 py-2.5 rounded-xl bg-[#131926] hover:bg-[#1a2133] border border-zinc-700 text-zinc-200 transition-all">
+          <i class="fa-solid fa-lock text-red-500" id="admin-icon"></i>
+          <span id="admin-text">Área ADM</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- VIEW 1: VITRINE PÚBLICA (SHOWROOM)         -->
+  <!-- ========================================== -->
+  <main id="view-showroom" class="flex-1 pb-16">
+
+    <!-- STORIES / DESTAQUES DO INSTAGRAM -->
+    <section class="max-w-7xl mx-auto px-4 py-4 border-b border-zinc-800/80 overflow-x-auto">
+      <div class="flex items-center gap-6 min-w-max">
+        
+        <a href="#avaliacoes-google" class="flex flex-col items-center gap-1.5 group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-red-500 to-blue-500 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center">
+              <i class="fa-brands fa-google text-xl text-amber-400"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Google 5.0 ★</span>
+        </a>
+
+        <div onclick="filterByTag('oferta')" class="flex flex-col items-center gap-1.5 cursor-pointer group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] gradient-fire group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-amber-400">
+              <i class="fa-solid fa-fire text-xl"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Ofertas da Loja</span>
+        </div>
+
+        <div onclick="filterByTag('video')" class="flex flex-col items-center gap-1.5 cursor-pointer group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-red-600 to-rose-400 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-red-400">
+              <i class="fa-solid fa-circle-play text-xl"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Com Vídeo</span>
+        </div>
+
+        <div onclick="openRefinanceLead()" class="flex flex-col items-center gap-1.5 cursor-pointer group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-emerald-500 to-teal-400 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-hand-holding-dollar text-xl"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Refinancie</span>
+        </div>
+
+        <div onclick="openTradeLead()" class="flex flex-col items-center gap-1.5 cursor-pointer group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-blue-600 to-red-600 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center text-zinc-200">
+              <i class="fa-solid fa-motorcycle text-xl"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Carro / Moto</span>
+        </div>
+
+        <a href="https://instagram.com/cometacar007" target="_blank" class="flex flex-col items-center gap-1.5 group">
+          <div class="w-16 h-16 rounded-full p-[2.5px] bg-gradient-to-tr from-zinc-600 via-red-600 to-zinc-400 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full rounded-full bg-[#070709] p-1 flex items-center justify-center">
+              <i class="fa-solid fa-users text-xl text-red-500"></i>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-zinc-300">Clientes</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- HERO BANNER SOLICITADO -->
+    <section class="relative bg-gradient-to-b from-[#11141c] via-[#090b10] to-[#070709] py-10 sm:py-14 px-4 border-b border-zinc-800/80">
+      <div class="max-w-7xl mx-auto">
+        <div class="chrome-border rounded-3xl p-6 sm:p-12 bg-gradient-to-br from-[#161d2b] via-[#0d1017] to-[#070709] relative overflow-hidden shadow-2xl">
+          
+          <div class="relative z-10 max-w-4xl space-y-4">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-950/80 border border-rose-600/50 text-rose-300 text-xs font-black uppercase tracking-wider shadow-md shadow-rose-950/40">
+              <i class="fa-solid fa-certificate text-red-500"></i> COMETA CAR • REALIZANDO SONHOS E CONSTRUINDO HISTÓRIAS
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight uppercase leading-[1.1]">
+              <span class="text-white block">A LOJA DA CONFUSÃO</span>
+              <span class="fire-text block">EM PREÇO BAIXO & PROCEDÊNCIA</span>
+            </h1>
+
+            <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+              Trabalhamos com todas as financeiras, entrada facilitada em até 21x no cartão, pegamos seu carro ou moto na troca e temos os melhores seminovos periciados de Osasco e região.
+            </p>
+
+            <div class="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-bold text-zinc-200">
+              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-emerald-400 flex items-center gap-2">
+                <i class="fa-solid fa-shield-check"></i> Cautelar 100% Aprovada
+              </span>
+              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-zinc-200 flex items-center gap-2">
+                <i class="fa-solid fa-arrow-right-arrow-left text-red-500"></i> Troca com Troco
+              </span>
+              <span class="bg-[#070709] px-3.5 py-2 rounded-xl border border-zinc-800 text-amber-400 flex items-center gap-2">
+                <i class="fa-solid fa-credit-card"></i> Entrada no Cartão até 21x
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BARRA DE FILTROS COM CAMPO DIGITÁVEL DE PREÇO -->
+    <section class="max-w-7xl mx-auto px-4 mt-6">
+      <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 shadow-xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          
+          <!-- Busca por texto -->
+          <div class="relative lg:col-span-4">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
+            <input type="text" id="filter-search" oninput="applyFilters()" placeholder="Buscar por modelo ou marca (T-Cross, Celta, Corolla)..." 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-red-600" />
+          </div>
+
+          <!-- Marca -->
+          <div class="lg:col-span-2">
+            <select id="filter-brand" onchange="applyFilters()" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+              <option value="">Todas as Marcas</option>
+            </select>
+          </div>
+
+          <!-- Câmbio -->
+          <div class="lg:col-span-2">
+            <select id="filter-gearbox" onchange="applyFilters()" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+              <option value="">Câmbio (Todos)</option>
+              <option value="Automático">Automático</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+
+          <!-- CAMPO DIGITÁVEL DE PREÇO (VALOR QUE PROCURA) -->
+          <div class="lg:col-span-4">
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-xs font-bold text-red-500">Até R$</span>
+              <input type="number" id="filter-price-input" oninput="applyFilters()" placeholder="Digite o valor máximo..." 
+                     class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-16 pr-4 py-2.5 text-sm font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-red-600" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Atalhos rápidos de preço para 1 clique -->
+        <div class="mt-3 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-zinc-500 font-semibold mr-1">Atalhos de valor:</span>
+            <button onclick="setPriceFilter(30000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 30 mil</button>
+            <button onclick="setPriceFilter(50000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 50 mil</button>
+            <button onclick="setPriceFilter(90000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 90 mil</button>
+            <button onclick="setPriceFilter(150000)" class="px-2.5 py-1 rounded-lg bg-[#070709] border border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-white transition-all">Até 150 mil</button>
+          </div>
+
+          <div class="flex items-center gap-4 text-zinc-400">
+            <span id="showroom-counter">Consultando estoque da Cometa Car...</span>
+            <button onclick="clearFilters()" class="text-red-400 hover:text-red-300 font-bold flex items-center gap-1">
+              <i class="fa-solid fa-rotate-left"></i> Limpar Filtros
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID DE VEÍCULOS NO ESTOQUE -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+      <div id="showroom-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injetado dinamicamente via JS -->
+      </div>
+
+      <div id="showroom-empty" class="hidden text-center py-16 bg-[#131926] rounded-3xl border border-zinc-800 mt-6">
+        <i class="fa-solid fa-car-rear text-5xl text-zinc-700 mb-3 block"></i>
+        <h3 class="text-lg font-black text-white">Nenhum veículo encontrado com esse valor no estoque</h3>
+        <p class="text-sm text-zinc-400 mt-1">Chame a equipe da Cometa Car no WhatsApp que buscamos o carro no valor que você pode pagar!</p>
+        <button onclick="clearFilters()" class="mt-4 px-5 py-2.5 bg-red-600 hover:bg-red-500 text-xs font-black uppercase tracking-wider rounded-xl text-white">
+          Ver Todo o Estoque
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- SEÇÃO OFICIAL: AVALIAÇÕES NO PERFIL DO GOOGLE  -->
+    <!-- ============================================== -->
+    <section id="avaliacoes-google" class="max-w-7xl mx-auto px-4 py-10">
+      <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+        
+        <!-- Header da Seção Google -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-zinc-800 pb-8">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2">
+              <i class="fa-brands fa-google text-2xl text-amber-400"></i>
+              <span class="text-xs font-black uppercase tracking-widest text-zinc-400">Google Meu Negócio • Perfil Oficial</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              O que nossos clientes dizem no Google
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-400">
+              Cometa Car Multimarcas em Osasco/SP. Avaliação máxima comprovada por quem comprou e aprovou.
+            </p>
+          </div>
+
+          <!-- Placa de Nota 5.0 -->
+          <div class="flex items-center gap-4 bg-[#070709] border border-zinc-700 px-6 py-4 rounded-2xl shrink-0">
+            <div class="text-center">
+              <span class="text-4xl font-black text-white">5.0</span>
+              <div class="flex text-amber-400 text-sm mt-0.5">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <div class="border-l border-zinc-800 pl-4 text-xs">
+              <span class="font-bold text-emerald-400 block"><i class="fa-solid fa-circle-check mr-1"></i>100% Positivas</span>
+              <span class="text-zinc-500">Baseado em clientes reais</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade de Cards de Avaliações -->
+        <div id="google-reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+
+        <!-- Botões de Ação para o Google -->
+        <div class="mt-8 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-4 text-xs">
+          <span class="text-zinc-400">Você já é nosso cliente? Ajude outros motoristas avaliando a Cometa Car!</span>
+          <div class="flex items-center gap-3">
+            <a href="https://www.google.com/maps/search/?api=1&query=Cometa+Car+Multimarcas+Av+das+Esmeraldas+363+Osasco" target="_blank"
+               class="px-4 py-2.5 rounded-xl bg-[#070709] border border-zinc-700 hover:border-zinc-500 text-zinc-200 font-bold uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-brands fa-google text-red-500"></i> Ver Perfil no Google Maps
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Cometa+Car+Multimarcas+Av+das+Esmeraldas+363+Osasco" target="_blank"
+               class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-red-950/50">
+              <i class="fa-solid fa-star text-amber-300"></i> Avaliar no Google
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO / ENDEREÇO DA FACHADA -->
+    <section class="max-w-7xl mx-auto px-4 pt-2">
+      <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Venha Tomar um Café Conosco</span>
+          <h3 class="text-2xl font-black text-white uppercase">Cometa Car Multimarcas em Osasco</h3>
+          <p class="text-sm text-zinc-300">
+            Av. das Esmeraldas, 363 - Mutinga, Osasco - SP, 06286-010<br />
+            (Ponto de referência: Próximo à Av. Alberto J. Byington / Vila Menck).
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="https://maps.google.com/?q=Av.+das+Esmeraldas,+363+-+Mutinga,+Osasco+-+SP" target="_blank"
+             class="px-5 py-3 rounded-xl bg-[#070709] border border-zinc-700 hover:border-zinc-500 text-zinc-200 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-location-arrow text-red-500"></i> Traçar Rota GPS
+          </a>
+          <a href="https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20visitar%20a%20loja%20hoje." target="_blank"
+             class="px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-base"></i> Falar com Vendedor
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- VIEW 2: PAINEL ADMINISTRATIVO (ERP)        -->
+  <!-- ========================================== -->
+  <main id="view-admin" class="flex-1 hidden bg-[#070709] py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
+      
+      <!-- Topo ADM -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-6">
+        <div>
+          <span class="text-xs font-black text-red-500 tracking-widest uppercase">Sistema ERP de Gestão</span>
+          <h2 class="text-3xl font-black text-white uppercase">Controle de Estoque Cometa Car</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="openVehicleModal()" 
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl gradient-fire hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-950/50">
+            <i class="fa-solid fa-plus"></i>
+            <span>Cadastrar no Estoque</span>
+          </button>
+          <button onclick="logoutAdmin()" 
+                  class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#131926] border border-zinc-800 text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Sair</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard KPIs -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span class="text-xs font-bold uppercase">Total no Estoque</span>
+            <i class="fa-solid fa-boxes-stacked text-red-500"></i>
+          </div>
+          <p id="kpi-total-cars" class="text-3xl font-black text-white mt-2">0</p>
+          <span class="text-[11px] text-zinc-500">Veículos ativos no estoque</span>
+        </div>
+
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span class="text-xs font-bold uppercase">Valor do Estoque</span>
+            <i class="fa-solid fa-brazilian-real-sign text-emerald-400"></i>
+          </div>
+          <p id="kpi-total-value" class="text-2xl sm:text-3xl font-black text-white mt-2">R$ 0</p>
+          <span class="text-[11px] text-emerald-400">Capital disponível em estoque</span>
+        </div>
+
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span class="text-xs font-bold uppercase">Ofertas / Confusão</span>
+            <i class="fa-solid fa-fire text-amber-400"></i>
+          </div>
+          <p id="kpi-deals-count" class="text-3xl font-black text-amber-400 mt-2">0</p>
+          <span class="text-[11px] text-zinc-500">Com preço promocional</span>
+        </div>
+
+        <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span class="text-xs font-bold uppercase">Vendidos / Entregues</span>
+            <i class="fa-solid fa-handshake text-purple-400"></i>
+          </div>
+          <p id="kpi-sold-count" class="text-3xl font-black text-purple-400 mt-2">0</p>
+          <span class="text-[11px] text-zinc-500">Sonhos realizados</span>
+        </div>
+
+      </div>
+
+      <!-- Tabela com Alternância de Status em 1 Clique -->
+      <div class="bg-[#131926] border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+        <div class="px-6 py-4 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-sm font-black text-white uppercase tracking-wider">Gestão de Estoque</h3>
+            <p class="text-xs text-zinc-400">Clique na etiqueta de status para alternar: <b>Disponível ➔ Oferta ➔ Vendido</b>.</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-zinc-300">
+            <thead class="bg-[#070709] text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800">
+              <tr>
+                <th class="px-6 py-3.5">Veículo</th>
+                <th class="px-4 py-3.5">Ano / Câmbio</th>
+                <th class="px-4 py-3.5">Mídia</th>
+                <th class="px-4 py-3.5">Valor</th>
+                <th class="px-4 py-3.5 text-center">Status no Estoque (1 Clique)</th>
+                <th class="px-6 py-3.5 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body" class="divide-y divide-zinc-800/60 font-medium"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: LOGIN ADMINISTRATIVO                -->
+  <!-- ========================================== -->
+  <div id="modal-login" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
+      <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center mx-auto mb-3">
+          <i class="fa-solid fa-lock text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-black text-white uppercase">Acesso Gerência</h3>
+        <p class="text-xs text-zinc-400 mt-1">Gerenciamento do estoque Cometa Car.</p>
+      </div>
+
+      <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Senha de Gerência</label>
+          <input type="password" id="admin-password" placeholder="Digite a senha..." required
+                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-red-600" />
+          <p class="text-[11px] text-zinc-500 mt-1.5">Senha de teste: <span class="text-red-400 font-mono font-bold">admin123</span></p>
+        </div>
+        <button type="submit" 
+                class="w-full py-2.5 rounded-xl gradient-fire font-black text-xs uppercase tracking-wider text-white shadow-lg shadow-red-950/50">
+          Entrar no ERP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: DETALHES DO VEÍCULO (FOTOS + VÍDEO) -->
+  <!-- ========================================== -->
+  <div id="modal-details" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative my-auto">
+      
+      <button onclick="closeDetailsModal()" class="absolute right-4 top-4 z-20 w-9 h-9 rounded-full bg-black/80 text-zinc-300 hover:text-white flex items-center justify-center border border-zinc-700">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[85vh] overflow-y-auto">
+        
+        <div class="lg:col-span-7 bg-[#070709] p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-800">
+          <div>
+            <div id="media-viewport" class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-black border border-zinc-800 flex items-center justify-center">
+              <img id="detail-main-img" src="" alt="" class="w-full h-full object-cover" />
+              <video id="detail-main-video" controls class="w-full h-full object-cover hidden"></video>
+              <iframe id="detail-main-iframe" class="w-full h-full hidden" allowfullscreen></iframe>
+              <div id="detail-status-badge" class="absolute top-3 left-3 z-10"></div>
+            </div>
+            
+            <div id="detail-thumbnails" class="flex items-center gap-2.5 mt-3 overflow-x-auto pb-2"></div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-xs text-zinc-400 space-y-1.5">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-check text-emerald-400"></i> Laudo Cautelar Aprovado & Procedência Cometa Car</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-red-500"></i> Aceitamos seu Carro ou Moto na Troca</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-credit-card text-amber-400"></i> Entrada Facilitada em até 21x no Cartão</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <span id="detail-brand" class="text-xs font-black text-red-500 uppercase tracking-widest"></span>
+            <h2 id="detail-model" class="text-2xl font-black text-white mt-1"></h2>
+
+            <div class="mt-4 p-4 rounded-2xl bg-[#070709] border border-zinc-800">
+              <span id="detail-price-original" class="text-xs text-zinc-500 line-through block font-medium"></span>
+              <div class="flex items-baseline gap-2">
+                <span id="detail-price-promo" class="text-3xl font-black text-white"></span>
+                <span id="detail-price-label" class="text-xs text-emerald-400 font-bold uppercase">À Vista</span>
+              </div>
+              <p class="text-[11px] text-zinc-400 mt-1"><i class="fa-solid fa-handshake mr-1 text-red-500"></i>Financiamento com todas as financeiras do mercado.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 mt-4 text-xs">
+              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block">Ano</span>
+                <span id="detail-year" class="font-black text-zinc-200 text-sm"></span>
+              </div>
+              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block">KM</span>
+                <span id="detail-km" class="font-black text-zinc-200 text-sm"></span>
+              </div>
+              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block">Câmbio</span>
+                <span id="detail-gearbox" class="font-black text-zinc-200 text-sm"></span>
+              </div>
+              <div class="p-3 bg-[#070709] rounded-xl border border-zinc-800">
+                <span class="text-zinc-500 block">Combustível</span>
+                <span id="detail-fuel" class="font-black text-zinc-200 text-sm"></span>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <h4 class="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-2">Opcionais do Veículo</h4>
+              <div id="detail-features" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a id="detail-whatsapp-btn" href="#" target="_blank"
+               class="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Negociar no WhatsApp da Loja</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: CADASTRO COM FOTOS REAIS E VÍDEOS   -->
+  <!-- ========================================== -->
+  <div id="modal-vehicle-form" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-3xl rounded-3xl p-6 sm:p-8 shadow-2xl relative my-auto">
+      <button onclick="closeVehicleModal()" class="absolute right-5 top-5 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-5">
+        <h3 id="form-modal-title" class="text-xl font-black text-white uppercase">Novo Cadastro de Estoque</h3>
+        <p class="text-xs text-zinc-400 mt-1">Carregue fotos tiradas do seu celular/câmera e adicione vídeos do carro.</p>
+      </div>
+
+      <form id="vehicle-form" onsubmit="handleVehicleFormSubmit(event)" class="space-y-4">
+        <input type="hidden" id="form-id" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Marca</label>
+            <input type="text" id="form-brand" required placeholder="Ex: Volkswagen, Chevrolet, Toyota" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Modelo / Versão</label>
+            <input type="text" id="form-model" required placeholder="Ex: T-Cross Highline 250 TSI" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Ano</label>
+            <input type="number" id="form-year" required min="1970" max="2030" placeholder="2024" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Quilometragem</label>
+            <input type="number" id="form-km" required min="0" placeholder="39000" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Câmbio</label>
+            <select id="form-gearbox" required class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+              <option value="Automático">Automático</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Combustível</label>
+            <select id="form-fuel" required class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+              <option value="Flex">Flex</option>
+              <option value="Gasolina">Gasolina</option>
+              <option value="Híbrido">Híbrido</option>
+              <option value="Diesel">Diesel</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Cor</label>
+            <input type="text" id="form-color" required placeholder="Ex: Prata Metálico, Preto" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Preço Tabela (R$)</label>
+            <input type="number" id="form-price-original" required min="1000" placeholder="139900" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-amber-400 mb-1">Preço Promoção (R$)</label>
+            <input type="number" id="form-price-promo" min="0" placeholder="134900 (Opcional)" 
+                   class="w-full bg-[#070709] border border-amber-500/40 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-amber-400" />
+          </div>
+        </div>
+
+        <!-- UPLOAD DE FOTOS -->
+        <div class="p-4 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <label class="block text-xs font-black uppercase text-white">Fotos do Carro (Tiradas por Você)</label>
+              <span class="text-[11px] text-zinc-400">Selecione fotos do seu computador ou celular. As imagens são otimizadas automaticamente.</span>
+            </div>
+            <label class="cursor-pointer px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 shadow-md">
+              <i class="fa-solid fa-camera"></i> Escolher Fotos
+              <input type="file" id="form-photo-files" multiple accept="image/*" onchange="handlePhotoUpload(event)" class="hidden" />
+            </label>
+          </div>
+
+          <div id="photos-preview-grid" class="flex flex-wrap gap-2 pt-1 min-h-[50px] items-center">
+            <span id="no-photos-hint" class="text-xs text-zinc-600 italic">Nenhuma foto selecionada ainda.</span>
+          </div>
+
+          <div class="pt-2 border-t border-zinc-800/60">
+            <label class="block text-[11px] font-bold uppercase text-zinc-400 mb-1">Ou cole links de fotos (separados por vírgula):</label>
+            <input type="text" id="form-photos-url" placeholder="https://site.com/foto1.jpg, https://site.com/foto2.jpg" 
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-1.5 text-xs text-zinc-300 focus:outline-none focus:border-red-600" />
+          </div>
+        </div>
+
+        <!-- VÍDEO DO CARRO -->
+        <div class="p-4 rounded-2xl bg-[#0b0d13] border border-zinc-800 space-y-3">
+          <div>
+            <label class="block text-xs font-black uppercase text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-video text-red-500"></i> Vídeo do Veículo (Tour / Instagram Reels / YouTube / Arquivo)
+            </label>
+            <span class="text-[11px] text-zinc-400">Cole o link de um vídeo do YouTube/Reels ou selecione um vídeo MP4 do seu aparelho.</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+            <div class="sm:col-span-8">
+              <input type="text" id="form-video-url" placeholder="Ex: https://youtube.com/shorts/... ou https://site.com/video.mp4" 
+                     class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2 text-xs text-zinc-300 focus:outline-none focus:border-red-600" />
+            </div>
+            <div class="sm:col-span-4">
+              <label class="w-full cursor-pointer px-3 py-2 bg-[#131926] hover:bg-[#1f283d] border border-zinc-700 text-zinc-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-file-video text-red-500"></i> Arquivo de Vídeo
+                <input type="file" id="form-video-file" accept="video/*" onchange="handleVideoUpload(event)" class="hidden" />
+              </label>
+            </div>
+          </div>
+          <div id="video-preview-status" class="text-[11px] text-emerald-400 font-semibold hidden flex items-center gap-1">
+            <i class="fa-solid fa-circle-check"></i> <span>Vídeo anexado com sucesso!</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Opcionais (Separados por vírgula)</label>
+          <input type="text" id="form-features" placeholder="Cautelar Aprovada, Teto Solar, Ar Digital, Multimídia, Couro, Rodas" 
+                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Status no Estoque</label>
+          <select id="form-status" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
+            <option value="disponivel">Disponível no Estoque</option>
+            <option value="oferta">Em Oferta da Semana</option>
+            <option value="vendido">Vendido / Entregue</option>
+          </select>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-zinc-800">
+          <button type="button" onclick="closeVehicleModal()" class="px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 text-xs font-bold uppercase">Cancelar</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl gradient-fire text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-red-950/50">
+            Gravar no Estoque
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- FOOTER OFICIAL -->
+  <footer class="bg-[#0b0c10] border-t border-zinc-800/80 py-8 text-xs text-zinc-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-black text-zinc-300 uppercase tracking-wider">Cometa Car Multimarcas</span>
+        <span>•</span>
+        <span>Osasco - SP</span>
+        <span>•</span>
+        <a href="https://instagram.com/cometacar007" target="_blank" class="text-red-500 font-bold hover:underline">@cometacar007</a>
+      </div>
+      <p>Cometa Car — Realizando sonhos e construindo histórias.</p>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT VANILLA & REGRAS DE NEGÓCIO     -->
+  <!-- ========================================== -->
+  <script>
+    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V3';
+    const REVIEWS_STORAGE_KEY = 'COMETA_CAR_GOOGLE_REVIEWS';
+
+    // AVALIAÇÕES DO GOOGLE MEU NEGÓCIO (PERFIL OFICIAL OSASCO/SP)
+    const SEED_REVIEWS = [
+      {
+        id: "rev-1",
+        author: "Marcos Vinicius Ribeiro",
+        rating: 5,
+        time: "Há 2 semanas",
+        comment: "Atendimento diferenciado do Willian e de toda a equipe da Cometa Car! Pegaram meu carro antigo na troca com uma avaliação muito justa e saí de T-Cross no mesmo dia. Cautelar 100% aprovada na minha mão.",
+        avatarBg: "bg-blue-600"
+      },
+      {
+        id: "rev-2",
+        author: "Juliana Mendes Silva",
+        rating: 5,
+        time: "Há 1 mês",
+        comment: "A loja da confusão no bom sentido! Preço muito abaixo da média de Osasco e aprovação de financiamento rápida demais. Sem burocracia nenhuma. Podem confiar de olhos fechados!",
+        avatarBg: "bg-rose-600"
+      },
+      {
+        id: "rev-3",
+        author: "Rodrigo Almeida",
+        rating: 5,
+        time: "Há 3 meses",
+        comment: "Fiz o refinanciamento do meu carro com eles e foi super tranquilo. Pessoal transparente, honesto e café de primeira na loja. Recomendo pra todo mundo da região de Mutinga e Vila Menck.",
+        avatarBg: "bg-emerald-600"
+      }
+    ];
+
+    // ESTOQUE COM EXEMPLO DE FOTOS E VÍDEO
+    const SEED_DATA = [
+      {
+        id: "cometa-01",
+        brand: "Volkswagen",
+        model: "T-Cross Highline 250 TSI 1.4",
+        year: 2024,
+        km: 39000,
+        color: "Prata Pyrit",
+        gearbox: "Automático",
+        fuel: "Flex",
+        priceOriginal: 145900,
+        pricePromo: 139900,
+        status: "oferta",
+        photos: [
+          "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1000&q=80",
+          "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        features: ["Laudo Cautelar 100% Aprovado", "Painel Digital TFT", "Ar Digital Climatronic", "Faróis Full LED", "Aceita Troca por Moto"]
+      },
+      {
+        id: "cometa-02",
+        brand: "Chevrolet",
+        model: "Celta Life 1.0 MPFI 8V",
+        year: 2009,
+        km: 118000,
+        color: "Preto",
+        gearbox: "Manual",
+        fuel: "Flex",
+        priceOriginal: 22900,
+        pricePromo: 20900,
+        status: "oferta",
+        photos: [
+          "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "",
+        features: ["Revisado de Mecânica", "Pneus Bons", "Super Econômico", "Documentação OK", "Entrada em até 21x no Cartão"]
+      },
+      {
+        id: "cometa-03",
+        brand: "Toyota",
+        model: "Corolla GLi 1.8 16V Dual VVT-i",
+        year: 2018,
+        km: 74000,
+        color: "Prata Metálico",
+        gearbox: "Automático",
+        fuel: "Flex",
+        priceOriginal: 84900,
+        pricePromo: null,
+        status: "disponivel",
+        photos: [
+          "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "",
+        features: ["Câmbio Automático CVT", "Bancos em Couro", "Multimídia com Câmera", "Periciado e Aprovado", "Financiamento em até 60x"]
+      },
+      {
+        id: "cometa-04",
+        brand: "Honda",
+        model: "Civic EXL 2.0 16V i-VTEC",
+        year: 2020,
+        km: 58000,
+        color: "Cinza Titanium",
+        gearbox: "Automático",
+        fuel: "Flex",
+        priceOriginal: 118000,
+        pricePromo: 114900,
+        status: "oferta",
+        photos: [
+          "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "",
+        features: ["Painel TFT", "Bancos em Couro", "Freio de Mão Eletrônico", "Ar Digital Dual Zone", "Procedência 100%"]
+      },
+      {
+        id: "cometa-05",
+        brand: "Volkswagen",
+        model: "Fusca Itamar 1.6 Coleção",
+        year: 1995,
+        km: 82000,
+        color: "Branco Star",
+        gearbox: "Manual",
+        fuel: "Gasolina",
+        priceOriginal: 48000,
+        pricePromo: null,
+        status: "disponivel",
+        photos: [
+          "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "",
+        features: ["Raridade de Estoque", "Tapeçaria Nova", "Manual e Chave Reserva", "Motor 1.6 Dupla Carburação", "Excelente Estado"]
+      },
+      {
+        id: "cometa-06",
+        brand: "Chevrolet",
+        model: "Onix LTZ 1.0 Turbo Hatch",
+        year: 2022,
+        km: 42000,
+        color: "Vermelho Carmim",
+        gearbox: "Automático",
+        fuel: "Flex",
+        priceOriginal: 79900,
+        pricePromo: null,
+        status: "vendido",
+        photos: [
+          "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80"
+        ],
+        videoUrl: "",
+        features: ["Mais Um Sonho Entregue!", "MyLink 8 Polegadas", "Wi-Fi Nativo", "Sensor de Estacionamento"]
+      }
+    ];
+
+    let vehicles = [];
+    let googleReviews = [];
+    let currentView = 'showroom';
+    let isAdminAuthenticated = false;
+
+    let uploadedPhotosBuffer = [];
+    let uploadedVideoBuffer = "";
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadStorage();
+      loadReviews();
+      populateBrandFilter();
+      renderShowroom();
+      renderGoogleReviews();
+      renderAdminDashboard();
+      renderAdminTable();
+    });
+
+    function loadStorage() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (data) {
+        try {
+          vehicles = JSON.parse(data);
+        } catch (e) {
+          vehicles = SEED_DATA;
+          saveStorage();
+        }
+      } else {
+        vehicles = SEED_DATA;
+        saveStorage();
+      }
+    }
+
+    function saveStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
+      } catch (e) {
+        showToast('Memória cheia! Tente fotos menores.', 'error');
+      }
+    }
+
+    function loadReviews() {
+      const revs = localStorage.getItem(REVIEWS_STORAGE_KEY);
+      if (revs) {
+        try {
+          googleReviews = JSON.parse(revs);
+        } catch (e) {
+          googleReviews = SEED_REVIEWS;
+        }
+      } else {
+        googleReviews = SEED_REVIEWS;
+        localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(googleReviews));
+      }
+    }
+
+    const formatBRL = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
+    const formatKM = (km) => new Intl.NumberFormat('pt-BR').format(km) + ' km';
+
+    // RENDERIZADOR DAS AVALIAÇÕES DO GOOGLE
+    function renderGoogleReviews() {
+      const grid = document.getElementById('google-reviews-grid');
+      grid.innerHTML = '';
+
+      googleReviews.forEach(rev => {
+        const card = document.createElement('div');
+        card.className = 'bg-[#070709] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between hover:border-zinc-700 transition-colors shadow-lg';
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full ${rev.avatarBg || 'bg-red-600'} text-white font-bold flex items-center justify-center text-sm shadow">
+                  ${rev.author.charAt(0)}
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white line-clamp-1">${rev.author}</h4>
+                  <span class="text-[10px] text-zinc-500">${rev.time}</span>
+                </div>
+              </div>
+              <i class="fa-brands fa-google text-zinc-600 text-sm"></i>
+            </div>
+
+            <div class="flex text-amber-400 text-xs mb-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+
+            <p class="text-xs text-zinc-300 leading-relaxed italic">
+              "${rev.comment}"
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-zinc-800/80 flex items-center gap-1.5 text-[10px] text-emerald-400 font-semibold">
+            <i class="fa-solid fa-badge-check"></i> Avaliação Verificada no Google
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // COMPRESSOR DE IMAGENS AUTOMÁTICO
+    function compressImage(file, maxWidth = 1080, quality = 0.75) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handlePhotoUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      showToast(`Otimizando ${files.length} foto(s)...`, 'info');
+      for (const file of files) {
+        try {
+          const base64 = await compressImage(file);
+          uploadedPhotosBuffer.push(base64);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      renderPhotoPreviews();
+      showToast('Fotos carregadas com sucesso!', 'success');
+      e.target.value = '';
+    }
+
+    function handleVideoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const videoBlobUrl = URL.createObjectURL(file);
+      uploadedVideoBuffer = videoBlobUrl;
+
+      if (file.size < 8 * 1024 * 1024) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          uploadedVideoBuffer = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      document.getElementById('video-preview-status').classList.remove('hidden');
+      showToast('Vídeo do veículo anexado!', 'success');
+    }
+
+    function renderPhotoPreviews() {
+      const grid = document.getElementById('photos-preview-grid');
+      const hint = document.getElementById('no-photos-hint');
+      grid.innerHTML = '';
+
+      if (uploadedPhotosBuffer.length === 0) {
+        grid.appendChild(hint);
+        return;
+      }
+
+      uploadedPhotosBuffer.forEach((src, idx) => {
+        const item = document.createElement('div');
+        item.className = 'relative w-16 h-16 rounded-xl overflow-hidden border border-zinc-700 bg-black group';
+        item.innerHTML = `
+          <img src="${src}" class="w-full h-full object-cover" />
+          <button type="button" onclick="removePhoto(${idx})" 
+                  class="absolute top-1 right-1 w-5 h-5 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center text-[10px] shadow">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          ${idx === 0 ? '<span class="absolute bottom-0 inset-x-0 bg-red-600/90 text-[8px] font-black uppercase text-center text-white">Capa</span>' : ''}
+        `;
+        grid.appendChild(item);
+      });
+    }
+
+    function removePhoto(idx) {
+      uploadedPhotosBuffer.splice(idx, 1);
+      renderPhotoPreviews();
+    }
+
+    // NAVEGAÇÃO
+    function switchView(view) {
+      currentView = view;
+      const showroomEl = document.getElementById('view-showroom');
+      const adminEl = document.getElementById('view-admin');
+      const adminText = document.getElementById('admin-text');
+      const adminIcon = document.getElementById('admin-icon');
+
+      if (view === 'showroom') {
+        showroomEl.classList.remove('hidden');
+        adminEl.classList.add('hidden');
+        adminText.textContent = 'Área ADM';
+        adminIcon.className = 'fa-solid fa-lock text-red-500';
+        renderShowroom();
+      } else {
+        showroomEl.classList.add('hidden');
+        adminEl.classList.remove('hidden');
+        adminText.textContent = 'Ver Loja';
+        adminIcon.className = 'fa-solid fa-store text-emerald-400';
+        renderAdminDashboard();
+        renderAdminTable();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleAdminToggle() {
+      if (currentView === 'admin') {
+        switchView('showroom');
+      } else {
+        if (isAdminAuthenticated) {
+          switchView('admin');
+        } else {
+          openLoginModal();
+        }
+      }
+    }
+
+    function openLoginModal() {
+      document.getElementById('modal-login').classList.remove('hidden');
+      document.getElementById('modal-login').classList.add('flex');
+      document.getElementById('admin-password').focus();
+    }
+
+    function closeLoginModal() {
+      document.getElementById('modal-login').classList.add('hidden');
+      document.getElementById('modal-login').classList.remove('flex');
+      document.getElementById('admin-password').value = '';
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-password').value;
+      if (pass === 'admin123') {
+        isAdminAuthenticated = true;
+        closeLoginModal();
+        showToast('Acesso autorizado! Bem-vindo ao ERP Cometa Car.', 'success');
+        switchView('admin');
+      } else {
+        showToast('Senha inválida. Use admin123.', 'error');
+      }
+    }
+
+    function logoutAdmin() {
+      isAdminAuthenticated = false;
+      showToast('Sessão encerrada.', 'info');
+      switchView('showroom');
+    }
+
+    function populateBrandFilter() {
+      const select = document.getElementById('filter-brand');
+      const brands = [...new Set(vehicles.map(v => v.brand))].sort();
+      select.innerHTML = '<option value="">Todas as Marcas</option>';
+      brands.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        select.appendChild(opt);
+      });
+    }
+
+    function clearFilters() {
+      document.getElementById('filter-search').value = '';
+      document.getElementById('filter-brand').value = '';
+      document.getElementById('filter-gearbox').value = '';
+      document.getElementById('filter-price-input').value = '';
+      applyFilters();
+    }
+
+    // ATALHO RÁPIDO DE PREÇO
+    function setPriceFilter(val) {
+      document.getElementById('filter-price-input').value = val;
+      applyFilters();
+    }
+
+    function filterByTag(tag) {
+      if (tag === 'oferta') {
+        renderShowroom(vehicles.filter(v => v.status === 'oferta'));
+      } else if (tag === 'video') {
+        renderShowroom(vehicles.filter(v => v.videoUrl && v.videoUrl.trim() !== ''));
+      }
+    }
+
+    // APLICAÇÃO DOS FILTROS (INCLUINDO PREÇO DIGITÁVEL)
+    function applyFilters() {
+      const query = document.getElementById('filter-search').value.toLowerCase().trim();
+      const brand = document.getElementById('filter-brand').value;
+      const gearbox = document.getElementById('filter-gearbox').value;
+      
+      // Lê o valor digitado pelo cliente
+      const typedPrice = parseFloat(document.getElementById('filter-price-input').value) || Infinity;
+
+      const filtered = vehicles.filter(v => {
+        const matchesText = v.brand.toLowerCase().includes(query) || 
+                            v.model.toLowerCase().includes(query) || 
+                            v.year.toString().includes(query);
+        const matchesBrand = brand === '' || v.brand === brand;
+        const matchesGearbox = gearbox === '' || v.gearbox === gearbox;
+        
+        const effectivePrice = (v.status === 'oferta' && v.pricePromo) ? v.pricePromo : v.priceOriginal;
+        const matchesPrice = effectivePrice <= typedPrice;
+
+        return matchesText && matchesBrand && matchesGearbox && matchesPrice;
+      });
+
+      renderShowroom(filtered);
+    }
+
+    function renderShowroom(data = vehicles) {
+      const grid = document.getElementById('showroom-grid');
+      const emptyState = document.getElementById('showroom-empty');
+      const counter = document.getElementById('showroom-counter');
+
+      grid.innerHTML = '';
+      counter.textContent = `${data.length} veículos encontrados no estoque`;
+
+      if (data.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      data.forEach(car => {
+        const isOffer = car.status === 'oferta' && car.pricePromo;
+        const isSold = car.status === 'vendido';
+        const hasVideo = car.videoUrl && car.videoUrl.trim() !== '';
+        const displayPrice = isOffer ? car.pricePromo : car.priceOriginal;
+        const mainPhoto = car.photos[0] || 'https://via.placeholder.com/600x400?text=Cometa+Car';
+
+        const waMsg = encodeURIComponent(`Olá Cometa Car Multimarcas! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e gostaria de saber as condições.`);
+        const waUrl = `https://wa.me/5511957400658?text=${waMsg}`;
+
+        let badgeHtml = '';
+        if (isOffer) {
+          badgeHtml = `<span class="bg-red-600 text-white font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 border border-red-400">
+                         <i class="fa-solid fa-fire text-amber-300"></i> OFERTA DA LOJA
+                       </span>`;
+        } else if (isSold) {
+          badgeHtml = `<span class="bg-zinc-800 text-zinc-300 border border-zinc-600 font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
+                         VENDIDO
+                       </span>`;
+        } else {
+          badgeHtml = `<span class="bg-zinc-950/90 text-emerald-400 border border-emerald-500/40 font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
+                         DISPONÍVEL
+                       </span>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = `group bg-[#131926] border border-zinc-800 rounded-3xl overflow-hidden hover:border-red-600/50 hover:shadow-2xl hover:shadow-red-950/30 transition-all flex flex-col ${isSold ? 'opacity-80' : ''}`;
+        
+        card.innerHTML = `
+          <div class="relative w-full aspect-[16/10] bg-black overflow-hidden">
+            <img src="${mainPhoto}" alt="${car.model}" loading="lazy" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${isSold ? 'grayscale contrast-125' : ''}" />
+            
+            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5 items-start">
+              ${badgeHtml}
+              ${hasVideo ? `
+                <span class="bg-red-700/90 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md border border-red-500">
+                  <i class="fa-solid fa-circle-play text-amber-300"></i> VÍDEO DISPONÍVEL
+                </span>
+              ` : ''}
+            </div>
+
+            <div class="absolute top-3 right-3 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-zinc-300 border border-zinc-700">
+              <i class="fa-solid fa-shield-check text-emerald-400 mr-1"></i> Periciado
+            </div>
+
+            ${isSold ? `
+              <div class="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center">
+                <span class="text-white font-black uppercase text-xl tracking-widest border-2 border-white/50 px-5 py-2 rounded-2xl rotate-[-6deg]">
+                  Mais Um Sonho Entregue! ❤️
+                </span>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-black text-red-500 uppercase tracking-wider">${car.brand}</span>
+                <span class="text-[11px] font-semibold text-zinc-400">${car.color}</span>
+              </div>
+              <h3 class="text-base font-black text-white group-hover:text-red-400 transition-colors line-clamp-1 mt-0.5" title="${car.model}">
+                ${car.model}
+              </h3>
+
+              <div class="grid grid-cols-2 gap-2 mt-4 text-xs text-zinc-300">
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-regular fa-calendar text-red-500"></i>
+                  <span>${car.year}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-gauge-high text-red-500"></i>
+                  <span>${formatKM(car.km)}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-gas-pump text-red-500"></i>
+                  <span>${car.fuel}</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-[#070709] px-2.5 py-1.5 rounded-lg border border-zinc-800">
+                  <i class="fa-solid fa-sliders text-red-500"></i>
+                  <span>${car.gearbox}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 pt-4 border-t border-zinc-800">
+              <div class="mb-3">
+                ${isOffer ? `<span class="text-xs text-zinc-500 line-through block font-medium">${formatBRL(car.priceOriginal)}</span>` : '<span class="text-xs text-transparent block select-none">.</span>'}
+                <div class="text-2xl font-black text-white tracking-tight">
+                  ${formatBRL(displayPrice)}
+                </div>
+                <span class="text-[11px] text-zinc-400 font-bold block mt-0.5">
+                  <i class="fa-solid fa-handshake text-emerald-400 mr-1"></i> Aceita troca • Financiamento
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="openDetailsModal('${car.id}')" 
+                        class="w-full py-2.5 px-3 rounded-xl bg-[#070709] hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-black uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5">
+                  <i class="fa-solid ${hasVideo ? 'fa-play text-red-500' : 'fa-eye'}"></i> Ver Detalhes
+                </button>
+
+                ${isSold ? `
+                  <button disabled class="w-full py-2.5 px-3 rounded-xl bg-zinc-800 text-zinc-600 text-xs font-bold uppercase tracking-wider cursor-not-allowed">
+                    Vendido
+                  </button>
+                ` : `
+                  <a href="${waUrl}" target="_blank" 
+                     class="w-full py-2.5 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/40">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Chamar
+                  </a>
+                `}
+              </div>
+            </div>
+
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // MODAL DE DETALHES
+    function openDetailsModal(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      document.getElementById('detail-brand').textContent = car.brand;
+      document.getElementById('detail-model').textContent = car.model;
+      document.getElementById('detail-year').textContent = car.year;
+      document.getElementById('detail-km').textContent = formatKM(car.km);
+      document.getElementById('detail-gearbox').textContent = car.gearbox;
+      document.getElementById('detail-fuel').textContent = car.fuel;
+
+      const mainImg = document.getElementById('detail-main-img');
+      const mainVideo = document.getElementById('detail-main-video');
+      const mainIframe = document.getElementById('detail-main-iframe');
+      const thumbContainer = document.getElementById('detail-thumbnails');
+
+      mainVideo.pause();
+      mainVideo.classList.add('hidden');
+      mainIframe.classList.add('hidden');
+      mainIframe.src = '';
+      mainImg.classList.remove('hidden');
+      mainImg.src = car.photos[0] || 'https://via.placeholder.com/800x600?text=Cometa+Car';
+
+      thumbContainer.innerHTML = '';
+
+      if (car.videoUrl && car.videoUrl.trim() !== '') {
+        const videoThumb = document.createElement('div');
+        videoThumb.className = 'w-14 h-14 rounded-xl bg-red-950 border-2 border-red-500 cursor-pointer flex flex-col items-center justify-center text-red-400 shrink-0 hover:scale-105 transition-transform';
+        videoThumb.innerHTML = '<i class="fa-solid fa-circle-play text-xl text-white"></i><span class="text-[9px] font-black uppercase mt-0.5 text-zinc-200">Vídeo</span>';
+        
+        videoThumb.onclick = () => {
+          mainImg.classList.add('hidden');
+          thumbContainer.querySelectorAll('img, div').forEach(el => el.classList.remove('border-red-600', 'border-white'));
+          videoThumb.classList.add('border-white');
+
+          if (car.videoUrl.includes('youtube.com') || car.videoUrl.includes('youtu.be')) {
+            mainVideo.classList.add('hidden');
+            mainVideo.pause();
+            mainIframe.classList.remove('hidden');
+            let ytId = '';
+            if (car.videoUrl.includes('shorts/')) {
+              ytId = car.videoUrl.split('shorts/')[1].split('?')[0];
+            } else if (car.videoUrl.includes('v=')) {
+              ytId = car.videoUrl.split('v=')[1].split('&')[0];
+            } else if (car.videoUrl.includes('youtu.be/')) {
+              ytId = car.videoUrl.split('youtu.be/')[1].split('?')[0];
+            }
+            mainIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+          } else {
+            mainIframe.classList.add('hidden');
+            mainVideo.classList.remove('hidden');
+            mainVideo.src = car.videoUrl;
+            mainVideo.play();
+          }
+        };
+        thumbContainer.appendChild(videoThumb);
+      }
+
+      car.photos.forEach((photo, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = photo;
+        thumb.className = `w-14 h-14 rounded-xl object-cover cursor-pointer border-2 transition-all shrink-0 ${idx === 0 ? 'border-red-600' : 'border-transparent opacity-60 hover:opacity-100'}`;
+        thumb.onclick = () => {
+          mainVideo.pause();
+          mainVideo.classList.add('hidden');
+          mainIframe.classList.add('hidden');
+          mainIframe.src = '';
+          mainImg.classList.remove('hidden');
+          mainImg.src = photo;
+
+          thumbContainer.querySelectorAll('img, div').forEach(el => el.classList.remove('border-red-600', 'opacity-100', 'border-white'));
+          thumbContainer.querySelectorAll('img').forEach(el => el.classList.add('border-transparent', 'opacity-60'));
+          thumb.classList.add('border-red-600', 'opacity-100');
+          thumb.classList.remove('border-transparent', 'opacity-60');
+        };
+        thumbContainer.appendChild(thumb);
+      });
+
+      const isOffer = car.status === 'oferta' && car.pricePromo;
+      const originalPriceEl = document.getElementById('detail-price-original');
+      const promoPriceEl = document.getElementById('detail-price-promo');
+      const labelPriceEl = document.getElementById('detail-price-label');
+
+      if (isOffer) {
+        originalPriceEl.textContent = formatBRL(car.priceOriginal);
+        originalPriceEl.classList.remove('hidden');
+        promoPriceEl.textContent = formatBRL(car.pricePromo);
+        labelPriceEl.textContent = 'Preço Promocional';
+      } else {
+        originalPriceEl.classList.add('hidden');
+        promoPriceEl.textContent = formatBRL(car.priceOriginal);
+        labelPriceEl.textContent = 'Preço de Estoque';
+      }
+
+      const badgeWrap = document.getElementById('detail-status-badge');
+      if (car.status === 'oferta') {
+        badgeWrap.innerHTML = '<span class="bg-red-600 text-white font-black text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-red-400">OFERTA ESPECIAL</span>';
+      } else if (car.status === 'vendido') {
+        badgeWrap.innerHTML = '<span class="bg-zinc-800 text-zinc-300 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider">VENDIDO</span>';
+      } else {
+        badgeWrap.innerHTML = '<span class="bg-zinc-950 text-emerald-400 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-emerald-500/30">DISPONÍVEL</span>';
+      }
+
+      const featsEl = document.getElementById('detail-features');
+      featsEl.innerHTML = '';
+      if (car.features && car.features.length) {
+        car.features.forEach(f => {
+          const pill = document.createElement('span');
+          pill.className = 'px-3 py-1.5 rounded-lg bg-[#070709] border border-zinc-800 text-xs text-zinc-300 flex items-center gap-1.5 font-medium';
+          pill.innerHTML = `<i class="fa-solid fa-circle-check text-red-500 text-xs"></i> ${f.trim()}`;
+          featsEl.appendChild(pill);
+        });
+      }
+
+      const waBtn = document.getElementById('detail-whatsapp-btn');
+      if (car.status === 'vendido') {
+        waBtn.classList.add('pointer-events-none', 'opacity-50', 'bg-zinc-700');
+        waBtn.innerHTML = '<i class="fa-solid fa-ban mr-2"></i> Veículo Vendido';
+      } else {
+        waBtn.classList.remove('pointer-events-none', 'opacity-50', 'bg-zinc-700');
+        waBtn.classList.add('bg-[#25D366]');
+        const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) anunciado por ${formatBRL(isOffer ? car.pricePromo : car.priceOriginal)} no site da Cometa Car e quero fechar negócio!`);
+        waBtn.href = `https://wa.me/5511957400658?text=${waMsg}`;
+        waBtn.innerHTML = '<i class="fa-brands fa-whatsapp text-lg"></i> Negociar no WhatsApp da Loja';
+      }
+
+      document.getElementById('modal-details').classList.remove('hidden');
+      document.getElementById('modal-details').classList.add('flex');
+    }
+
+    function closeDetailsModal() {
+      const mainVideo = document.getElementById('detail-main-video');
+      const mainIframe = document.getElementById('detail-main-iframe');
+      mainVideo.pause();
+      mainIframe.src = '';
+      document.getElementById('modal-details').classList.add('hidden');
+      document.getElementById('modal-details').classList.remove('flex');
+    }
+
+    function openRefinanceLead() {
+      const waMsg = encodeURIComponent("Olá Cometa Car! Gostaria de refinanciar meu próprio veículo.");
+      window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
+    }
+
+    function openTradeLead() {
+      const waMsg = encodeURIComponent("Olá Cometa Car! Quero dar meu carro/moto como entrada na troca.");
+      window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
+    }
+
+    // PAINEL ERP ADMINISTRATIVO
+    function renderAdminDashboard() {
+      const totalCars = vehicles.length;
+      const dealsCount = vehicles.filter(v => v.status === 'oferta').length;
+      const soldCount = vehicles.filter(v => v.status === 'vendido').length;
+      const totalValue = vehicles
+        .filter(v => v.status !== 'vendido')
+        .reduce((acc, cur) => acc + (cur.status === 'oferta' && cur.pricePromo ? cur.pricePromo : cur.priceOriginal), 0);
+
+      document.getElementById('kpi-total-cars').textContent = totalCars;
+      document.getElementById('kpi-deals-count').textContent = dealsCount;
+      document.getElementById('kpi-sold-count').textContent = soldCount;
+      document.getElementById('kpi-total-value').textContent = formatBRL(totalValue);
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById('admin-table-body');
+      tbody.innerHTML = '';
+
+      vehicles.forEach(car => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-zinc-800/40 transition-colors';
+
+        let statusBadge = '';
+        if (car.status === 'disponivel') {
+          statusBadge = `
+            <button onclick="cycleStatus('${car.id}')" title="Clique para colocar em Oferta"
+                    class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-zinc-950 text-emerald-400 border border-emerald-500/40 hover:scale-105 active:scale-95 transition-all">
+              <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400"></i> Disponível
+            </button>
+          `;
+        } else if (car.status === 'oferta') {
+          statusBadge = `
+            <button onclick="cycleStatus('${car.id}')" title="Clique para mudar para Vendido"
+                    class="px-3 py-1 rounded-full text-xs font-black uppercase bg-red-600 text-white hover:scale-105 active:scale-95 transition-all">
+              <i class="fa-solid fa-fire text-xs mr-0.5"></i> Em Oferta
+            </button>
+          `;
+        } else {
+          statusBadge = `
+            <button onclick="cycleStatus('${car.id}')" title="Clique para voltar para Disponível"
+                    class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-zinc-800 text-zinc-300 border border-zinc-600 hover:scale-105 active:scale-95 transition-all">
+              <i class="fa-solid fa-handshake text-xs mr-1"></i> Vendido
+            </button>
+          `;
+        }
+
+        const thumb = car.photos[0] || 'https://via.placeholder.com/100x100?text=Cometa';
+
+        tr.innerHTML = `
+          <td class="px-6 py-4 flex items-center gap-3">
+            <img src="${thumb}" class="w-12 h-12 rounded-xl object-cover bg-black border border-zinc-800 shrink-0" />
+            <div>
+              <span class="text-xs font-black text-red-500 uppercase">${car.brand}</span>
+              <div class="text-sm font-bold text-white">${car.model}</div>
+              <span class="text-[11px] text-zinc-500">${car.color}</span>
+            </div>
+          </td>
+          <td class="px-4 py-4 whitespace-nowrap">
+            <div class="text-zinc-200 font-bold">${car.year}</div>
+            <div class="text-xs text-zinc-500">${car.gearbox}</div>
+          </td>
+          <td class="px-4 py-4 whitespace-nowrap">
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-zinc-300"><i class="fa-solid fa-images text-zinc-500"></i> ${car.photos.length}</span>
+              ${car.videoUrl ? '<span class="text-[10px] bg-red-600/30 text-red-400 border border-red-500/40 px-2 py-0.5 rounded-md font-bold"><i class="fa-solid fa-video mr-1"></i>Vídeo</span>' : ''}
+            </div>
+          </td>
+          <td class="px-4 py-4 whitespace-nowrap">
+            <div class="font-black text-white">${formatBRL(car.priceOriginal)}</div>
+            ${car.pricePromo ? `<div class="text-xs text-amber-400 font-bold">Promo: ${formatBRL(car.pricePromo)}</div>` : ''}
+          </td>
+          <td class="px-4 py-4 text-center whitespace-nowrap">
+            ${statusBadge}
+          </td>
+          <td class="px-6 py-4 text-right whitespace-nowrap">
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="editVehicle('${car.id}')" title="Editar Veículo" 
+                      class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button onclick="deleteVehicle('${car.id}')" title="Remover do Estoque" 
+                      class="w-8 h-8 rounded-lg bg-red-950/40 hover:bg-red-600 text-red-400 hover:text-white border border-red-900/50 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function cycleStatus(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      if (car.status === 'disponivel') {
+        car.status = 'oferta';
+        if (!car.pricePromo) car.pricePromo = Math.round(car.priceOriginal * 0.95);
+        showToast(`${car.model} agora está em OFERTA! 🔥`, 'warning');
+      } else if (car.status === 'oferta') {
+        car.status = 'vendido';
+        showToast(`${car.model} marcado como VENDIDO! 🤝`, 'info');
+      } else {
+        car.status = 'disponivel';
+        showToast(`${car.model} retornou para DISPONÍVEL no estoque.`, 'success');
+      }
+
+      saveStorage();
+      renderAdminDashboard();
+      renderAdminTable();
+    }
+
+    function deleteVehicle(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      if (confirm(`Remover "${car.brand} ${car.model}" do estoque?`)) {
+        vehicles = vehicles.filter(v => v.id !== id);
+        saveStorage();
+        populateBrandFilter();
+        renderAdminDashboard();
+        renderAdminTable();
+        showToast('Veículo removido do estoque.', 'error');
+      }
+    }
+
+    function openVehicleModal() {
+      document.getElementById('vehicle-form').reset();
+      document.getElementById('form-id').value = '';
+      uploadedPhotosBuffer = [];
+      uploadedVideoBuffer = "";
+      renderPhotoPreviews();
+      document.getElementById('video-preview-status').classList.add('hidden');
+      document.getElementById('form-modal-title').textContent = 'Novo Cadastro de Estoque';
+      document.getElementById('modal-vehicle-form').classList.remove('hidden');
+      document.getElementById('modal-vehicle-form').classList.add('flex');
+    }
+
+    function closeVehicleModal() {
+      document.getElementById('modal-vehicle-form').classList.add('hidden');
+      document.getElementById('modal-vehicle-form').classList.remove('flex');
+    }
+
+    function editVehicle(id) {
+      const car = vehicles.find(v => v.id === id);
+      if (!car) return;
+
+      document.getElementById('form-id').value = car.id;
+      document.getElementById('form-brand').value = car.brand;
+      document.getElementById('form-model').value = car.model;
+      document.getElementById('form-year').value = car.year;
+      document.getElementById('form-km').value = car.km;
+      document.getElementById('form-color').value = car.color;
+      document.getElementById('form-gearbox').value = car.gearbox;
+      document.getElementById('form-fuel').value = car.fuel;
+      document.getElementById('form-price-original').value = car.priceOriginal;
+      document.getElementById('form-price-promo').value = car.pricePromo || '';
+      document.getElementById('form-features').value = car.features ? car.features.join(', ') : '';
+      document.getElementById('form-status').value = car.status;
+
+      uploadedPhotosBuffer = [...car.photos];
+      renderPhotoPreviews();
+
+      document.getElementById('form-video-url').value = car.videoUrl || '';
+      uploadedVideoBuffer = car.videoUrl || '';
+      if (car.videoUrl) {
+        document.getElementById('video-preview-status').classList.remove('hidden');
+      } else {
+        document.getElementById('video-preview-status').classList.add('hidden');
+      }
+
+      document.getElementById('form-modal-title').textContent = 'Editar Veículo';
+      document.getElementById('modal-vehicle-form').classList.remove('hidden');
+      document.getElementById('modal-vehicle-form').classList.add('flex');
+    }
+
+    function handleVehicleFormSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-id').value;
+
+      const manualUrlInput = document.getElementById('form-photos-url').value;
+      const manualUrls = manualUrlInput.split(',').map(s => s.trim()).filter(Boolean);
+
+      let finalPhotos = [...uploadedPhotosBuffer, ...manualUrls];
+      if (finalPhotos.length === 0) {
+        finalPhotos = ['https://via.placeholder.com/800x600?text=Cometa+Car'];
+      }
+
+      const videoInputUrl = document.getElementById('form-video-url').value.trim();
+      const finalVideo = videoInputUrl || uploadedVideoBuffer || '';
+      const featuresArray = document.getElementById('form-features').value.split(',').map(s => s.trim()).filter(Boolean);
+
+      const vehicleData = {
+        id: id || 'car-' + Date.now(),
+        brand: document.getElementById('form-brand').value.trim(),
+        model: document.getElementById('form-model').value.trim(),
+        year: parseInt(document.getElementById('form-year').value),
+        km: parseInt(document.getElementById('form-km').value),
+        color: document.getElementById('form-color').value.trim(),
+        gearbox: document.getElementById('form-gearbox').value,
+        fuel: document.getElementById('form-fuel').value,
+        priceOriginal: parseFloat(document.getElementById('form-price-original').value),
+        pricePromo: document.getElementById('form-price-promo').value ? parseFloat(document.getElementById('form-price-promo').value) : null,
+        status: document.getElementById('form-status').value,
+        photos: finalPhotos,
+        videoUrl: finalVideo,
+        features: featuresArray
+      };
+
+      if (id) {
+        const index = vehicles.findIndex(v => v.id === id);
+        if (index !== -1) {
+          vehicles[index] = vehicleData;
+          showToast('Veículo atualizado no estoque!', 'success');
+        }
+      } else {
+        vehicles.unshift(vehicleData);
+        showToast('Veículo cadastrado no estoque!', 'success');
+      }
+
+      saveStorage();
+      populateBrandFilter();
+      renderAdminDashboard();
+      renderAdminTable();
+      closeVehicleModal();
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      let border = 'border-zinc-700';
+      let icon = 'fa-circle-info text-blue-400';
+
+      if (type === 'success') {
+        border = 'border-emerald-500/60';
+        icon = 'fa-circle-check text-emerald-400';
+      } else if (type === 'error') {
+        border = 'border-red-600/60';
+        icon = 'fa-triangle-exclamation text-red-400';
+      } else if (type === 'warning') {
+        border = 'border-amber-500/60';
+        icon = 'fa-fire text-amber-400';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#131926]/95 border ${border} text-white shadow-2xl text-xs font-bold backdrop-blur-md transform transition-all duration-300 translate-y-2 opacity-0`;
+      toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i><span>${message}</span>`;
+      
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-x-4');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
