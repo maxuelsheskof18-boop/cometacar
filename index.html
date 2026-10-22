@@ -32,7 +32,7 @@
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- SDKs Oficiais do Firebase (App + Realtime Database) -->
+  <!-- SDKs Oficiais do Firebase (Realtime Database) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
@@ -70,7 +70,7 @@
         <span class="truncate">Av. das Esmeraldas, 363 - Mutinga, Osasco/SP</span>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <a href="https://wa.me/5511957400658" target="_blank" class="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-1">
+        <a href="javascript:void(0)" onclick="openWhatsAppDirect('Olá! Vim pelo site da Cometa Car.')" class="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-1">
           <i class="fa-brands fa-whatsapp text-sm"></i> <span class="hidden sm:inline">(11) 95740-0658</span>
         </a>
         <a href="https://instagram.com/cometacar007" target="_blank" class="text-red-400 hover:text-red-300 font-bold transition-colors flex items-center gap-1">
@@ -129,11 +129,11 @@
 
       <!-- AÇÕES -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <a href="https://wa.me/5511957400658?text=Olá!%20Vim%20pelo%20site%20da%20Cometa%20Car." target="_blank"
-           class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all">
+        <button onclick="openWhatsAppDirect('Olá! Vim pelo site da Cometa Car.')" 
+                class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-all">
           <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
           <span class="hidden md:inline">Chamar no WhatsApp</span>
-        </a>
+        </button>
 
         <button id="btn-toggle-admin" onclick="handleAdminToggle()" 
           class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-2 sm:py-2.5 rounded-xl bg-[#131926] hover:bg-[#1a2133] border border-zinc-700 text-zinc-200 transition-all">
@@ -510,10 +510,10 @@
           </div>
 
           <div class="mt-6">
-            <a id="detail-whatsapp-btn" href="#" target="_blank"
-               class="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase shadow-lg transition-all">
+            <button id="detail-whatsapp-btn" onclick="" 
+                    class="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase shadow-lg transition-all">
               <i class="fa-brands fa-whatsapp text-lg"></i> Negociar no WhatsApp
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -715,8 +715,8 @@
     let currentView = 'showroom';
     let isAdminAuthenticated = false;
     let uploadedPhotosBuffer = [];
+    const cardPhotoIndices = {}; // Armazena o índice da foto de cada card
 
-    // Inicialização do Firebase Realtime Database
     let rtdb = null;
     try {
       if (!firebase.apps.length) {
@@ -738,7 +738,50 @@
     });
 
     // ==========================================
-    // SINCRONIZAÇÃO EM TEMPO REAL (SEM CORS)
+    // LINK DIRETO DO WHATSAPP (WEB OU MOBILE)
+    // ==========================================
+    function openWhatsAppDirect(message) {
+      const phone = "5511957400658";
+      const encodedMsg = encodeURIComponent(message);
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      // No PC abre direto no WhatsApp Web (sem janela de confirmação de app do Windows/Mac)
+      const url = isMobile 
+        ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`
+        : `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`;
+
+      window.open(url, '_blank');
+    }
+
+    // ==========================================
+    // PASSAR FOTO NA SETINHA DO CARD
+    // ==========================================
+    function changeCardPhoto(carId, delta) {
+      const car = vehicles.find(v => v.id === carId);
+      if (!car || !car.photos || car.photos.length <= 1) return;
+
+      if (cardPhotoIndices[carId] === undefined) {
+        cardPhotoIndices[carId] = 0;
+      }
+
+      let newIndex = cardPhotoIndices[carId] + delta;
+      if (newIndex < 0) newIndex = car.photos.length - 1;
+      if (newIndex >= car.photos.length) newIndex = 0;
+
+      cardPhotoIndices[carId] = newIndex;
+
+      const imgEl = document.getElementById(`card-img-${carId}`);
+      const counterEl = document.getElementById(`card-photo-counter-${carId}`);
+      if (imgEl) {
+        imgEl.src = car.photos[newIndex];
+      }
+      if (counterEl) {
+        counterEl.textContent = `${newIndex + 1} / ${car.photos.length}`;
+      }
+    }
+
+    // ==========================================
+    // SINCRONIZAÇÃO EM TEMPO REAL (RTDB)
     // ==========================================
     function initRealtimeSync() {
       if (!rtdb) return;
@@ -783,7 +826,6 @@
 
     // ==========================================
     // COMPRESSOR DIRETO (800px / JPEG 65%)
-    // Imagens leves (~25KB) salvas no banco
     // ==========================================
     function compressImageDirect(file) {
       return new Promise((resolve) => {
@@ -840,7 +882,6 @@
       e.target.value = '';
     }
 
-    // CORREÇÃO DEFINITIVA DO APPENDCHILD
     function renderPhotoPreviews() {
       const grid = document.getElementById('photos-preview-grid');
       if (!grid) return;
@@ -872,7 +913,7 @@
     }
 
     // ==========================================
-    // RENDERIZAÇÃO DO SHOWROOM
+    // RENDERIZAÇÃO DO SHOWROOM (COM SETINHAS & CLIQUE)
     // ==========================================
     function renderShowroom(data = vehicles) {
       const grid = document.getElementById('showroom-grid');
@@ -895,10 +936,11 @@
         const isSold = car.status === 'vendido';
         const displayPrice = hasPromo ? promoPrice : origPrice;
         const discountAmount = origPrice - promoPrice;
-        const mainPhoto = car.photos && car.photos[0] ? car.photos[0] : 'https://via.placeholder.com/600x400?text=Cometa+Car';
+        const photoList = car.photos && car.photos.length > 0 ? car.photos : ['https://via.placeholder.com/600x400?text=Cometa+Car'];
+        const mainPhoto = photoList[0];
+        const hasMultiplePhotos = photoList.length > 1;
 
-        const waMsg = encodeURIComponent(`Olá Cometa Car! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e quero negociar.`);
-        const waUrl = `https://wa.me/5511957400658?text=${waMsg}`;
+        const waMsg = `Olá Cometa Car! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e quero negociar.`;
 
         let badgeHtml = '';
         if (isSold) {
@@ -913,18 +955,39 @@
         card.className = `group bg-[#131926] border border-zinc-800 rounded-3xl overflow-hidden hover:border-red-600/50 hover:shadow-2xl transition-all flex flex-col ${isSold ? 'opacity-80' : ''}`;
         
         card.innerHTML = `
-          <div class="relative w-full aspect-[16/10] bg-black overflow-hidden">
-            <img src="${mainPhoto}" alt="${car.model}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1 items-start">
+          <!-- FOTO COM CLIQUE PARA ABRIR DETALHES + SETINHAS -->
+          <div class="relative w-full aspect-[16/10] bg-black overflow-hidden cursor-pointer group/img" onclick="openDetailsModal('${car.id}')">
+            <img id="card-img-${car.id}" src="${mainPhoto}" alt="${car.model}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            
+            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1 items-start pointer-events-none">
               ${badgeHtml}
             </div>
-            <div class="absolute top-3 right-3 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-zinc-300 border border-zinc-700">
+            
+            <div class="absolute top-3 right-3 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-zinc-300 border border-zinc-700 pointer-events-none">
               <i class="fa-solid fa-shield-check text-emerald-400 mr-1"></i> Periciado
             </div>
+
+            <!-- SETINHAS DE NAVEGAÇÃO ENTRE AS FOTOS NO CARD -->
+            ${hasMultiplePhotos ? `
+              <button type="button" onclick="event.stopPropagation(); changeCardPhoto('${car.id}', -1)"
+                      class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 hover:bg-red-600 text-white flex items-center justify-center text-xs backdrop-blur-md border border-white/20 transition-all shadow-lg active:scale-90">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              
+              <button type="button" onclick="event.stopPropagation(); changeCardPhoto('${car.id}', 1)"
+                      class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 hover:bg-red-600 text-white flex items-center justify-center text-xs backdrop-blur-md border border-white/20 transition-all shadow-lg active:scale-90">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+
+              <div id="card-photo-counter-${car.id}" class="absolute bottom-2.5 right-3 z-20 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/10 backdrop-blur-sm pointer-events-none">
+                1 / ${photoList.length}
+              </div>
+            ` : ''}
           </div>
 
+          <!-- DADOS DO VEÍCULO -->
           <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-            <div>
+            <div class="cursor-pointer" onclick="openDetailsModal('${car.id}')">
               <div class="flex items-center justify-between text-[11px]">
                 <span class="font-black text-red-500 uppercase">${car.brand}</span>
                 <span class="font-semibold text-zinc-400">${car.color}</span>
@@ -949,6 +1012,7 @@
               </div>
             </div>
 
+            <!-- PREÇO E BOTÕES -->
             <div class="mt-4 pt-4 border-t border-zinc-800">
               <div class="mb-3">
                 ${hasPromo ? `
@@ -977,10 +1041,10 @@
                         class="w-full py-2.5 px-2 sm:px-3 rounded-xl bg-[#070709] hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
                   <i class="fa-solid fa-eye"></i> Detalhes
                 </button>
-                <a href="${waUrl}" target="_blank" 
-                   class="w-full py-2.5 px-2 sm:px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                <button onclick="openWhatsAppDirect('${waMsg}')" 
+                        class="w-full py-2.5 px-2 sm:px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
                   <i class="fa-brands fa-whatsapp text-sm"></i> Chamar
-                </a>
+                </button>
               </div>
             </div>
 
@@ -1054,8 +1118,8 @@
       }
 
       const waBtn = document.getElementById('detail-whatsapp-btn');
-      const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(hasPromo ? promoPrice : origPrice)} no site da Cometa Car e quero fechar negócio!`);
-      waBtn.href = `https://wa.me/5511957400658?text=${waMsg}`;
+      const waMsg = `Olá! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(hasPromo ? promoPrice : origPrice)} no site da Cometa Car e quero fechar negócio!`;
+      waBtn.onclick = () => openWhatsAppDirect(waMsg);
 
       document.getElementById('modal-details').classList.remove('hidden');
       document.getElementById('modal-details').classList.add('flex');
@@ -1245,7 +1309,6 @@
           showToast('Sincronizado no Celular e PC com sucesso!', 'success');
         } catch(err) {
           console.error("Erro salvando RTDB:", err);
-          showToast('Salvo apenas no navegador (verifique as regras do Realtime Database).', 'warning');
         }
       }
 
@@ -1391,11 +1454,11 @@
     }
 
     function openRefinanceLead() {
-      window.open("https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20refinanciar%20meu%20veículo.", '_blank');
+      openWhatsAppDirect("Olá Cometa Car! Gostaria de refinanciar meu veículo.");
     }
 
     function openTradeLead() {
-      window.open("https://wa.me/5511957400658?text=Olá!%20Gostaria%20de%20dar%20meu%20veículo%20na%20troca.", '_blank');
+      openWhatsAppDirect("Olá Cometa Car! Gostaria de dar meu veículo na troca.");
     }
 
     function showToast(message, type = 'info') {
