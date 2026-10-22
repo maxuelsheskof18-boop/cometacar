@@ -271,21 +271,18 @@
       <div class="bg-[#131926] border border-zinc-800 rounded-2xl p-4 shadow-xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
           
-          <!-- Busca por texto -->
           <div class="relative lg:col-span-4">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
             <input type="text" id="filter-search" oninput="applyFilters()" placeholder="Buscar por modelo ou marca (T-Cross, Celta, Corolla)..." 
                    class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-red-600" />
           </div>
 
-          <!-- Marca -->
           <div class="lg:col-span-2">
             <select id="filter-brand" onchange="applyFilters()" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
               <option value="">Todas as Marcas</option>
             </select>
           </div>
 
-          <!-- Câmbio -->
           <div class="lg:col-span-2">
             <select id="filter-gearbox" onchange="applyFilters()" class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-red-600">
               <option value="">Câmbio (Todos)</option>
@@ -294,7 +291,7 @@
             </select>
           </div>
 
-          <!-- CAMPO DIGITÁVEL DE PREÇO (VALOR QUE PROCURA) -->
+          <!-- CAMPO DIGITÁVEL DE PREÇO -->
           <div class="lg:col-span-4">
             <div class="relative">
               <span class="absolute left-3.5 top-2.5 text-xs font-bold text-red-500">Até R$</span>
@@ -305,7 +302,6 @@
 
         </div>
 
-        <!-- Atalhos rápidos de preço para 1 clique -->
         <div class="mt-3 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
           <div class="flex items-center gap-1.5 flex-wrap">
             <span class="text-zinc-500 font-semibold mr-1">Atalhos de valor:</span>
@@ -327,9 +323,7 @@
 
     <!-- GRID DE VEÍCULOS NO ESTOQUE -->
     <section class="max-w-7xl mx-auto px-4 py-8">
-      <div id="showroom-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Injetado dinamicamente via JS -->
-      </div>
+      <div id="showroom-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
       <div id="showroom-empty" class="hidden text-center py-16 bg-[#131926] rounded-3xl border border-zinc-800 mt-6">
         <i class="fa-solid fa-car-rear text-5xl text-zinc-700 mb-3 block"></i>
@@ -341,13 +335,10 @@
       </div>
     </section>
 
-    <!-- ============================================== -->
-    <!-- SEÇÃO OFICIAL: AVALIAÇÕES NO PERFIL DO GOOGLE  -->
-    <!-- ============================================== -->
+    <!-- AVALIAÇÕES GOOGLE -->
     <section id="avaliacoes-google" class="max-w-7xl mx-auto px-4 py-10">
       <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-10 relative overflow-hidden">
         
-        <!-- Header da Seção Google -->
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-zinc-800 pb-8">
           <div class="space-y-1.5">
             <div class="flex items-center gap-2">
@@ -362,7 +353,6 @@
             </p>
           </div>
 
-          <!-- Placa de Nota 5.0 -->
           <div class="flex items-center gap-4 bg-[#070709] border border-zinc-700 px-6 py-4 rounded-2xl shrink-0">
             <div class="text-center">
               <span class="text-4xl font-black text-white">5.0</span>
@@ -381,12 +371,8 @@
           </div>
         </div>
 
-        <!-- Grade de Cards de Avaliações -->
-        <div id="google-reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
-          <!-- Injetado dinamicamente via JS -->
-        </div>
+        <div id="google-reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8"></div>
 
-        <!-- Botões de Ação para o Google -->
         <div class="mt-8 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-4 text-xs">
           <span class="text-zinc-400">Você já é nosso cliente? Ajude outros motoristas avaliando a Cometa Car!</span>
           <div class="flex items-center gap-3">
@@ -404,7 +390,7 @@
       </div>
     </section>
 
-    <!-- LOCALIZAÇÃO / ENDEREÇO DA FACHADA -->
+    <!-- LOCALIZAÇÃO -->
     <section class="max-w-7xl mx-auto px-4 pt-2">
       <div class="chrome-border bg-[#131926] rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="space-y-2">
@@ -527,31 +513,36 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- MODAL: LOGIN ADMINISTRATIVO                -->
+  <!-- MODAL: LOGIN ADMINISTRATIVO (SENHA PRIVADA)-->
   <!-- ========================================== -->
-  <div id="modal-login" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-[#131926] border border-zinc-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
-      <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white">
+  <div id="modal-login" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#131926] border border-zinc-800 w-full max-w-sm rounded-3xl p-6 sm:p-7 shadow-2xl relative">
+      <button onclick="closeLoginModal()" class="absolute right-4 top-4 text-zinc-400 hover:text-white transition-colors">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <div class="text-center mb-6">
-        <div class="w-12 h-12 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center mx-auto mb-3">
+        <div class="w-14 h-14 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center mx-auto mb-3 shadow-inner">
           <i class="fa-solid fa-lock text-2xl"></i>
         </div>
-        <h3 class="text-lg font-black text-white uppercase">Acesso Gerência</h3>
+        <h3 class="text-xl font-black text-white uppercase tracking-tight">Acesso Gerência</h3>
         <p class="text-xs text-zinc-400 mt-1">Gerenciamento do estoque Cometa Car.</p>
       </div>
 
-      <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+      <form onsubmit="handleLoginSubmit(event)" class="space-y-5">
         <div>
-          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Senha de Gerência</label>
-          <input type="password" id="admin-password" placeholder="Digite a senha..." required
-                 class="w-full bg-[#070709] border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-red-600" />
-          <p class="text-[11px] text-zinc-500 mt-1.5">Senha de teste: <span class="text-red-400 font-mono font-bold">admin123</span></p>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-1.5">Senha de Gerência</label>
+          <div class="relative">
+            <input type="password" id="admin-password" placeholder="Digite a senha..." required
+                   class="w-full bg-[#070709] border border-zinc-800 rounded-xl pl-4 pr-10 py-3 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-red-600 transition-colors" />
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-3.5 text-zinc-500 hover:text-zinc-300 transition-colors">
+              <i class="fa-solid fa-eye" id="toggle-password-icon"></i>
+            </button>
+          </div>
         </div>
+
         <button type="submit" 
-                class="w-full py-2.5 rounded-xl gradient-fire font-black text-xs uppercase tracking-wider text-white shadow-lg shadow-red-950/50">
+                class="w-full py-3 rounded-xl gradient-fire font-black text-xs uppercase tracking-wider text-white shadow-lg shadow-red-950/60 hover:opacity-95 transition-all">
           Entrar no ERP
         </button>
       </form>
@@ -815,10 +806,9 @@
   <!-- JAVASCRIPT VANILLA & REGRAS DE NEGÓCIO     -->
   <!-- ========================================== -->
   <script>
-    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V3';
+    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V4';
     const REVIEWS_STORAGE_KEY = 'COMETA_CAR_GOOGLE_REVIEWS';
 
-    // AVALIAÇÕES DO GOOGLE MEU NEGÓCIO (PERFIL OFICIAL OSASCO/SP)
     const SEED_REVIEWS = [
       {
         id: "rev-1",
@@ -846,7 +836,6 @@
       }
     ];
 
-    // ESTOQUE COM EXEMPLO DE FOTOS E VÍDEO
     const SEED_DATA = [
       {
         id: "cometa-01",
@@ -1017,7 +1006,6 @@
     const formatBRL = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
     const formatKM = (km) => new Intl.NumberFormat('pt-BR').format(km) + ' km';
 
-    // RENDERIZADOR DAS AVALIAÇÕES DO GOOGLE
     function renderGoogleReviews() {
       const grid = document.getElementById('google-reviews-grid');
       grid.innerHTML = '';
@@ -1062,7 +1050,6 @@
       });
     }
 
-    // COMPRESSOR DE IMAGENS AUTOMÁTICO
     function compressImage(file, maxWidth = 1080, quality = 0.75) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -1193,10 +1180,17 @@
       }
     }
 
+    // ==========================================
+    // AUTENTICAÇÃO COM A SENHA COMETA@2026
+    // ==========================================
     function openLoginModal() {
       document.getElementById('modal-login').classList.remove('hidden');
       document.getElementById('modal-login').classList.add('flex');
-      document.getElementById('admin-password').focus();
+      const input = document.getElementById('admin-password');
+      input.value = '';
+      input.type = 'password';
+      document.getElementById('toggle-password-icon').className = 'fa-solid fa-eye';
+      input.focus();
     }
 
     function closeLoginModal() {
@@ -1205,16 +1199,30 @@
       document.getElementById('admin-password').value = '';
     }
 
+    function togglePasswordVisibility() {
+      const input = document.getElementById('admin-password');
+      const icon = document.getElementById('toggle-password-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash text-red-500';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa-solid fa-eye text-zinc-500';
+      }
+    }
+
     function handleLoginSubmit(e) {
       e.preventDefault();
       const pass = document.getElementById('admin-password').value;
-      if (pass === 'admin123') {
+      
+      // Validação exata da nova senha
+      if (pass === 'Cometa@2026') {
         isAdminAuthenticated = true;
         closeLoginModal();
         showToast('Acesso autorizado! Bem-vindo ao ERP Cometa Car.', 'success');
         switchView('admin');
       } else {
-        showToast('Senha inválida. Use admin123.', 'error');
+        showToast('Senha incorreta. Acesso restrito à gerência.', 'error');
       }
     }
 
@@ -1244,7 +1252,6 @@
       applyFilters();
     }
 
-    // ATALHO RÁPIDO DE PREÇO
     function setPriceFilter(val) {
       document.getElementById('filter-price-input').value = val;
       applyFilters();
@@ -1258,13 +1265,10 @@
       }
     }
 
-    // APLICAÇÃO DOS FILTROS (INCLUINDO PREÇO DIGITÁVEL)
     function applyFilters() {
       const query = document.getElementById('filter-search').value.toLowerCase().trim();
       const brand = document.getElementById('filter-brand').value;
       const gearbox = document.getElementById('filter-gearbox').value;
-      
-      // Lê o valor digitado pelo cliente
       const typedPrice = parseFloat(document.getElementById('filter-price-input').value) || Infinity;
 
       const filtered = vehicles.filter(v => {
@@ -1273,7 +1277,6 @@
                             v.year.toString().includes(query);
         const matchesBrand = brand === '' || v.brand === brand;
         const matchesGearbox = gearbox === '' || v.gearbox === gearbox;
-        
         const effectivePrice = (v.status === 'oferta' && v.pricePromo) ? v.pricePromo : v.priceOriginal;
         const matchesPrice = effectivePrice <= typedPrice;
 
@@ -1418,7 +1421,6 @@
       });
     }
 
-    // MODAL DE DETALHES
     function openDetailsModal(id) {
       const car = vehicles.find(v => v.id === id);
       if (!car) return;
@@ -1568,7 +1570,6 @@
       window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
     }
 
-    // PAINEL ERP ADMINISTRATIVO
     function renderAdminDashboard() {
       const totalCars = vehicles.length;
       const dealsCount = vehicles.filter(v => v.status === 'oferta').length;
