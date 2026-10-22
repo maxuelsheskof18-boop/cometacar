@@ -108,24 +108,19 @@
               </linearGradient>
             </defs>
 
-            <!-- Moldura Externa Cromada -->
             <path d="M100 12 L178 34 C178 115 142 165 100 190 C58 165 22 115 22 34 Z" 
                   stroke="url(#shieldChrome)" stroke-width="7" fill="#0C0D11"/>
 
-            <!-- Borda Interna Fina -->
             <path d="M100 22 L168 41 C168 110 137 154 100 176 C63 154 32 110 32 41 Z" 
                   stroke="url(#shieldChrome)" stroke-width="2" stroke-opacity="0.5" fill="#07080A"/>
 
-            <!-- Silhueta Esportiva do Carro -->
             <path d="M52 90 L82 72 L132 72 L160 84 L185 88 L188 95 L178 95 C176 90 168 87 160 87 C152 87 146 92 144 97 L95 97 C93 91 85 87 77 87 C69 87 63 91 61 97 L45 97 Z" 
                   stroke="url(#shieldChrome)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             <path d="M88 74 L128 74 L144 84 L80 84 Z" fill="#181B22" stroke="url(#shieldChrome)" stroke-width="1.5"/>
 
-            <!-- O Cometa Vermelho em Corte -->
             <polygon points="12,96 112,88 120,95 38,102" fill="url(#cometaRed)"/>
             <polygon points="18,100 95,95 102,100 32,106" fill="#F87171"/>
 
-            <!-- Árvore Oficial da Base do Escudo -->
             <g transform="translate(77, 138) scale(0.75)" stroke="url(#shieldChrome)" stroke-width="1.5" fill="none">
               <path d="M30 45 L30 26 M28 45 L32 45" stroke-width="3" stroke-linecap="round"/>
               <path d="M30 28 C15 28 8 20 8 16 C8 12 18 10 30 14 C42 10 52 12 52 16 C52 20 45 28 30 28 Z" fill="#1A1E26" stroke-width="2"/>
@@ -228,7 +223,7 @@
       </div>
     </section>
 
-    <!-- HERO BANNER SOLICITADO -->
+    <!-- HERO BANNER -->
     <section class="relative bg-gradient-to-b from-[#11141c] via-[#090b10] to-[#070709] py-10 sm:py-14 px-4 border-b border-zinc-800/80">
       <div class="max-w-7xl mx-auto">
         <div class="chrome-border rounded-3xl p-6 sm:p-12 bg-gradient-to-br from-[#161d2b] via-[#0d1017] to-[#070709] relative overflow-hidden shadow-2xl">
@@ -291,7 +286,6 @@
             </select>
           </div>
 
-          <!-- CAMPO DIGITÁVEL DE PREÇO -->
           <div class="lg:col-span-4">
             <div class="relative">
               <span class="absolute left-3.5 top-2.5 text-xs font-bold text-red-500">Até R$</span>
@@ -806,7 +800,7 @@
   <!-- JAVASCRIPT VANILLA & REGRAS DE NEGÓCIO     -->
   <!-- ========================================== -->
   <script>
-    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V4';
+    const STORAGE_KEY = 'COMETA_CAR_OFFICIAL_STOCK_V5';
     const REVIEWS_STORAGE_KEY = 'COMETA_CAR_GOOGLE_REVIEWS';
 
     const SEED_REVIEWS = [
@@ -839,112 +833,21 @@
     const SEED_DATA = [
       {
         id: "cometa-01",
-        brand: "Volkswagen",
-        model: "T-Cross Highline 250 TSI 1.4",
-        year: 2024,
-        km: 39000,
-        color: "Prata Pyrit",
-        gearbox: "Automático",
+        brand: "HYUNDAI",
+        model: "HB20 1.6M 1.6M",
+        year: 2013,
+        km: 126565,
+        color: "Vermelha",
+        gearbox: "Manual",
         fuel: "Flex",
-        priceOriginal: 145900,
-        pricePromo: 139900,
-        status: "oferta",
+        priceOriginal: 50500,
+        pricePromo: 48900,
+        status: "disponivel",
         photos: [
-          "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1000&q=80",
           "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=80"
         ],
-        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        features: ["Laudo Cautelar 100% Aprovado", "Painel Digital TFT", "Ar Digital Climatronic", "Faróis Full LED", "Aceita Troca por Moto"]
-      },
-      {
-        id: "cometa-02",
-        brand: "Chevrolet",
-        model: "Celta Life 1.0 MPFI 8V",
-        year: 2009,
-        km: 118000,
-        color: "Preto",
-        gearbox: "Manual",
-        fuel: "Flex",
-        priceOriginal: 22900,
-        pricePromo: 20900,
-        status: "oferta",
-        photos: [
-          "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80"
-        ],
         videoUrl: "",
-        features: ["Revisado de Mecânica", "Pneus Bons", "Super Econômico", "Documentação OK", "Entrada em até 21x no Cartão"]
-      },
-      {
-        id: "cometa-03",
-        brand: "Toyota",
-        model: "Corolla GLi 1.8 16V Dual VVT-i",
-        year: 2018,
-        km: 74000,
-        color: "Prata Metálico",
-        gearbox: "Automático",
-        fuel: "Flex",
-        priceOriginal: 84900,
-        pricePromo: null,
-        status: "disponivel",
-        photos: [
-          "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1000&q=80"
-        ],
-        videoUrl: "",
-        features: ["Câmbio Automático CVT", "Bancos em Couro", "Multimídia com Câmera", "Periciado e Aprovado", "Financiamento em até 60x"]
-      },
-      {
-        id: "cometa-04",
-        brand: "Honda",
-        model: "Civic EXL 2.0 16V i-VTEC",
-        year: 2020,
-        km: 58000,
-        color: "Cinza Titanium",
-        gearbox: "Automático",
-        fuel: "Flex",
-        priceOriginal: 118000,
-        pricePromo: 114900,
-        status: "oferta",
-        photos: [
-          "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1000&q=80"
-        ],
-        videoUrl: "",
-        features: ["Painel TFT", "Bancos em Couro", "Freio de Mão Eletrônico", "Ar Digital Dual Zone", "Procedência 100%"]
-      },
-      {
-        id: "cometa-05",
-        brand: "Volkswagen",
-        model: "Fusca Itamar 1.6 Coleção",
-        year: 1995,
-        km: 82000,
-        color: "Branco Star",
-        gearbox: "Manual",
-        fuel: "Gasolina",
-        priceOriginal: 48000,
-        pricePromo: null,
-        status: "disponivel",
-        photos: [
-          "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=1000&q=80"
-        ],
-        videoUrl: "",
-        features: ["Raridade de Estoque", "Tapeçaria Nova", "Manual e Chave Reserva", "Motor 1.6 Dupla Carburação", "Excelente Estado"]
-      },
-      {
-        id: "cometa-06",
-        brand: "Chevrolet",
-        model: "Onix LTZ 1.0 Turbo Hatch",
-        year: 2022,
-        km: 42000,
-        color: "Vermelho Carmim",
-        gearbox: "Automático",
-        fuel: "Flex",
-        priceOriginal: 79900,
-        pricePromo: null,
-        status: "vendido",
-        photos: [
-          "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80"
-        ],
-        videoUrl: "",
-        features: ["Mais Um Sonho Entregue!", "MyLink 8 Polegadas", "Wi-Fi Nativo", "Sensor de Estacionamento"]
+        features: ["Motor 1.6 Potente e Econômico", "Laudo Cautelar 100% Aprovado", "Revisado", "Aceita Troca", "Financiamento Facilitado"]
       }
     ];
 
@@ -976,7 +879,17 @@
           saveStorage();
         }
       } else {
-        vehicles = SEED_DATA;
+        // Tenta migrar dados de versões anteriores caso existam
+        const oldData = localStorage.getItem('COMETA_CAR_OFFICIAL_STOCK_V4') || localStorage.getItem('COMETA_CAR_OFFICIAL_STOCK_V3');
+        if (oldData) {
+          try {
+            vehicles = JSON.parse(oldData);
+          } catch(e) {
+            vehicles = SEED_DATA;
+          }
+        } else {
+          vehicles = SEED_DATA;
+        }
         saveStorage();
       }
     }
@@ -1143,7 +1056,6 @@
       renderPhotoPreviews();
     }
 
-    // NAVEGAÇÃO
     function switchView(view) {
       currentView = view;
       const showroomEl = document.getElementById('view-showroom');
@@ -1180,9 +1092,6 @@
       }
     }
 
-    // ==========================================
-    // AUTENTICAÇÃO COM A SENHA COMETA@2026
-    // ==========================================
     function openLoginModal() {
       document.getElementById('modal-login').classList.remove('hidden');
       document.getElementById('modal-login').classList.add('flex');
@@ -1214,8 +1123,6 @@
     function handleLoginSubmit(e) {
       e.preventDefault();
       const pass = document.getElementById('admin-password').value;
-      
-      // Validação exata da nova senha
       if (pass === 'Cometa@2026') {
         isAdminAuthenticated = true;
         closeLoginModal();
@@ -1259,7 +1166,7 @@
 
     function filterByTag(tag) {
       if (tag === 'oferta') {
-        renderShowroom(vehicles.filter(v => v.status === 'oferta'));
+        renderShowroom(vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal))));
       } else if (tag === 'video') {
         renderShowroom(vehicles.filter(v => v.videoUrl && v.videoUrl.trim() !== ''));
       }
@@ -1277,7 +1184,10 @@
                             v.year.toString().includes(query);
         const matchesBrand = brand === '' || v.brand === brand;
         const matchesGearbox = gearbox === '' || v.gearbox === gearbox;
-        const effectivePrice = (v.status === 'oferta' && v.pricePromo) ? v.pricePromo : v.priceOriginal;
+        
+        // Determina o preço real efetivo de venda
+        const hasPromo = Boolean(v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal));
+        const effectivePrice = hasPromo ? Number(v.pricePromo) : Number(v.priceOriginal);
         const matchesPrice = effectivePrice <= typedPrice;
 
         return matchesText && matchesBrand && matchesGearbox && matchesPrice;
@@ -1286,6 +1196,9 @@
       renderShowroom(filtered);
     }
 
+    // ==============================================
+    // RENDERIZAÇÃO DOS CARDS NO SHOWROOM (CORRIGIDO)
+    // ==============================================
     function renderShowroom(data = vehicles) {
       const grid = document.getElementById('showroom-grid');
       const emptyState = document.getElementById('showroom-empty');
@@ -1301,23 +1214,30 @@
       emptyState.classList.add('hidden');
 
       data.forEach(car => {
-        const isOffer = car.status === 'oferta' && car.pricePromo;
+        // DETECÇÃO AUTOMÁTICA DE PROMOÇÃO
+        const origPrice = Number(car.priceOriginal);
+        const promoPrice = Number(car.pricePromo || 0);
+        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
         const isSold = car.status === 'vendido';
+        const isExplicitOffer = car.status === 'oferta';
         const hasVideo = car.videoUrl && car.videoUrl.trim() !== '';
-        const displayPrice = isOffer ? car.pricePromo : car.priceOriginal;
+
+        const displayPrice = hasPromo ? promoPrice : origPrice;
+        const discountAmount = origPrice - promoPrice;
         const mainPhoto = car.photos[0] || 'https://via.placeholder.com/600x400?text=Cometa+Car';
 
         const waMsg = encodeURIComponent(`Olá Cometa Car Multimarcas! Vi o ${car.brand} ${car.model} (${car.year}) por ${formatBRL(displayPrice)} no site e gostaria de saber as condições.`);
         const waUrl = `https://wa.me/5511957400658?text=${waMsg}`;
 
+        // BADGE SUPERIOR
         let badgeHtml = '';
-        if (isOffer) {
-          badgeHtml = `<span class="bg-red-600 text-white font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 border border-red-400">
-                         <i class="fa-solid fa-fire text-amber-300"></i> OFERTA DA LOJA
-                       </span>`;
-        } else if (isSold) {
+        if (isSold) {
           badgeHtml = `<span class="bg-zinc-800 text-zinc-300 border border-zinc-600 font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
                          VENDIDO
+                       </span>`;
+        } else if (hasPromo || isExplicitOffer) {
+          badgeHtml = `<span class="bg-red-600 text-white font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 border border-red-400">
+                         <i class="fa-solid fa-fire text-amber-300"></i> EM OFERTA
                        </span>`;
         } else {
           badgeHtml = `<span class="bg-zinc-950/90 text-emerald-400 border border-emerald-500/40 font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
@@ -1385,13 +1305,27 @@
               </div>
             </div>
 
+            <!-- BLOCO DE PREÇOS COM DESTAQUE TOTAL DA PROMOÇÃO -->
             <div class="mt-5 pt-4 border-t border-zinc-800">
               <div class="mb-3">
-                ${isOffer ? `<span class="text-xs text-zinc-500 line-through block font-medium">${formatBRL(car.priceOriginal)}</span>` : '<span class="text-xs text-transparent block select-none">.</span>'}
-                <div class="text-2xl font-black text-white tracking-tight">
-                  ${formatBRL(displayPrice)}
-                </div>
-                <span class="text-[11px] text-zinc-400 font-bold block mt-0.5">
+                ${hasPromo ? `
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs text-zinc-400 line-through font-semibold">De ${formatBRL(origPrice)}</span>
+                    <span class="bg-red-600/20 text-red-400 border border-red-500/30 text-[10px] font-black px-2 py-0.5 rounded-md">
+                      -${formatBRL(discountAmount)} OFF
+                    </span>
+                  </div>
+                  <div class="text-2xl sm:text-3xl font-black text-amber-400 tracking-tight flex items-baseline gap-1.5">
+                    <span class="text-xs font-bold uppercase text-red-500">Por</span>
+                    <span>${formatBRL(promoPrice)}</span>
+                  </div>
+                ` : `
+                  <span class="text-xs text-transparent block select-none">.</span>
+                  <div class="text-2xl font-black text-white tracking-tight">
+                    ${formatBRL(origPrice)}
+                  </div>
+                `}
+                <span class="text-[11px] text-zinc-400 font-bold block mt-1">
                   <i class="fa-solid fa-handshake text-emerald-400 mr-1"></i> Aceita troca • Financiamento
                 </span>
               </div>
@@ -1421,9 +1355,16 @@
       });
     }
 
+    // ==============================================
+    // MODAL DE DETALHES COM PREÇO PROMOCIONAL
+    // ==============================================
     function openDetailsModal(id) {
       const car = vehicles.find(v => v.id === id);
       if (!car) return;
+
+      const origPrice = Number(car.priceOriginal);
+      const promoPrice = Number(car.pricePromo || 0);
+      const hasPromo = promoPrice > 0 && promoPrice < origPrice;
 
       document.getElementById('detail-brand').textContent = car.brand;
       document.getElementById('detail-model').textContent = car.model;
@@ -1499,27 +1440,26 @@
         thumbContainer.appendChild(thumb);
       });
 
-      const isOffer = car.status === 'oferta' && car.pricePromo;
       const originalPriceEl = document.getElementById('detail-price-original');
       const promoPriceEl = document.getElementById('detail-price-promo');
       const labelPriceEl = document.getElementById('detail-price-label');
 
-      if (isOffer) {
-        originalPriceEl.textContent = formatBRL(car.priceOriginal);
+      if (hasPromo) {
+        originalPriceEl.textContent = `De ${formatBRL(origPrice)}`;
         originalPriceEl.classList.remove('hidden');
-        promoPriceEl.textContent = formatBRL(car.pricePromo);
+        promoPriceEl.textContent = formatBRL(promoPrice);
         labelPriceEl.textContent = 'Preço Promocional';
       } else {
         originalPriceEl.classList.add('hidden');
-        promoPriceEl.textContent = formatBRL(car.priceOriginal);
+        promoPriceEl.textContent = formatBRL(origPrice);
         labelPriceEl.textContent = 'Preço de Estoque';
       }
 
       const badgeWrap = document.getElementById('detail-status-badge');
-      if (car.status === 'oferta') {
-        badgeWrap.innerHTML = '<span class="bg-red-600 text-white font-black text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-red-400">OFERTA ESPECIAL</span>';
-      } else if (car.status === 'vendido') {
+      if (car.status === 'vendido') {
         badgeWrap.innerHTML = '<span class="bg-zinc-800 text-zinc-300 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider">VENDIDO</span>';
+      } else if (hasPromo || car.status === 'oferta') {
+        badgeWrap.innerHTML = '<span class="bg-red-600 text-white font-black text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-red-400">EM OFERTA</span>';
       } else {
         badgeWrap.innerHTML = '<span class="bg-zinc-950 text-emerald-400 font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider border border-emerald-500/30">DISPONÍVEL</span>';
       }
@@ -1542,7 +1482,7 @@
       } else {
         waBtn.classList.remove('pointer-events-none', 'opacity-50', 'bg-zinc-700');
         waBtn.classList.add('bg-[#25D366]');
-        const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) anunciado por ${formatBRL(isOffer ? car.pricePromo : car.priceOriginal)} no site da Cometa Car e quero fechar negócio!`);
+        const waMsg = encodeURIComponent(`Olá! Vi o ${car.brand} ${car.model} (${car.year}) anunciado por ${formatBRL(hasPromo ? promoPrice : origPrice)} no site da Cometa Car e quero fechar negócio!`);
         waBtn.href = `https://wa.me/5511957400658?text=${waMsg}`;
         waBtn.innerHTML = '<i class="fa-brands fa-whatsapp text-lg"></i> Negociar no WhatsApp da Loja';
       }
@@ -1570,13 +1510,23 @@
       window.open(`https://wa.me/5511957400658?text=${waMsg}`, '_blank');
     }
 
+    // ==============================================
+    // PAINEL ERP: MÉTRICAS & TABELA
+    // ==============================================
     function renderAdminDashboard() {
       const totalCars = vehicles.length;
-      const dealsCount = vehicles.filter(v => v.status === 'oferta').length;
+      
+      // Contabiliza como oferta se tiver preço promocional OU se o status for "oferta"
+      const dealsCount = vehicles.filter(v => v.status === 'oferta' || (v.pricePromo && Number(v.pricePromo) > 0 && Number(v.pricePromo) < Number(v.priceOriginal))).length;
       const soldCount = vehicles.filter(v => v.status === 'vendido').length;
+      
       const totalValue = vehicles
         .filter(v => v.status !== 'vendido')
-        .reduce((acc, cur) => acc + (cur.status === 'oferta' && cur.pricePromo ? cur.pricePromo : cur.priceOriginal), 0);
+        .reduce((acc, cur) => {
+          const promo = Number(cur.pricePromo || 0);
+          const orig = Number(cur.priceOriginal);
+          return acc + (promo > 0 && promo < orig ? promo : orig);
+        }, 0);
 
       document.getElementById('kpi-total-cars').textContent = totalCars;
       document.getElementById('kpi-deals-count').textContent = dealsCount;
@@ -1591,6 +1541,10 @@
       vehicles.forEach(car => {
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-zinc-800/40 transition-colors';
+
+        const origPrice = Number(car.priceOriginal);
+        const promoPrice = Number(car.pricePromo || 0);
+        const hasPromo = promoPrice > 0 && promoPrice < origPrice;
 
         let statusBadge = '';
         if (car.status === 'disponivel') {
@@ -1638,8 +1592,8 @@
             </div>
           </td>
           <td class="px-4 py-4 whitespace-nowrap">
-            <div class="font-black text-white">${formatBRL(car.priceOriginal)}</div>
-            ${car.pricePromo ? `<div class="text-xs text-amber-400 font-bold">Promo: ${formatBRL(car.pricePromo)}</div>` : ''}
+            <div class="font-black ${hasPromo ? 'text-zinc-400 line-through text-xs' : 'text-white'}">${formatBRL(origPrice)}</div>
+            ${hasPromo ? `<div class="text-sm text-amber-400 font-black">Promo: ${formatBRL(promoPrice)}</div>` : ''}
           </td>
           <td class="px-4 py-4 text-center whitespace-nowrap">
             ${statusBadge}
@@ -1680,6 +1634,7 @@
       saveStorage();
       renderAdminDashboard();
       renderAdminTable();
+      renderShowroom();
     }
 
     function deleteVehicle(id) {
@@ -1692,6 +1647,7 @@
         populateBrandFilter();
         renderAdminDashboard();
         renderAdminTable();
+        renderShowroom();
         showToast('Veículo removido do estoque.', 'error');
       }
     }
@@ -1762,6 +1718,16 @@
       const finalVideo = videoInputUrl || uploadedVideoBuffer || '';
       const featuresArray = document.getElementById('form-features').value.split(',').map(s => s.trim()).filter(Boolean);
 
+      const origPrice = parseFloat(document.getElementById('form-price-original').value);
+      const promoInputVal = document.getElementById('form-price-promo').value;
+      const promoPrice = promoInputVal ? parseFloat(promoInputVal) : null;
+      let statusVal = document.getElementById('form-status').value;
+
+      // Se cadastrou um preço promocional menor, garante que é tratado como oferta
+      if (promoPrice && promoPrice < origPrice && statusVal === 'disponivel') {
+        statusVal = 'oferta';
+      }
+
       const vehicleData = {
         id: id || 'car-' + Date.now(),
         brand: document.getElementById('form-brand').value.trim(),
@@ -1771,9 +1737,9 @@
         color: document.getElementById('form-color').value.trim(),
         gearbox: document.getElementById('form-gearbox').value,
         fuel: document.getElementById('form-fuel').value,
-        priceOriginal: parseFloat(document.getElementById('form-price-original').value),
-        pricePromo: document.getElementById('form-price-promo').value ? parseFloat(document.getElementById('form-price-promo').value) : null,
-        status: document.getElementById('form-status').value,
+        priceOriginal: origPrice,
+        pricePromo: promoPrice,
+        status: statusVal,
         photos: finalPhotos,
         videoUrl: finalVideo,
         features: featuresArray
@@ -1794,6 +1760,7 @@
       populateBrandFilter();
       renderAdminDashboard();
       renderAdminTable();
+      renderShowroom();
       closeVehicleModal();
     }
 
